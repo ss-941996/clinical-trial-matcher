@@ -1,0 +1,13 @@
+[project]
+name = "clinical-trial-matcher"
+version = "0.1.0"
+description = "Research baseline for patient-to-clinical-trial retrieval"
+requires-python = ">=3.12,<3.13"
+dependencies = ["requests==2.34.2", "pyarrow==26.0.1", "numpy==2.5.5", "pytrec-eval-terrier==0.5.11"]
+
+[dependency-groups]
+dev = ["pytest==9.2.0", "ir-measures==0.4.3"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -1,0 +1,52 @@
+TREC 2021: REVIEW OF THE FIRST 10 DEVELOPMENT TOPICS
+Reviewed on 16 November 2026 from the official downloaded patient topics.
+This is a data/engineering review, not a medical eligibility assessment.
+
+Topic 1: Spinal anaplastic astrocytoma with prior radiation and multiple systemic
+therapies. Preserve tumor location and treatment history; a broad brain-tumor
+keyword match does not establish eligibility. Judged eligible trials: 47.
+
+Topic 2: Aortic stenosis with a bicuspid valve and reduced ventricular function.
+Contains many abbreviations and shifted date placeholders. Do not mistake the
+placeholder year for patient age or infer current recruitment. Eligible: 138.
+
+Topic 3: Intraventricular hemorrhage and an arteriovenous malformation. Narrative
+mentions an initial injury but subsequent investigation changes the clinical
+focus. Full-note retrieval will include both contexts. Eligible: 32.
+
+Topic 4: Burkitt lymphoma presenting in the heart, with negative marrow/CSF
+involvement and a long past history. Negated involvement and historical events
+must remain distinct from present disease. Eligible: 44.
+
+Topic 5: Bilateral carotid stenosis amid substantial comorbidity. Includes symptom
+negations and explicit numerical stenosis measurements. Broad cardiovascular
+terms may dominate a naive retrieval query. Eligible: 119.
+
+Topic 6: Recurrent C. difficile infection and dialysis-dependent renal disease.
+Contains medication aliases, abbreviations and a treatment timeline. These are
+potentially important to later eligibility checks. Eligible: 117.
+
+Topic 7: HCV cirrhosis and hepatic encephalopathy; prior interferon nonresponse.
+A documented negative workup for stroke must not become a positive diagnosis.
+Historical alcohol use and current abstinence require temporal context. Eligible: 125.
+
+Topic 8: CLL with Richter transformation after multiple treatment regimens.
+Treatment response and order matter; broad leukemia relevance alone is not a
+sufficient match to a trial's required disease subtype. Eligible: 92.
+
+Topic 9: Epilepsy with intellectual disability and a detailed medication history.
+Only 13 eligible versus 201 excluded judgments. This is a useful later test of
+whether criterion checking demotes relevant-but-excluded trials.
+
+Topic 10: Systemic mastocytosis, repeated flares and elevated tryptase.
+Only 11 eligible judgments. Inspect rare-condition retrieval failures carefully;
+a high recall gain/loss can be driven by a small number of records.
+
+BASELINE DECISIONS
+Use the unmodified note as the retrieval input, with only deterministic lexical
+tokenization and a fixed English stopword list. Do not tune on these examples
+before recording the first baseline. Keep negations and date placeholders in the
+source; this baseline does not claim to reason about either. No LLM calls.
+
+The first 10 topics are a development slice. Their results cannot be described
+as performance on all 75 topics or on a held-out year. TREC 2022 remains untouched.

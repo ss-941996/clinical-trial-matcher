@@ -1,0 +1,80 @@
+{
+  "dataset": "TREC Clinical Trials 2021",
+  "snapshot": "2021-04-27",
+  "year": 2021,
+  "created_at": "2026-11-16T11:44:57.289413+00:00",
+  "scope": "official full snapshot",
+  "source_page": "https://www.trec-cds.org/2021.html",
+  "qrels_page": "https://trec.nist.gov/data/trials2021.html",
+  "terms": "https://clinicaltrials.gov/about-site/terms-conditions",
+  "citation": "Roberts et al. Overview of the TREC 2021 Clinical Trials Track. TREC 2021.",
+  "integrity": "Local SHA-256 fingerprints, not publisher-signed checksums. ZIP member CRC verified during parsing. Manual archives checked against ir_datasets MD5 references.",
+  "reference_checksums": "https://github.com/allenai/ir_datasets/blob/master/ir_datasets/etc/downloads.json",
+  "files": [
+    {
+      "url": "https://www.trec-cds.org/2021_data/ClinicalTrials.2021-04-27.part1.zip",
+      "file": "data/raw/trec2021/ClinicalTrials.2021-04-27.part1.zip",
+      "bytes": 382792518,
+      "sha256": "4caa9579290adaa974efae6f5be170c8964c0fb5d110c1bdb935b331d0bf3ec2",
+      "registered_at": "2026-11-16T11:44:54.874580+00:00",
+      "acquisition": "manually downloaded by owner",
+      "reference_md5": "e12eb9a0d21452503b0ef8874c69f490"
+    },
+    {
+      "url": "https://www.trec-cds.org/2021_data/ClinicalTrials.2021-04-27.part2.zip",
+      "file": "data/raw/trec2021/ClinicalTrials.2021-04-27.part2.zip",
+      "bytes": 378478271,
+      "sha256": "6f4800b0c9e57af5bcef039c2d0661b2c5e844bb5025f959d7a940c03c2d902d",
+      "registered_at": "2026-11-16T11:44:54.823989+00:00",
+      "acquisition": "manually downloaded by owner",
+      "reference_md5": "f6986125506434887a162f144ca4d9a2"
+    },
+    {
+      "url": "https://www.trec-cds.org/2021_data/ClinicalTrials.2021-04-27.part3.zip",
+      "file": "data/raw/trec2021/ClinicalTrials.2021-04-27.part3.zip",
+      "bytes": 375998752,
+      "sha256": "1190a5bd629d011dc7011b42b92f94cb7ec0ec21522bafb7701aaee826a42fce",
+      "registered_at": "2026-11-16T11:44:54.806267+00:00",
+      "acquisition": "manually downloaded by owner",
+      "reference_md5": "9b7fb528b22edfcf4535154cc3d98111"
+    },
+    {
+      "url": "https://www.trec-cds.org/2021_data/ClinicalTrials.2021-04-27.part4.zip",
+      "file": "data/raw/trec2021/ClinicalTrials.2021-04-27.part4.zip",
+      "bytes": 360825058,
+      "sha256": "d10ecad6993dea01e9f581e0104cdff6cd8120d0bc851de87d088cf799a7dd98",
+      "registered_at": "2026-11-16T11:44:57.279483+00:00",
+      "acquisition": "manually downloaded by owner",
+      "reference_md5": "4fd98d209e7b62cee87af211c0c281f6"
+    },
+    {
+      "url": "https://www.trec-cds.org/2021_data/ClinicalTrials.2021-04-27.part5.zip",
+      "file": "data/raw/trec2021/ClinicalTrials.2021-04-27.part5.zip",
+      "bytes": 296625845,
+      "sha256": "17c773184de8fea9cfcac5cd0cca45c816f4c4ac7568d35d7b0873f63bfc1602",
+      "registered_at": "2026-11-16T11:44:57.022812+00:00",
+      "acquisition": "manually downloaded by owner",
+      "reference_md5": "a747f09ac5d4f3cd0cc75957ad9f32d8"
+    },
+    {
+      "url": "https://trec.nist.gov/data/trials/qrels2021.txt",
+      "final_url": "https://trec.nist.gov/data/trials/qrels2021.txt",
+      "file": "data/raw/trec2021/qrels2021.txt",
+      "bytes": 676496,
+      "sha256": "ba7a2cddc90285e75cd76adcd483394a6c9bacf7017113222058ba6537e6d8ac",
+      "fetched_at": "2026-11-16T11:35:26.689169+00:00",
+      "etag": "\"a5290-5d89d87e6e3ae-gzip\"",
+      "last_modified": "Tue, 22 Feb 2022 16:06:25 GMT"
+    },
+    {
+      "url": "https://trec.nist.gov/data/trials/topics2021.xml",
+      "final_url": "https://trec.nist.gov/data/trials/topics2021.xml",
+      "file": "data/raw/trec2021/topics2021.xml",
+      "bytes": 64618,
+      "sha256": "94bda921ce7c40a0353f251abb2ea938c77331759a9f83a36abd145ab5840aca",
+      "fetched_at": "2026-11-16T11:37:05.012912+00:00",
+      "etag": "\"fc6a-5d80f596038d2-gzip\"",
+      "last_modified": "Tue, 15 Feb 2022 14:28:39 GMT"
+    }
+  ]
+}

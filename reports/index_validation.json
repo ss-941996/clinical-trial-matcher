@@ -1,0 +1,10 @@
+{
+  "fts_integrity": "passed",
+  "sqlite_integrity": [
+    [
+      "ok"
+    ]
+  ],
+  "records": 375580,
+  "validation_seconds": 273.0140712000011
+}

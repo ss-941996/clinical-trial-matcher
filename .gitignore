@@ -20,3 +20,5 @@ __pycache__/
 /models/
 /runs/
 *.log
+.uv-cache/
+.python/

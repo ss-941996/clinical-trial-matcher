@@ -1,0 +1,55 @@
+BM25 V1 - ENGINEERING ERROR ANALYSIS
+
+Scope: full 375,580-trial snapshot, first ten TREC 2021 development patients.
+Aggregate result: nDCG@10 0.4112, eligible recall@10 1.93%, recall@30 4.92%,
+and recall@200 18.35% (macro averages across ten topics). Across the 100 top-ten
+positions, 16 are judged eligible, 45 excluded, 35 irrelevant and four unjudged.
+
+This report inspects benchmark labels and source text; it does not independently
+adjudicate clinical eligibility. Pooled judgments are incomplete.
+
+1. TOPICAL RELEVANCE DOES NOT ESTABLISH ELIGIBILITY
+For topic 1 (spinal anaplastic astrocytoma after several therapies), the top ten
+contain zero grade-2 eligible trials and seven grade-1 excluded trials. The first
+two titles mention anaplastic astrocytoma, so disease words alone are insufficient.
+BM25 does not reason about tumor location, treatment history or exclusion rules.
+The benchmark labels establish the exclusion counts; the precise clinical reason
+for each exclusion is not established by the label alone.
+
+2. LONG NOTES CAN MATCH SECONDARY FEATURES
+Topic 1 ranks NCT03784729, an acupuncture study for intermittent claudication due
+to lumbar spinal stenosis, third. The patient note contains spinal disease,
+weakness, walking difficulty and chronic pain, while its primary tumor diagnosis
+is different. This illustrates secondary-symptom overlap. It suggests testing
+disease-focused query extraction; token-level attribution has not been measured.
+
+3. ELIGIBLE TRIALS ARE LOST BEFORE ANY RERANKER COULD HELP
+For topic 1, only five of 47 judged eligible trials appear in the top 200.
+Misses include NCT00002814 and NCT00003470, both of whose titles explicitly name
+anaplastic astrocytoma. These are known benchmark positives, not new medical
+eligibility conclusions. A reranker restricted to 200 cannot recover these misses.
+
+For topic 10 (systemic mastocytosis), only one of 11 judged eligible trials appears
+in the top 200 and none appears in the top ten. Misses include NCT00001356
+(Culture and Characteristics of Mastocytosis Mast Cells) and NCT00044122
+(Regulation of the Proliferation and Survival of Normal and Neoplastic Human Mast
+Cells). Their conditions include mastocytosis. The note also includes numerous
+medications, acute symptoms and discharge details. Query dilution is a hypothesis
+to test, not a demonstrated causal explanation for every miss.
+
+4. NEXT CONTROLLED EXPERIMENTS
+- Freeze this run and retain its rankings and metrics as the baseline.
+- Compare disease-focused queries with whole-note queries on a separately chosen
+  TREC 2021 development/validation split. Record clinical abbreviations and negation.
+- Add biomedical dense retrieval and reciprocal rank fusion; first measure eligible
+  recall@200 to determine whether additional positives reach the candidate pool.
+- Then test conservative age/sex filters with unknown retained, followed by
+  criterion-level reranking for eligible-versus-excluded separation.
+- Keep TREC 2022 untouched until settings and evaluation conventions are frozen.
+
+The native FTS5 top-k optimization preserves rankings and scores. It is a runtime
+implementation change, not a relevance improvement. reports/validation.json records
+exact comparison with the earlier exhaustive implementation for topics 1 and 10.
+The complete ten-topic aggregate and per-topic results are in eval.md/metrics.json;
+error_cases.json contains notes, actual query tokens, top-ten labels and eligible
+miss examples for all ten patients.

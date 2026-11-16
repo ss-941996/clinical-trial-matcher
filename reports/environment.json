@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-16T11:49:35.550594+00:00",
+  "python": "3.12.13 (main, Jun 23 2026, 15:23:43) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "logical_cpus": 14,
+  "memory": {
+    "total_bytes": 16597598208,
+    "available_bytes": 1820876800
+  },
+  "disk": {
+    "total_bytes": 510913101824,
+    "free_bytes": 266788163584
+  },
+  "sqlite": "3.53.1",
+  "packages": {
+    "pyarrow": "26.0.1",
+    "numpy": "2.5.5",
+    "requests": "2.34.2",
+    "pytest": "9.2.0",
+    "pytrec-eval-terrier": "0.5.11"
+  }
+}

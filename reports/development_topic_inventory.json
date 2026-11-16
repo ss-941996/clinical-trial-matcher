@@ -1,0 +1,92 @@
+[
+  {
+    "topic_id": "2021:1",
+    "characters": 814,
+    "judgment_counts": {
+      "1": 122,
+      "0": 238,
+      "2": 47
+    }
+  },
+  {
+    "topic_id": "2021:2",
+    "characters": 1160,
+    "judgment_counts": {
+      "0": 123,
+      "2": 138,
+      "1": 132
+    }
+  },
+  {
+    "topic_id": "2021:3",
+    "characters": 868,
+    "judgment_counts": {
+      "0": 468,
+      "1": 52,
+      "2": 32
+    }
+  },
+  {
+    "topic_id": "2021:4",
+    "characters": 1005,
+    "judgment_counts": {
+      "0": 415,
+      "1": 51,
+      "2": 44
+    }
+  },
+  {
+    "topic_id": "2021:5",
+    "characters": 1246,
+    "judgment_counts": {
+      "2": 119,
+      "1": 82,
+      "0": 281
+    }
+  },
+  {
+    "topic_id": "2021:6",
+    "characters": 899,
+    "judgment_counts": {
+      "0": 319,
+      "1": 93,
+      "2": 117
+    }
+  },
+  {
+    "topic_id": "2021:7",
+    "characters": 1115,
+    "judgment_counts": {
+      "0": 315,
+      "1": 36,
+      "2": 125
+    }
+  },
+  {
+    "topic_id": "2021:8",
+    "characters": 1262,
+    "judgment_counts": {
+      "0": 362,
+      "1": 61,
+      "2": 92
+    }
+  },
+  {
+    "topic_id": "2021:9",
+    "characters": 1059,
+    "judgment_counts": {
+      "1": 201,
+      "0": 234,
+      "2": 13
+    }
+  },
+  {
+    "topic_id": "2021:10",
+    "characters": 897,
+    "judgment_counts": {
+      "0": 478,
+      "2": 11,
+      "1": 36
+    }
+  }
+]

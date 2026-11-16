@@ -1,0 +1,12 @@
+{
+  "tests_passed": 14,
+  "full_corpus_trials": 375580,
+  "development_topics": 10,
+  "candidates_per_topic": 200,
+  "saved_trec_run_crosscheck": "All per-topic nDCG@10 and grade-2 recall@10/30/200 match independent pytrec_eval parsing of run.trec.",
+  "fingerprints": "Source code, configuration, patient topics, qrels, Parquet and index metadata verified.",
+  "optimization_comparison": "All 200 trial IDs, titles and native BM25 scores exactly match the earlier exhaustive-sort implementation for topics 1 and 10.",
+  "index_integrity_report": "reports/index_validation.json",
+  "model_api_calls": 0,
+  "push_performed": false
+}

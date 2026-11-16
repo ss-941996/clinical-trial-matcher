@@ -3,9 +3,11 @@ Prepared: 16 November 2026
 
 OBJECTIVE AND CURRENT STATUS
 Turn a synthetic free-text patient note into an explainable top-10 trial list.
-The supplied README defines the intended product. This commit contains planning
-and directory scaffolding, not a working matcher. The GitHub repository was empty
-when inspected. Development will happen locally; the owner will push commits.
+The supplied README defines the intended product. This document records the
+original implementation plan. The ingestion, profiling, BM25 and evaluation
+milestone is now implemented; see README.md and reports/bm25_v1/eval.md for the
+current measured status. The GitHub repository was empty when first inspected.
+Development and commits happen locally; the owner pushes commits.
 
 APPROACH
 Build plain functions and a reproducible evaluation harness first. Start with

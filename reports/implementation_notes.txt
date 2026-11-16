@@ -1,0 +1,53 @@
+IMPLEMENTATION NOTES - FIRST RESEARCH BASELINE
+
+This milestone implements ingestion, profiling, BM25 retrieval and evaluation.
+It does not implement patient extraction, LLM criterion checking, embeddings,
+hard eligibility filtering, a frontend, FastAPI, Docker or cloud deployment.
+Those remain the subsequent stages documented in README.md.
+
+DATA ACQUISITION
+The automated archive requests received HTTP 406 from the official host. The
+owner downloaded the five archives into Downloads; the assistant copied them
+into data/raw/trec2021 without removing the originals. Every archive matched the
+independent ir_datasets MD5 reference, and the project records SHA-256 fingerprints.
+Topics and qrels were downloaded from NIST. Raw datasets are not tracked in Git.
+
+ENGINEERING FINDINGS
+1. Compressed HTTP responses cannot be validated by comparing decoded byte count
+   with compressed Content-Length. The downloader handles that distinction and
+   tests it. Invalid responses remain temporary rather than becoming final files.
+2. Python's SQLite connection context manager handles transactions but does not
+   close the connection. Explicit closing is needed before publishing an index
+   with a file rename on Windows. A real index round-trip regression covers this.
+3. A trial uses a dotted capital I in an inclusion heading. Unicode-aware regex
+   matching succeeds, but lowercasing the matched text changes its code points.
+   Named regex groups now determine section type, with a dedicated regression.
+4. The first full parse stopped on that Unicode case after 300,000 records. The
+   corrected run can reuse completed Parquet batches only after validating the
+   raw XML against the official archive member CRC. No record is silently dropped.
+5. Provenance paths and Python source line endings are portable to Linux. Actual
+   Docker/Linux execution is a later validation step, not a completed claim.
+
+EVALUATION PROTOCOL
+The first ten TREC 2021 topics are a fixed development set. Search never receives
+qrels. Grade 2 is the only eligible-recall positive; grades 0,1,2 are the linear
+nDCG gains. Unknown judgments are marked separately in diagnostics and assigned
+zero gain for ranking evaluation. All reported recall denominators use the full
+judgments rather than only retrieved candidates. Candidate cutoffs are 10/30/200.
+Independent pytrec_eval checks guard against metric-definition mistakes.
+No API/model calls or model API charges are incurred by this baseline.
+
+WHAT TO INSPECT NEXT
+Read the generated data profile, per-topic evaluation and concrete eligible
+misses. Decide whether disease-specific query extraction or dense retrieval is
+the most useful next experiment. Do not change prompts or retrieval settings on
+TREC 2022: it remains held out. No performance claim is justified by fixture tests.
+
+RETRIEVAL IMPLEMENTATION
+Native FTS5 rank ordering can optimize top-k selection. The search expands equal
+scores at the cutoff, then sorts by trial ID, preserving the exhaustive BM25
+ordering. The regression suite exercises boundary ties and compares exact scores.
+This is a runtime change, not a relevance improvement. Read cache is bounded to
+128 MiB and the multi-GB index remains on disk.
+Index metadata seconds measures construction/optimization before final integrity
+checks. reports/index_validation.json records the separate successful validation.

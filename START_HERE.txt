@@ -1,29 +1,45 @@
 CLINICAL TRIAL MATCHER - START HERE
-Prepared: 16 November 2026
+Updated: 16 November 2026
 
 ACTIVE PROJECT LOCATION
 C:\Users\S.Sharma\OneDrive - Hunter Douglas Europe B.V\Desktop\clinical-trial-matcher
-Make all future project changes in this folder. Commit changes locally; the owner
-will push to GitHub. Earlier Desktop and Codex staging copies are not active.
+Make all future project changes here. Earlier staging copies are not active.
+Changes are committed locally; the owner pushes to GitHub.
 
-Status: project scaffold and implementation plan only. The pipeline, API,
-notebook, dependencies and Docker setup described in README.md are planned.
-The README quickstart will become runnable during implementation.
+IMPLEMENTED MILESTONE
+Official TREC 2021 acquisition/provenance, streaming XML loader, full data profile,
+disk-backed BM25 search, and evaluation on the fixed first 10 development topics.
+The index covers all 375,580 trials. Raw XML is preserved with normalized fields.
+The baseline measures lexical relevance; it does not establish eligibility.
 
-README.md is the supplied project specification, preserved verbatim.
-Read IMPLEMENTATION_PLAN.txt for milestones, evaluation decisions and sources.
-The empty directories reserve space for implementation; no dataset is bundled.
+READ THESE FIRST
+README.md: working commands, evaluation conventions, current and future scope.
+reports/data_profile.md: corpus quality and parsing statistics.
+reports/bm25_v1/eval.md: measured results and limitations.
+reports/bm25_v1/error_analysis.txt: concrete retrieval errors and next experiments.
+reports/validation.json: verification of the saved benchmark artifacts.
+IMPLEMENTATION_PLAN.txt: original broader architecture and milestones.
 
-This is an independent folder with its own Git repository. origin points to:
-https://github.com/ss-941996/clinical-trial-matcher.git
-No files have been pushed by the assistant.
+USE THE EXISTING LOCAL INDEX (PowerShell from the project folder)
+  .\.venv\Scripts\python.exe -m src.retrieve search --note "54-year-old woman with type 2 diabetes taking metformin" --top-k 10
+  .\.venv\Scripts\python.exe -u -m src.evaluate
+  .\.venv\Scripts\python.exe -m pytest -q
 
-After reviewing the local commit, run in PowerShell from this folder:
-  cd "C:\Users\S.Sharma\OneDrive - Hunter Douglas Europe B.V\Desktop\clinical-trial-matcher"
+Use --note-file for a longer research note and --output to save search JSON.
+Data, Python environments, caches and indexes stay local and are gitignored.
+README.md documents rebuilding and the official archive download fallback.
+TREC 2022 remains held out. No LLM or embedding calls are used in this baseline.
+
+LATER MILESTONES
+Patient facts/negations, hybrid retrieval, eligibility filters, criterion-level
+reasoning and explanations, then FastAPI/frontend, Docker and cloud deployment.
+The Docker goal is portability so local execution can continue after an Azure
+proof-of-concept subscription ends. Docker/Linux execution is not yet validated.
+
+REVIEW AND PUSH (the assistant does not push)
   git status
   git log -1 --oneline
   git push -u origin main
 
-If GitHub has received other commits, fetch and inspect them before pushing.
-Do not force-push over other work. GitHub authentication may be required.
-
+If GitHub received other commits, fetch and inspect before pushing. Do not force
+push over other work. GitHub authentication may be required.

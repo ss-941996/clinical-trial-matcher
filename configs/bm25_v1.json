@@ -1,0 +1,31 @@
+{
+  "run_name": "bm25v1",
+  "year": 2021,
+  "snapshot": "2021-04-27",
+  "topic_ids": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10"
+  ],
+  "candidate_k": 200,
+  "field_weights": {
+    "title": 1.0,
+    "conditions": 1.0,
+    "summary": 1.0,
+    "eligibility": 1.0
+  },
+  "tokenizer": "porter unicode61",
+  "query": "unique lowercase alphanumeric tokens length >= 2; fixed English stopwords in src.retrieve.STOPWORDS removed; OR; max 512 tokens",
+  "primary_metric": "nDCG@10; linear gains 0,1,2",
+  "eligible_label": 2,
+  "unjudged_gain": 0,
+  "purpose": "development baseline; first 10 topics; not held-out evaluation",
+  "summary_field": "brief summary plus detailed description"
+}

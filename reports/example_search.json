@@ -1,0 +1,56 @@
+{
+  "method": "BM25 lexical relevance only",
+  "notice": "Research baseline. Eligibility has not been checked. Historical records may not be recruiting.",
+  "results": [
+    {
+      "trial_id": "NCT04583462",
+      "title": "Impact of Metformin on Peripheral Arterial Calcification in Type 1 Diabetes: a Double Blind Randomized Controlled Trial",
+      "score": 21.530316618817324
+    },
+    {
+      "trial_id": "NCT01890629",
+      "title": "A Multicenter, Randomized, Active-controlled, Parallel Group, Open-label, Exploratory Study to Evaluate the Efficacy on Glucose Variability(MAGE, Glucose SD) and Safety of Initial Combination Therapy of Gemigliptin 50mg q.d., Versus Sitagliptin 100mg q.d., or Glimepiride 2mg q.d. With Metformin 500-1,000mg q.d. in Patients With Type 2 Diabetes",
+      "score": 21.46891017628717
+    },
+    {
+      "trial_id": "NCT00103857",
+      "title": "A Multicenter, Randomized, Double-Blind Factorial Study of the Co-Administration of MK0431 and Metformin in Patients With Type 2 Diabetes Mellitus Who Have Inadequate Glycemic Control",
+      "score": 21.369062421326188
+    },
+    {
+      "trial_id": "NCT00767000",
+      "title": "A Phase IIb, Multicenter, Randomized, Double-Blind, Placebo-Controlled Dose-Range Finding Clinical Trial of MK0941 in Patients With Type 2 Diabetes Mellitus With Inadequate Glycemic Control on Insulin",
+      "score": 20.275313160735088
+    },
+    {
+      "trial_id": "NCT03968224",
+      "title": "Effectiveness of the Treatment With Dapagliflozin and Metformin Compared to Metformin Monotherapy for Weight Loss on Diabetic and Prediabetic Patients With Obesity Class III",
+      "score": 19.996851085327112
+    },
+    {
+      "trial_id": "NCT01341795",
+      "title": "Effect of Genetic Variation in the Transporters on Glycemic Response and Pharmacokinetics of Sitagliptin and Metformin",
+      "score": 19.89610978542639
+    },
+    {
+      "trial_id": "NCT00400491",
+      "title": "Vitamin D Supplementation to Patients With Type 2 Diabetes",
+      "score": 19.78127573721435
+    },
+    {
+      "trial_id": "NCT03974139",
+      "title": "Study of the Communication of the Hypothalamus With the Periphery: Impact of Metformin on Leptin Transport in the Cerebrospinal Fluid of Obese Patients. A Monocentric Prospective Study",
+      "score": 19.687182880076826
+    },
+    {
+      "trial_id": "NCT04138303",
+      "title": "The Effects of a Calorie-Restrictive Low-Carbohydrate Diet Versus an Unrestrictive Ancestral Diet on Microbiota and Cardiometabolic Disease Markers of Obese Individuals Performing an Intense Exercise Program",
+      "score": 19.489232576480802
+    },
+    {
+      "trial_id": "NCT00683657",
+      "title": "A 4-Week, Multicenter, Randomized, Double-Blind, Placebo-Controlled Phase 3 Trial To Evaluate The Efficacy And Safety Of Saxagliptin In Comparison To Placebo As Add On Treatment To Metformin XR In Subjects With Type 2 Diabetes Who Have Inadequate Glycemic Control With Diet And Exercise And A Stable Dose Of Metformin ≥1500 mg/Day",
+      "score": 19.445496525024012
+    }
+  ]
+}
