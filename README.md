@@ -145,3 +145,18 @@ docker compose up   # FastAPI on :8000
 - [ ] Criterion-level matching + aggregation
 - [ ] Explanations
 - [ ] LangGraph workflow + FastAPI endpoint
+## 11. Frontend, containers, and deployment (after evaluation)
+
+Once the matcher works and has been evaluated, the delivery roadmap is:
+
+1. Build a frontend where a user pastes a patient note and sees ranked trials,
+   matched criteria, exclusions, and missing information.
+2. Connect the frontend to FastAPI through the planned `POST /match` endpoint.
+3. Package the application with Docker, keeping trial data, indexes, and caches
+   in persistent volumes.
+4. Deploy to a cloud host with authentication, HTTPS, secrets management, and
+   request/cost limits.
+
+Start with a synthetic-data research demo. Real patient information requires
+additional privacy and security work. These are planned delivery milestones;
+implementation follows the evaluated retrieval and matching pipeline.
