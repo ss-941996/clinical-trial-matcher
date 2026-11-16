@@ -32,6 +32,11 @@ Open http://127.0.0.1:8000. Omit the model download and `RERANK_MODEL_DIR` to us
 
 ## Docker run
 
+For a separate versioned trial-index image plus an app image, see
+[the two-image Compose setup](INDEX-IMAGE.md). It initializes a persistent volume
+and lets recipients run without a separate raw index download. Image build/run
+still needs verification. The bind-mount setup below remains available.
+
 Docker Desktop must use Linux containers on an x86-64 CPU. This first image uses the model's AVX2 ONNX export; ARM and older CPUs have not been validated. Allow at least 4 GB RAM plus disk space for the image, model, and approximately 2.22 GB index. This is a starting allocation to benchmark, not a measured minimum.
 
 ```powershell

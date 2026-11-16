@@ -1,0 +1,8 @@
+{
+  "dataset": "trec2021-april27",
+  "version": "trec2021-b70ca9cdb12e",
+  "filename": "bm25.sqlite",
+  "records": 375580,
+  "bytes": 2220654592,
+  "sha256": "b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd"
+}

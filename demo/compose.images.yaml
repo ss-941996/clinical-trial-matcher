@@ -1,0 +1,54 @@
+name: clinical-trial-matcher-images
+services:
+  trial-index:
+    image: clinical-trial-index:trec2021-b70ca9cdb12e
+    build:
+      context: ..
+      dockerfile: demo/index-image/Dockerfile
+    environment:
+      EXPECTED_INDEX_SHA256: b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd
+    volumes:
+      - type: volume
+        source: trial-index
+        target: /data
+        volume:
+          nocopy: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    network_mode: none
+    restart: "no"
+  matcher:
+    image: clinical-trial-matcher:local
+    build:
+      context: .
+    depends_on:
+      trial-index:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      TRIAL_INDEX_PATH: /data/bm25.sqlite
+      DEMO_USERNAME: ${DEMO_USERNAME:-}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+      REQUIRE_AUTH: ${REQUIRE_AUTH:-false}
+    volumes:
+      - type: volume
+        source: trial-index
+        target: /data
+        read_only: true
+        volume:
+          nocopy: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 4.0
+    mem_limit: 4g
+    init: true
+    stop_grace_period: 90s
+    restart: unless-stopped
+volumes:
+  trial-index:
+    name: clinical-trial-index-trec2021-b70ca9cdb12e

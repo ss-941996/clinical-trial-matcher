@@ -1,0 +1,9 @@
+**
+!data/
+!data/indexes/
+!data/indexes/bm25.sqlite
+!demo/
+!demo/index-image/
+!demo/index-image/Dockerfile
+!demo/index-image/seed_index.py
+!demo/index-image/manifest.json
