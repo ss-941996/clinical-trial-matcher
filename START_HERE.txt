@@ -1,6 +1,11 @@
 CLINICAL TRIAL MATCHER - START HERE
 Prepared: 16 November 2026
 
+ACTIVE PROJECT LOCATION
+C:\Users\S.Sharma\OneDrive - Hunter Douglas Europe B.V\Desktop\clinical-trial-matcher
+Make all future project changes in this folder. Commit changes locally; the owner
+will push to GitHub. Earlier Desktop and Codex staging copies are not active.
+
 Status: project scaffold and implementation plan only. The pipeline, API,
 notebook, dependencies and Docker setup described in README.md are planned.
 The README quickstart will become runnable during implementation.
@@ -14,9 +19,11 @@ https://github.com/ss-941996/clinical-trial-matcher.git
 No files have been pushed by the assistant.
 
 After reviewing the local commit, run in PowerShell from this folder:
+  cd "C:\Users\S.Sharma\OneDrive - Hunter Douglas Europe B.V\Desktop\clinical-trial-matcher"
   git status
   git log -1 --oneline
   git push -u origin main
 
 If GitHub has received other commits, fetch and inspect them before pushing.
 Do not force-push over other work. GitHub authentication may be required.
+
