@@ -1,0 +1,22 @@
+# Local environment
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+# Data, indexes and model outputs
+/data/raw/*
+!/data/raw/.gitkeep
+/data/clean/*
+!/data/clean/.gitkeep
+/data/cache/*
+!/data/cache/.gitkeep
+/data/indexes/
+/models/
+/runs/
+*.log

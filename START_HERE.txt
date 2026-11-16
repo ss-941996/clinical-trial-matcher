@@ -1,0 +1,22 @@
+CLINICAL TRIAL MATCHER - START HERE
+Prepared: 16 November 2026
+
+Status: project scaffold and implementation plan only. The pipeline, API,
+notebook, dependencies and Docker setup described in README.md are planned.
+The README quickstart will become runnable during implementation.
+
+README.md is the supplied project specification, preserved verbatim.
+Read IMPLEMENTATION_PLAN.txt for milestones, evaluation decisions and sources.
+The empty directories reserve space for implementation; no dataset is bundled.
+
+This is an independent folder with its own Git repository. origin points to:
+https://github.com/ss-941996/clinical-trial-matcher.git
+No files have been pushed by the assistant.
+
+After reviewing the local commit, run in PowerShell from this folder:
+  git status
+  git log -1 --oneline
+  git push -u origin main
+
+If GitHub has received other commits, fetch and inspect them before pushing.
+Do not force-push over other work. GitHub authentication may be required.

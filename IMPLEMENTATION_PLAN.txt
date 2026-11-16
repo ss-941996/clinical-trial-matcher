@@ -1,0 +1,162 @@
+CLINICAL TRIAL MATCHER - IMPLEMENTATION PLAN
+Prepared: 16 November 2026
+
+OBJECTIVE AND CURRENT STATUS
+Turn a synthetic free-text patient note into an explainable top-10 trial list.
+The supplied README defines the intended product. This commit contains planning
+and directory scaffolding, not a working matcher. The GitHub repository was empty
+when inspected. Development will happen locally; the owner will push commits.
+
+APPROACH
+Build plain functions and a reproducible evaluation harness first. Start with
+cheap retrieval, inspect errors, then add expensive criterion-level reasoning.
+Add orchestration and serving after the pipeline is demonstrably useful.
+No target score or cost is promised before measuring the baseline.
+
+DATA STRATEGY
+1. TREC 2021: development and tuning. Use a fixed 10-topic subset initially;
+   separate internal development/validation topics before tuning prompts.
+2. TREC 2022: final held-out test. It uses the same April 27, 2021 trial snapshot
+   as 2021, but new patient topics. Do not tune on its judgments or error cases.
+3. TREC 2023: optional later generalization study. It uses a May 8, 2023 snapshot
+   and questionnaire-based topics, unlike the 2021/2022 narrative notes. Give it
+   its own loader and index. Verify counts from downloaded assets.
+4. TrialGPT: reference implementation and convenient parsed data. Validate trial
+   IDs, field coverage, snapshot provenance and labels against official assets.
+   Do not assume its cohort JSONL files are the complete registry collection.
+   Do not ingest cached model answers, generated queries or retrieved lists into
+   the independent baseline. Any reproduction must be labeled separately.
+5. SIGIR 2016: optional smoke-test collection; not the main benchmark. Check
+   source terms and original cohort provenance before incorporating it.
+
+Official TREC sources list downloads, but archive accessibility, qrel files and
+applicable reuse conditions still need verification at ingestion time. No large
+archive or model has been downloaded for this planning step. The 2021 archive
+parts total about 1.7 GB compressed; extracted files and indexes need more disk.
+Record actual sizes before selecting index settings. Download original snapshot
+assets rather than substituting current live ClinicalTrials.gov records.
+
+MILESTONE 1 - DATA CONTRACTS AND PROFILING (README STAGES 0-1)
+- Add source manifest: URLs, retrieval time, SHA-256, byte sizes, terms/citations,
+  year, snapshot, record count and original ID mappings.
+- Load official topics, trial XML and judgments separately. Prefix topic IDs
+  with year to prevent collisions. Validate duplicate/missing trial IDs.
+- Stream XML into Parquet without loading the entire registry into memory.
+- Preserve raw text alongside normalized sections and structured age/sex fields.
+- Report lengths, nulls, duplicates, abbreviations and section-detection failures.
+- Avoid unsafe abbreviation expansion or unit conversion without analyte context.
+- Use 10 development topics and their judged trials for inspection/debugging only.
+  Mark any metrics on this restricted trial pool as subset diagnostics.
+Deliverables: loaders, schema, clean.py, profiling notebook and data_profile.md.
+Done when: ingestion is repeatable, counts reconcile and sample records can be
+traced back to their raw sources. No silent drops or ID mismatches.
+
+MILESTONE 2 - BM25 AND EVALUATION BEFORE LLMS (STAGES 4 AND 9)
+- Implement a disk-backed lexical index with deterministic tokenization.
+- Search title, conditions, summary and eligibility text; document field weights.
+- Export standard TREC runs and per-topic metrics with configuration and data hash.
+- Primary metric: nDCG@10, original grades 0/1/2, linear gains 0/1/2, discounted
+  by log2(rank+1). Verify results against a trusted trec_eval-compatible tool.
+- Secondary: eligible-only recall@10, recall@30 and recall@200 (positive = 2).
+  Optionally report grade>=1 recall separately; never mix the definitions.
+- Treat unjudged retrieved trials as gain 0 for the primary TREC-style ranking
+  evaluation, but report judged coverage and retain 'unjudged' as a distinct state.
+- Report macro means, per-topic scores and the treatment of topics with zero
+  eligible judgments (N/A for eligible recall, with denominator counts).
+- Define eligible/excluded inversion rate over judged grade-1/grade-2 pairs
+  co-retrieved in top 10, plus excluded@10 and eligible@10. Missing pairs are N/A.
+- Report candidate recall against full qrels, not just surviving candidates.
+Deliverables: retrieve.py baseline, evaluate.py, run files and reports/eval.md.
+Done when: the fixed baseline reproduces and metrics pass hand-worked examples
+and cross-checks. Full-corpus results are clearly distinct from slice diagnostics.
+
+MILESTONE 3 - DENSE RETRIEVAL AND HYBRID (STAGE 4)
+- Benchmark a biomedical query/document encoder, such as the MedCPT approach,
+  after checking model terms, input limits and available CPU/GPU resources.
+- Embed trial sections/chunks; aggregate to trial IDs and deduplicate before RRF.
+- Use a local vector index initially; select exact or approximate search based
+  on measured memory, runtime and recall. A hosted vector service is optional.
+- Cache vectors by model revision, preprocessing configuration and content hash.
+- Compare BM25, dense-only and reciprocal-rank-fusion candidates independently.
+- Target 200 candidates; inspect eligible recall at 200 and 30 before fixing caps.
+Deliverables: embedding cache, index builder, hybrid retrieval and ablation rows.
+Done when: retrieval quality and runtime are measured on the same full corpus;
+retain the simpler baseline if hybrid does not improve the intended tradeoff.
+
+MILESTONE 4 - PATIENT/CRITERIA PARSING AND FILTERS (STAGES 2, 3, 5)
+- Validate patient JSON with age, sex, conditions, medications, labs with units,
+  history, explicit negations, unknowns and source evidence spans.
+- Preserve temporal context and conflicting facts rather than guessing.
+- Split criteria into atomic records, retaining original text, inclusion/exclusion
+  type, criterion IDs and AND/OR group structure. Do not flatten logic blindly.
+- Parse criteria lazily for candidate trials and cache across patients.
+- Start hard filtering with explicit reliable age/sex conflicts. Unknowns pass.
+- Condition mismatch requires reliable explicit contradiction; lexical non-overlap
+  alone cannot reject a trial. Preserve filter reasons and measure eligible losses.
+Deliverables: parse_patient.py, parse_criteria.py, filters.py and reviewed cases.
+Done when: missing facts never silently become failures, and negation, boundary
+ages, numeric units and compound criteria have meaningful regression checks.
+
+MILESTONE 5 - CRITERION MATCHING AND RANKING (STAGES 6-8)
+- Match only up to 30 trials per patient by default, each with criterion verdicts
+  met / not_met / unknown, patient evidence and a short reason.
+- Preserve predicate polarity: inclusion met supports eligibility; exclusion met
+  counts against eligibility. Inclusion not_met is a conflict. Exclusion not_met
+  means the exclusion is absent. Unknown does not prove eligibility either way.
+- Normalize aggregation by criterion counts so longer records are not rewarded.
+  Keep confirmed conflicts separate from uncertainty, and tune weights on 2021.
+- Specify treatment of ranks 31-200: keep them after the reranked block with
+  retrieval-order fallback; report both coverage and the reranking limitation.
+- Output trial IDs, retrieval scores, criterion verdicts, conflicts, unknowns,
+  evidence, model/config versions and research-use notice in shortlist JSON.
+Deliverables: match_criteria.py, aggregate.py, explain.py and error analysis.
+Done when: every judgment is traceable and score changes can be explained;
+compare the complete system with retrieval alone before claiming improvement.
+
+MILESTONE 6 - REPRODUCIBILITY AND FINAL EVALUATION
+- Ablations: BM25; dense; hybrid; hybrid+filters; +LLM matching; +tuned aggregation.
+- Freeze prompts, weights, index, model revisions and code before evaluating 2022.
+- Report all attempted development configurations, runtime, token usage, cache hit
+  rate, cost and per-topic deltas. Use paired topic bootstrap intervals if useful.
+- If 2022 results lead to redesign, disclose that it is no longer untouched;
+  choose a new held-out protocol before making a new final claim.
+- Publish benchmark settings and limitations without fabricated scores.
+Deliverables: final eval report, ablation table and reproducible run manifests.
+
+MILESTONE 7 - LANGGRAPH AND FASTAPI (ORCHESTRATION AND DELIVERY)
+- Wrap tested functions in LangGraph nodes for stages 2-8 with persisted state,
+  resumable run IDs, retries and cache-safe restart behavior.
+- Add POST /match, schema validation, health check and structured errors.
+- Add Docker/Compose, pinned dependencies and Windows PowerShell quickstart.
+- Verify CLI/API consistency, restart behavior and a complete synthetic example.
+Deliverables: graph.py, api/, container configuration and verified README commands.
+
+PROPOSED IMPLEMENTATION CHOICES
+Python with typed schemas; Parquet for normalized data; local disk indexes;
+BM25 and biomedical dense retrieval; a provider adapter for LLM calls; content-
+addressed caches; a tested IR evaluator; FastAPI and LangGraph added last.
+Select exact packages/model versions during implementation after checking current
+documentation and the machine. Avoid committing speculative dependency pins.
+
+COST AND RELIABILITY
+No paid model batches in this setup. During implementation, require explicit
+provider/model configuration and print estimated requests/tokens/cost before a
+batch. Set a run budget and require an explicit override to exceed it. Account
+for criteria count, not merely 30 trial calls. Limit concurrency and retries;
+track actual usage and stop at the budget. Cache key includes provider, model
+revision, prompt version, schema, input and decoding options. Never commit keys.
+Keep only synthetic/public benchmark inputs in the repository workflow.
+
+NEXT CONCRETE STEP
+Implement Milestone 1 and the BM25/evaluation vertical slice. Complete it before
+adding LLM parsing, orchestration or a UI. No UI framework is required by the
+current README. Estimated effort should be revisited after ingestion and the
+first full-corpus retrieval run; model access and hardware are not yet confirmed.
+
+VERIFIED REFERENCE PAGES (16 NOVEMBER 2026)
+Project: https://github.com/ss-941996/clinical-trial-matcher
+TREC 2021: https://www.trec-cds.org/2021.html
+TREC 2022: https://www.trec-cds.org/2022.html
+TREC 2023: https://www.trec-cds.org/2023.html
+TrialGPT data/code: https://github.com/ncbi-nlp/TrialGPT
+The pages were reviewed for this plan; full archives and qrels were not fetched.
