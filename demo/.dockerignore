@@ -1,0 +1,7 @@
+*
+!app/
+!app/**
+!requirements-demo.txt
+!download_model.py
+!serve.py
+!Dockerfile

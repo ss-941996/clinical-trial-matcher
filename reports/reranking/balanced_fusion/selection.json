@@ -1,0 +1,11 @@
+{
+  "best_overall": "balance_2",
+  "frozen_before_validation": true,
+  "allowed_development_arms": [
+    "baseline",
+    "balance_0.25",
+    "balance_0.5",
+    "balance_1",
+    "balance_2"
+  ]
+}

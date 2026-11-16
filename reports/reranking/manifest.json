@@ -1,0 +1,8 @@
+{
+  "seconds": 3114.0853573999993,
+  "new_pairs_scored": 23493,
+  "llm_calls": 0,
+  "paid_api_calls": 0,
+  "verification": "Every per-topic metric cross-checked with pytrec_eval. Candidate sets preserved exactly by reranking.",
+  "interpretation": "Reused internal validation; do not claim untouched held-out performance."
+}

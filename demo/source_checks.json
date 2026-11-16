@@ -1,0 +1,8 @@
+{
+  "python_files_parsed": 11,
+  "compose_yaml_parsed": true,
+  "read_only_local_mount_and_localhost_port_checked": true,
+  "default_remains_original_bm25": true,
+  "docker_engine_validation": false,
+  "azure_deployment": false
+}

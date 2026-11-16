@@ -1,0 +1,8 @@
+{
+  "default_method": "bm25",
+  "rerank_pool": "baseline",
+  "ce_blend_weight": 0.5,
+  "fusion_balance_weight": 2.0,
+  "experimental_arm": "baseline_blend_0.5",
+  "status": "Experimental development-selected configurations. BM25 remains the default."
+}

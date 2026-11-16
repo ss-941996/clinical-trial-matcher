@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore historical clinical trial candidates with a reproducible research matcher.">
+  <title>Clinical Trial Matcher · Research workspace</title>
+  <link rel="stylesheet" href="/assets/style.css"><script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/" aria-label="Clinical Trial Matcher home"><span class="brandmark" aria-hidden="true">+</span><span>Clinical Trial Matcher<small>RESEARCH WORKSPACE</small></span></a><a href="#how-it-works" class="quiet-link">How it works <span aria-hidden="true">↗</span></a></header>
+  <main>
+    <section class="intro"><p class="eyebrow"><span class="dot"></span> FROM PATIENT NOTE TO TRIAL CANDIDATES</p><h1>A clearer starting point<br>for trial discovery.</h1><p class="lede">Explore a patient description against a historical trial collection. Compare retrieval methods and inspect the source criteria.</p><div class="collection"><span id="collection-size">375,580</span> trial records <span class="divider">/</span> TREC 2021 snapshot <span class="divider">/</span> April 27, 2021</div></section>
+    <div class="research-note"><span class="note-icon" aria-hidden="true">i</span><p><strong>Research demo.</strong> Results indicate relevance, not eligibility. Trial records are historical and may no longer be recruiting. Use synthetic or de-identified research notes.</p></div>
+    <div class="workspace">
+      <section class="input-panel" aria-labelledby="note-heading"><div class="section-heading"><span class="step">01</span><h2 id="note-heading">Patient description</h2></div><p class="helper">Include the primary diagnosis, relevant history, and prior treatments.</p>
+        <form id="match-form"><label for="patient-note" class="sr-only">Research patient note</label><textarea id="patient-note" name="note" minlength="20" maxlength="12000" required placeholder="A 54-year-old woman with type 2 diabetes treated with metformin…" aria-describedby="note-help"></textarea><div class="note-footer"><button type="button" id="load-example" class="text-button">Load an example</button><span id="character-count">0 / 12,000</span></div><p id="note-help" class="small muted">The demo does not save submitted notes.</p>
+          <label for="method" class="field-label">Retrieval method</label><select id="method" name="method"><option value="bm25">BM25 · full patient note</option><option value="fusion">Lexical fusion · combined keyword searches</option><option value="rerank" disabled>Cross-encoder reranking · model unavailable</option></select><p id="method-description" class="method-description">Matches words in the note against trial titles, conditions, summaries, and eligibility text.</p><button id="search-button" type="submit" class="primary-button"><span id="button-label">Find trial candidates</span><span class="button-arrow" aria-hidden="true">→</span></button>
+          <p id="search-progress" class="small muted" hidden></p><p id="error-message" class="error" role="alert" hidden></p>
+        </form>
+      </section>
+      <section class="results-panel" aria-labelledby="results-heading" aria-busy="false"><div class="section-heading"><span class="step">02</span><h2 id="results-heading">Trial candidates</h2><span id="results-count" class="count-tag" hidden></span></div><div id="results-meta" class="results-meta" aria-live="polite">Your ranked results will appear here.</div>
+        <div id="empty-state" class="empty-state"><div class="empty-symbol" aria-hidden="true"><span></span><span></span><span></span></div><h3>Start with the patient’s story.</h3><p>Enter a research note to retrieve up to 200 candidates and inspect the top 10.</p><div class="empty-tags"><span>Ranked candidates</span><span>Source criteria</span><span>Registry links</span></div></div>
+        <div id="results" class="results-list"></div><button id="download-results" class="download-button" type="button" hidden>Download results as JSON ↓</button>
+      </section>
+    </div>
+    <section id="how-it-works" class="how-section"><p class="eyebrow">UNDER THE HOOD</p><h2>Retrieve broadly. Inspect carefully.</h2><div class="how-grid"><article><span>01 / RETRIEVE</span><h3>Build a candidate pool</h3><p>BM25 searches the full collection. Lexical fusion combines full-note, condition-focused, and opening-sentence searches using their ranks.</p></article><article><span>02 / RANK</span><h3>Compare relevance</h3><p>The optional cross-encoder reads the note and each candidate together. It reorders the same 200 trials; it does not find additional trials.</p></article><article><span>03 / REVIEW</span><h3>Read the actual criteria</h3><p>Inspect original eligibility text and open the registry record. Criterion-level eligibility reasoning is a future stage.</p></article></div></section>
+  </main><footer><span>Clinical Trial Matcher</span><p>Research retrieval · TREC 2021 · Human review required</p></footer>
+</body></html>

@@ -1,0 +1,26 @@
+[
+  {
+    "topic": "1",
+    "arm": "baseline",
+    "count": 200,
+    "ids_and_scores_exact": true
+  },
+  {
+    "topic": "1",
+    "arm": "lexical_rrf",
+    "count": 200,
+    "ids_and_scores_exact": true
+  },
+  {
+    "topic": "10",
+    "arm": "baseline",
+    "count": 200,
+    "ids_and_scores_exact": true
+  },
+  {
+    "topic": "10",
+    "arm": "lexical_rrf",
+    "count": 200,
+    "ids_and_scores_exact": true
+  }
+]

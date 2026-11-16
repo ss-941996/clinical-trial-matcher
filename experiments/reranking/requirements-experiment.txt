@@ -1,0 +1,6 @@
+numpy==2.5.5
+onnxruntime==1.32.0
+tokenizers==0.23.3
+huggingface-hub==2.4.0
+pytrec-eval-terrier==0.5.11
+pytest==9.2.0

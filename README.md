@@ -1,6 +1,6 @@
 # Clinical Trial Matcher: patient note → ranked trials
 
-**Status:** The local BM25 research baseline is implemented. The full staged matcher below is the target architecture.
+**Status:** The local BM25 research baseline, exploratory reranking evaluation, and FastAPI/frontend demo are implemented. Docker files and an Azure PoC plan are prepared; container/cloud execution still needs verification. The full staged matcher below is the target architecture.
 
 A staged pipeline that takes a free-text patient description, cleans it, extracts structured eligibility facts, narrows a large registry of clinical trials down to a short list, checks eligibility criterion by criterion, and returns an explainable top-10 ranking. A clinician or trial coordinator makes the final decision.
 
@@ -127,8 +127,7 @@ clinical-trial-matcher/
 ## 9. Local baseline quickstart
 
 The implemented milestone is data ingestion, profiling, **BM25 retrieval**, and
-benchmark evaluation. Dense retrieval, eligibility matching, the API, and Docker
-are later milestones. BM25 results indicate lexical relevance, not eligibility.
+benchmark evaluation. A separate experimental FastAPI/frontend demo and Docker setup are described below in the demo section. Dense retrieval remains experimental; criterion-level eligibility matching is a later milestone. BM25 results indicate lexical relevance, not eligibility.
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and run from
 the project root in PowerShell. The setup uses project-local Python and caches:
@@ -205,7 +204,7 @@ nDCG@10 with linear gains 0/1/2, matching trec_eval. Secondary: eligible-only
 recall at 10/30/200 (grade 2 positives). Unjudged results have gain zero but remain
 explicitly marked unjudged in diagnostics. Recall is N/A for a topic with no
 eligible judgments. Every topic's nDCG and recall are independently checked with
-`pytrec_eval`. These are development results; TREC 2022 remains held out.
+`pytrec_eval`. These are development results; TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
 
 ## 10. Roadmap
 
@@ -220,23 +219,20 @@ eligible judgments. Every topic's nDCG and recall are independently checked with
 - [ ] Hard filter with "unknown ≠ fail"
 - [ ] Criterion-level matching + aggregation
 - [ ] Explanations
-- [ ] LangGraph workflow + FastAPI endpoint
+- [ ] LangGraph workflow
+- [x] Experimental FastAPI endpoint and research frontend
+- [x] Lexical fusion and cross-encoder experiments
+- [x] Docker/Compose files prepared
+- [ ] Docker build/run verification
+- [ ] Azure PoC deployment
 
-## 11. Frontend, containers, and deployment (after evaluation)
+## 11. Frontend, containers, and deployment
 
-Once the matcher works and has been evaluated, the delivery roadmap is:
+The [`demo/`](demo/README.md) package implements a research frontend and FastAPI `POST /match` endpoint for ranked trials, source eligibility text, and registry links. Criterion-level matched/excluded/unknown explanations remain a later stage.
 
-1. Build a frontend where a user pastes a patient note and sees ranked trials,
-   matched criteria, exclusions, and missing information.
-2. Connect the frontend to FastAPI through the planned `POST /match` endpoint.
-3. Package the application with Docker, keeping trial data, indexes, and caches
-   in persistent volumes.
-4. Deploy to a cloud host with authentication, HTTPS, secrets management, and
-   request/cost limits.
+Docker/Compose files are prepared with a separate read-only trial index mount. Container build/run still needs verification. An [Azure PoC plan](demo/AZURE.md) describes HTTPS, authentication, secrets, resource limits, persistent storage, and eventual cleanup. Azure deployment has not been executed. The same image and index can run locally after Azure access ends.
 
-Start with a synthetic-data research demo. Real patient information requires
-additional privacy and security work. These are planned delivery milestones;
-implementation follows the evaluated retrieval and matching pipeline.
+TREC 2022 evaluation is deferred until development is complete; see [exposure/status record](reports/trec2022-status.md). A synthetic-note engineering PoC can proceed independently of the final retrieval benchmark. Continue model development on TREC 2021; repeated 2022 checks become regression measurements. Use synthetic/de-identified research notes.
 
 ## 12. First measured development result
 
@@ -248,4 +244,30 @@ Full corpus: **375,580 trials**. Fixed first **10 TREC 2021 topics**.
 
 This is an untuned development baseline, not held-out performance or a clinical
 validation. See `reports/bm25_v1/eval.md`, `error_analysis.txt` and
-`reports/validation.json`. All 14 tests pass. TREC 2022 remains held out.
+`reports/validation.json`. All 14 tests pass. TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
+
+## Experimental reranking and portable demo
+
+A separate [`demo/`](demo/README.md) package provides a FastAPI `POST /match` endpoint and a responsive frontend for patient notes, top-ten candidates, source eligibility criteria, and registry links. It supports original BM25, lexical fusion, and experimental cross-encoder reranking. BM25 remains the default; relevance scores do not establish eligibility.
+
+See [`reports/reranking/results.md`](reports/reranking/results.md) for the fixed comparison on 45 development and 30 reused internal-validation TREC 2021 topics. These exploratory results are not an untouched test. TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
+
+Docker Compose and an [Azure PoC plan](demo/AZURE.md) keep the index separate from the app image, so local Docker use can continue when Azure access ends. The Python API and browser workflow were checked locally; Docker build/run and Azure deployment still need verification. No Azure resources were created.
+
+## Local use and portfolio hosting
+
+Run the frontend and API locally with Python, or use the prepared Docker Compose
+package once container verification is complete. Local inference needs no Azure
+subscription or paid model API. See [local commands and low-cost PoC options](demo/POC-OPTIONS.md).
+
+Balanced fusion is the candidate-retrieval baseline for subsequent versions;
+BM25 remains the comparison control and initial demo dropdown choice. Candidate
+retrieval and reranking are fixed pipeline stages; autonomous agents are not
+required. Eligibility remains unassessed.
+
+For an optional live URL, use Azure Container Apps Consumption with HTTP scaling,
+minimum zero and maximum one replica. Expect cold starts and check costs for
+storage, registry and logs. Keep a stable portfolio/README link with screenshots,
+a recorded walkthrough and local run instructions: an Azure URL stops serving
+the app when its hosting resources are stopped or deleted. The same container
+can later move to another host.

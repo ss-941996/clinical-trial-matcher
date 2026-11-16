@@ -1,0 +1,60 @@
+{
+  "lexical_rrf": {
+    "ndcg@10": {
+      "mean_difference": -0.05492676767560984,
+      "paired_bootstrap_95pct": [
+        -0.13024928050160123,
+        0.01661462179301877
+      ],
+      "replicates": 10000,
+      "seed": 941996
+    },
+    "eligible_recall@10": {
+      "mean_difference": 0.00469984117056396,
+      "paired_bootstrap_95pct": [
+        -0.010315795429637604,
+        0.02121337364460655
+      ],
+      "replicates": 10000,
+      "seed": 941996
+    },
+    "eligible_recall@200": {
+      "mean_difference": 0.07468394534506739,
+      "paired_bootstrap_95pct": [
+        0.019868915844487293,
+        0.1359216580341235
+      ],
+      "replicates": 10000,
+      "seed": 941996
+    }
+  },
+  "baseline_blend_0.5": {
+    "ndcg@10": {
+      "mean_difference": 0.0038527277125587345,
+      "paired_bootstrap_95pct": [
+        -0.04376420371851075,
+        0.0497410934917027
+      ],
+      "replicates": 10000,
+      "seed": 941996
+    },
+    "eligible_recall@10": {
+      "mean_difference": -0.0019176945862928957,
+      "paired_bootstrap_95pct": [
+        -0.011849664302446786,
+        0.006810629086428626
+      ],
+      "replicates": 10000,
+      "seed": 941996
+    },
+    "eligible_recall@200": {
+      "mean_difference": 0.0,
+      "paired_bootstrap_95pct": [
+        0.0,
+        0.0
+      ],
+      "replicates": 10000,
+      "seed": 941996
+    }
+  }
+}

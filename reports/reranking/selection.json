@@ -1,0 +1,5 @@
+{
+  "best_overall": "baseline",
+  "best_reranking_arm": "baseline_blend_0.5",
+  "frozen_before_validation": true
+}

@@ -1,0 +1,30 @@
+{
+  "topic": "10",
+  "method": "rerank",
+  "configuration": {
+    "default_method": "bm25",
+    "rerank_pool": "baseline",
+    "ce_blend_weight": 0.5,
+    "fusion_balance_weight": 2.0,
+    "experimental_arm": "baseline_blend_0.5",
+    "status": "Experimental development-selected configurations. BM25 remains the default."
+  },
+  "top10_ids_match_cached_ranking": true,
+  "max_logit_difference": 0.0,
+  "candidate_count": 200,
+  "seconds": 84.603,
+  "result_ids": [
+    "NCT01920204",
+    "NCT00132015",
+    "NCT00979160",
+    "NCT04844814",
+    "NCT03933007",
+    "NCT00429533",
+    "NCT00172081",
+    "NCT01481909",
+    "NCT02979769",
+    "NCT04652960"
+  ],
+  "balanced_fusion_top10_ids_match_cached_ranking": true,
+  "fusion_seconds": 33.597
+}
