@@ -31,6 +31,39 @@ Cheap stages shrink the pool; the expensive LLM stage only sees the survivors. E
 
 ## 3. Pipeline
 
+The working implementation is a fixed pipeline; autonomous agents are not
+required. Solid arrows below show available paths. Dashed arrows show planned
+work. The detailed stage table afterward describes the longer-term architecture.
+
+```mermaid
+flowchart TD
+    XML["Historical TREC trial XML"] --> CLEAN["Clean and profile 375,580 trials"]
+    CLEAN --> INDEX["Read-only SQLite FTS5 index"]
+    NOTE["Synthetic patient note in local frontend"] --> API["FastAPI: validate input"]
+    API --> ORIGINAL["Original full-note BM25: top 1,000"]
+    API --> QUERIES["Full note + condition phrases + opening sentence"]
+    INDEX --> ORIGINAL
+    INDEX --> QUERIES
+    QUERIES --> INNER["Weighted BM25 searches; equal RRF: top 1,000"]
+    ORIGINAL --> BALANCED["Balanced RRF: original weight 1, inner fusion weight 2"]
+    INNER --> BALANCED
+    BALANCED --> POOL["200 candidate trials"]
+    POOL --> DISPLAY["Top 10 with source criteria and registry links"]
+    ORIGINAL --> BASEPOOL["Original BM25 top 200: comparison pool"]
+    BASEPOOL --> CE["Optional experimental cross-encoder reranking"]
+    BASEPOOL --> DISPLAY
+    CE --> DISPLAY
+    POOL -.-> NEXT["Planned: evaluate reranking of balanced-fusion candidates"]
+    NEXT -.-> ELIG["Planned: criterion checks and missing-information explanations"]
+    DISPLAY --> STATUS["Eligibility not assessed; research use only"]
+```
+
+The current cross-encoder experiment uses its frozen original BM25 candidate
+pool, with a fixed scoring batch protocol described in [demo/README.md](demo/README.md).
+Balanced-fusion reranking is the next experiment, not an already measured
+combined system. Reranking the same 200 candidates changes top-ten quality but
+cannot change eligible recall@200.
+
 | # | Stage | Method | Output |
 |---|-------|--------|--------|
 | 0 | **Profile the data** | length distributions, null/empty fields, abbreviation frequency, criteria-section detection rate | `reports/data_profile.md` |
@@ -256,6 +289,12 @@ Docker Compose and an [Azure PoC plan](demo/AZURE.md) keep the index separate fr
 
 ## Local use and portfolio hosting
 
+**Primary delivery: local Docker, with screenshots and a recorded browser demo.**
+There is no requirement to maintain a running Azure deployment. Reviewers who
+want to run the app need Docker, the application image, and the trial index/model
+assets described in the setup instructions. Screenshots and demo recordings can
+be captured from localhost without cloud hosting.
+
 Run the frontend and API locally with Python, or use the prepared Docker Compose
 package once container verification is complete. Local inference needs no Azure
 subscription or paid model API. See [local commands and low-cost PoC options](demo/POC-OPTIONS.md).
@@ -271,3 +310,40 @@ storage, registry and logs. Keep a stable portfolio/README link with screenshots
 a recorded walkthrough and local run instructions: an Azure URL stops serving
 the app when its hosting resources are stopped or deleted. The same container
 can later move to another host.
+
+## Next development goal and research context
+
+Preserve balanced fusion's **39.82% eligible recall@200 (roughly 40%)** while
+improving top-ten ranking beyond the original BM25 control's **0.4701 nDCG@10**.
+Balanced fusion currently scores **0.4484 nDCG@10** and **6.97% eligible recall@10**.
+These values come from the same **30 reused internal-validation TREC 2021
+patients**, searching all **375,580 trials**; they are development measurements.
+The stated goal is a project milestone, not a clinical acceptance threshold or
+an already achieved result. Report small recall changes explicitly rather than
+rounding a regression into a claimed improvement.
+
+Keep the candidate IDs fixed when testing rerankers, compare the same patients,
+report eligible recall@10 alongside nDCG@10, and examine paired patient-level
+differences and uncertainty. Selection uses the 2021 development protocol; this
+reused validation set is not a new independent test. nDCG gives partial credit
+to grade1 excluded trials, so higher nDCG alone does not establish more eligible
+trials in the displayed ten. Freeze settings before a later holdout evaluation;
+2022 remains deferred with its limited exposure [documented](reports/trec2022-status.md).
+
+Related research provides context, not a directly transferable pass mark:
+
+| Source | Reported result | Comparison limit |
+|---|---|---|
+| [IELAB authors' TREC implementation](https://github.com/ielab/trec-ct-2023#trec-clinical-trials-2021-results) | TREC 2021 BM25 nDCG@10 **0.3395**; BM25+ANCE hybrid **0.3488** | Different implementation and topic/evaluation setup; our reused 30-patient subset does not establish superiority over these runs. |
+| [TrialGPT, Table 2 and evaluation methods](https://pmc.ncbi.nlm.nih.gov/articles/PMC10418514/) | BioLinkBERT cross-encoder **0.4797** and GPT-4 TrialGPT feature-combination **0.7275** nDCG@10 | Averages across three cohorts; TREC candidate corpora restricted to the union of judged trials (26,149 for 2021), then ranking top500 candidates. Our corpus has 375,580 trials. |
+
+TrialGPT also reports over90% relevant-trial recall using under6% of its initial
+collection. That is not eligible-only recall@200 on our full corpus: candidate
+depth, label conventions and corpus differ. Do not compare those percentages as
+equivalent. There is no single published minimum score that makes this PoC ready
+for clinical use. For this portfolio, the next convincing result is a reproducible
+improvement over our own fixed controls, together with a working local app.
+
+Next session: run the app locally, evaluate balanced-fusion candidates and
+reranking on2021, and verify Docker build/startup/search/restart. No model run,
+2022 evaluation, or Azure deployment is initiated by this documentation update.
