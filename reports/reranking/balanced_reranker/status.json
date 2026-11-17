@@ -1,0 +1,11 @@
+{
+  "status": "incomplete_deferred",
+  "development_topics_evaluated": 14,
+  "development_topics_planned": 45,
+  "score_cache_topics": 26,
+  "selection_completed": false,
+  "validation_completed": false,
+  "reason": "Stopped at user request after CPU-heavy concurrent scoring. Release delivery proceeds without completing this experiment.",
+  "interpretation": "Partial development_metrics.json is a progress checkpoint, not a completed benchmark or evidence of improvement.",
+  "new_trec2022_evaluation": false
+}

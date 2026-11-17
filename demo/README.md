@@ -2,7 +2,7 @@
 
 Paste a synthetic research patient note, search the full historical TREC 2021 collection, and inspect the top ten trial records and source eligibility criteria. FastAPI serves both the API and a responsive frontend; no Node build or external inference service is required.
 
-This package is intended to be copied into `demo/` inside the existing project. It uses the existing `data/indexes/bm25.sqlite`; it does not modify the index. The index must contain the existing 375,580-record snapshot and the `identities` and `metadata` tables created by this project's loader.
+This package lives in `demo/` inside the project. It uses the existing `data/indexes/bm25.sqlite`; it does not modify the index. The index must contain the existing 375,580-record snapshot and the `identities` and `metadata` tables created by this project's loader.
 
 ## Methods
 
@@ -34,8 +34,7 @@ Open http://127.0.0.1:8000. Omit the model download and `RERANK_MODEL_DIR` to us
 
 For a separate versioned trial-index image plus an app image, see
 [the two-image Compose setup](INDEX-IMAGE.md). It initializes a persistent volume
-and lets recipients run without a separate raw index download. Image build/run
-still needs verification. The bind-mount setup below remains available.
+and lets recipients run without a separate raw index download. Both images and local container startup/search/restart/index reuse were verified on 2026-11-17; see [verification](VERIFICATION.md). The bind-mount setup below remains available.
 
 Docker Desktop must use Linux containers on an x86-64 CPU. This first image uses the model's AVX2 ONNX export; ARM and older CPUs have not been validated. Allow at least 4 GB RAM plus disk space for the image, model, and approximately 2.22 GB index. This is a starting allocation to benchmark, not a measured minimum.
 
@@ -55,7 +54,7 @@ docker compose logs --tail 50
 docker compose down
 ```
 
-The same image and index can run after Azure access expires. Users still need the index and model image; exporting a Docker image alone does not include the mounted dataset. Review dataset/model terms before distributing them. The model is pinned to a commit; the base image tag and transitive Python dependencies are not yet locked to immutable digests.
+The same image and index can run after Azure access expires. Users still need the index and model image; exporting a Docker image alone does not include the mounted dataset. Review dataset/model terms before distributing them. The model is pinned to a commit; the app base image is pinned to the tested digest. Transitive Python dependencies and the data-image base tag are not fully locked.
 
 ## API
 
@@ -72,7 +71,7 @@ Optional local demo authentication: set both `DEMO_USERNAME` and `DEMO_PASSWORD`
 .\.venv\Scripts\python.exe run_tests.py
 ```
 
-Tests exercise a real miniature FTS index, API validation, authentication, and concurrent request rejection. `VERIFICATION.md` records full-corpus checks and the limits of verification performed in this session. Docker build/run and Azure deployment still require verification on a machine with access to those services.
+Tests exercise a real miniature FTS index, API validation, authentication, and concurrent request rejection. `VERIFICATION.md` records full-corpus checks and the limits of verification performed in this session. The two-image Docker build/run was verified locally on Linux/x86-64 Docker Desktop. Azure deployment and other CPU architectures remain unverified.
 
 ## Scope and next stages
 

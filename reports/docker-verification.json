@@ -1,0 +1,96 @@
+{
+  "seed_log": "trial-index-1  | Initialized verified index volume.\ntrial-index-1  | Reused verified index; no copy needed.",
+  "before": {
+    "container": "28f51848ad1284f8582030b386abd1b641c601cc9c9dc9e1fc64ecab7aea78b9",
+    "image": "sha256:adb834aa8e72e227f0e7d0b75a95d739234298184afa1fb9964723b6677b5728",
+    "volume": "clinical-trial-index-trec2021-b70ca9cdb12e",
+    "index": {
+      "bytes": 2220654592,
+      "mtime_ns": 1794911948754612735,
+      "inode": 326785,
+      "sha256": "b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd"
+    }
+  },
+  "search": {
+    "bm25": {
+      "seconds": 1.751,
+      "candidates": 200,
+      "scored_pairs": 0,
+      "ids": [
+        "NCT04583462",
+        "NCT01398267",
+        "NCT01565096",
+        "NCT00427154",
+        "NCT00348712",
+        "NCT00856986",
+        "NCT01208012",
+        "NCT01392677",
+        "NCT00311870",
+        "NCT01547104"
+      ]
+    },
+    "fusion": {
+      "seconds": 4.667,
+      "candidates": 200,
+      "scored_pairs": 0,
+      "ids": [
+        "NCT04583462",
+        "NCT00427154",
+        "NCT01392677",
+        "NCT00348712",
+        "NCT00856986",
+        "NCT01565096",
+        "NCT00545584",
+        "NCT03878706",
+        "NCT00469586",
+        "NCT00696657"
+      ]
+    },
+    "rerank": {
+      "seconds": 35.314,
+      "candidates": 200,
+      "scored_pairs": 293,
+      "ids": [
+        "NCT01565096",
+        "NCT00856986",
+        "NCT01392677",
+        "NCT00427154",
+        "NCT01398267",
+        "NCT01208012",
+        "NCT04583462",
+        "NCT00348712",
+        "NCT01547104",
+        "NCT01483560"
+      ]
+    }
+  },
+  "restart_ready_seconds": 2.552,
+  "after_restart": {
+    "container": "28f51848ad1284f8582030b386abd1b641c601cc9c9dc9e1fc64ecab7aea78b9",
+    "image": "sha256:adb834aa8e72e227f0e7d0b75a95d739234298184afa1fb9964723b6677b5728",
+    "volume": "clinical-trial-index-trec2021-b70ca9cdb12e",
+    "index": {
+      "bytes": 2220654592,
+      "mtime_ns": 1794911948754612735,
+      "inode": 326785,
+      "sha256": "b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd"
+    }
+  },
+  "replacement_ready_seconds": 2.033,
+  "after_app_replacement": {
+    "container": "c47f7f101db2f4509cd62d57aade245962e1efb3188c76ed33a5e15309c30fc3",
+    "image": "sha256:adb834aa8e72e227f0e7d0b75a95d739234298184afa1fb9964723b6677b5728",
+    "volume": "clinical-trial-index-trec2021-b70ca9cdb12e",
+    "index": {
+      "bytes": 2220654592,
+      "mtime_ns": 1794911948754612735,
+      "inode": 326785,
+      "sha256": "b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd"
+    }
+  },
+  "replacement_scope": "App container recreated from same image; tests update procedure, not a new application version.",
+  "reuse_seed_log": "trial-index-1  | Initialized verified index volume.\ntrial-index-1  | Reused verified index; no copy needed.\ntrial-index-1  | Reused verified index; no copy needed.",
+  "passed": true,
+  "compose_up_and_readiness_seconds": 5.333,
+  "startup_timing_scope": "Measured Compose up reused the initialized volume. Initial empty-volume seeding succeeded earlier and is confirmed in seed_log; its duration was not measured."
+}

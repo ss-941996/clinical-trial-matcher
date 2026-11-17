@@ -1,6 +1,34 @@
 # Clinical Trial Matcher: patient note → ranked trials
 
-**Status:** The local BM25 research baseline, exploratory reranking evaluation, and FastAPI/frontend demo are implemented. Docker files and an Azure PoC plan are prepared; container/cloud execution still needs verification. The full staged matcher below is the target architecture.
+**Status:** The local BM25 research baseline, exploratory reranking evaluation, and FastAPI/frontend demo are implemented. The two-image Docker build, startup, search, restart and index reuse were verified locally on Linux/x86-64 Docker Desktop. An Azure PoC plan is prepared; Azure deployment remains unverified. The full staged matcher below is the target architecture.
+
+## Run the first local Docker version
+
+With Docker Desktop running, execute these commands from the repository root. Both images must already be built or loaded:
+
+```powershell
+docker compose -f .\demo\compose.images.yaml up -d --no-build --pull never
+Invoke-RestMethod http://localhost:8000/health/ready
+```
+
+Open **[http://localhost:8000](http://localhost:8000)**. The index initializer exits successfully after verifying or initializing the persistent volume; the app stays running. A full startup hashes the 2.22 GB index and can take over a minute on this machine. This is verification, not an image rebuild.
+
+Stop the app and preserve its index:
+
+```powershell
+docker compose -f .\demo\compose.images.yaml down
+```
+
+For an app-only update on an already initialized installation:
+
+```powershell
+docker compose -f .\demo\compose.images.yaml build matcher
+docker compose -f .\demo\compose.images.yaml up -d --no-build --pull never --no-deps --force-recreate matcher
+```
+
+This reuses the existing index image and volume. Avoid `down -v` if retaining the data. The images are local build artifacts, not stored in Git; see [image export/load instructions](demo/INDEX-IMAGE.md) for another computer.
+
+**Ranking in this version:** BM25 is the default. Balanced fusion is a separate retrieval option. The optional cross-encoder reranks the original BM25 pool; it is not balanced fusion followed by reranking. The combined [2021 experiment is incomplete and deferred](reports/reranking/balanced_reranker/README.md), with no new quality claim. All displayed results have eligibility unchecked.
 
 A staged pipeline that takes a free-text patient description, cleans it, extracts structured eligibility facts, narrows a large registry of clinical trials down to a short list, checks eligibility criterion by criterion, and returns an explainable top-10 ranking. A clinician or trial coordinator makes the final decision.
 
@@ -60,8 +88,7 @@ flowchart TD
 
 The current cross-encoder experiment uses its frozen original BM25 candidate
 pool, with a fixed scoring batch protocol described in [demo/README.md](demo/README.md).
-Balanced-fusion reranking is the next experiment, not an already measured
-combined system. Reranking the same 200 candidates changes top-ten quality but
+Balanced-fusion reranking was started but stopped before selection and validation; it remains an incomplete experiment, not an evaluated combined system. Reranking the same 200 candidates changes top-ten quality but
 cannot change eligible recall@200.
 
 | # | Stage | Method | Output |
@@ -256,14 +283,14 @@ eligible judgments. Every topic's nDCG and recall are independently checked with
 - [x] Experimental FastAPI endpoint and research frontend
 - [x] Lexical fusion and cross-encoder experiments
 - [x] Docker/Compose files prepared
-- [ ] Docker build/run verification
+- [x] Docker build/run verification (Linux/x86-64 Docker Desktop)
 - [ ] Azure PoC deployment
 
 ## 11. Frontend, containers, and deployment
 
 The [`demo/`](demo/README.md) package implements a research frontend and FastAPI `POST /match` endpoint for ranked trials, source eligibility text, and registry links. Criterion-level matched/excluded/unknown explanations remain a later stage.
 
-Docker/Compose files are prepared with a separate read-only trial index mount. Container build/run still needs verification. An [Azure PoC plan](demo/AZURE.md) describes HTTPS, authentication, secrets, resource limits, persistent storage, and eventual cleanup. Azure deployment has not been executed. The same image and index can run locally after Azure access ends.
+Docker/Compose runs the app with a separate, versioned trial-index image and a persistent read-only index mount. Local image build, first initialization, search, restart and index reuse passed; see [verification](demo/VERIFICATION.md). An [Azure PoC plan](demo/AZURE.md) describes HTTPS, authentication, secrets, resource limits, persistent storage, and eventual cleanup. Azure deployment has not been executed. The same image and index can run locally after Azure access ends.
 
 TREC 2022 evaluation is deferred until development is complete; see [exposure/status record](reports/trec2022-status.md). A synthetic-note engineering PoC can proceed independently of the final retrieval benchmark. Continue model development on TREC 2021; repeated 2022 checks become regression measurements. Use synthetic/de-identified research notes.
 
@@ -285,7 +312,7 @@ A separate [`demo/`](demo/README.md) package provides a FastAPI `POST /match` en
 
 See [`reports/reranking/results.md`](reports/reranking/results.md) for the fixed comparison on 45 development and 30 reused internal-validation TREC 2021 topics. These exploratory results are not an untouched test. TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
 
-Docker Compose and an [Azure PoC plan](demo/AZURE.md) keep the index separate from the app image, so local Docker use can continue when Azure access ends. The Python API and browser workflow were checked locally; Docker build/run and Azure deployment still need verification. No Azure resources were created.
+Docker Compose and an [Azure PoC plan](demo/AZURE.md) keep the index separate from the app image, so local Docker use can continue when Azure access ends. The Python API, browser workflow and two-image Docker build/run were checked locally; Azure deployment remains unverified. No Azure resources were created.
 
 ## Local use and portfolio hosting
 
@@ -295,8 +322,7 @@ want to run the app need Docker, the application image, and the trial index/mode
 assets described in the setup instructions. Screenshots and demo recordings can
 be captured from localhost without cloud hosting.
 
-Run the frontend and API locally with Python, or use the prepared Docker Compose
-package once container verification is complete. Local inference needs no Azure
+Run the frontend and API locally with Python, or use the verified [two-image Docker Compose setup](demo/INDEX-IMAGE.md). Local inference needs no Azure
 subscription or paid model API. See [local commands and low-cost PoC options](demo/POC-OPTIONS.md).
 
 Balanced fusion is the candidate-retrieval baseline for subsequent versions;
@@ -344,6 +370,4 @@ equivalent. There is no single published minimum score that makes this PoC ready
 for clinical use. For this portfolio, the next convincing result is a reproducible
 improvement over our own fixed controls, together with a working local app.
 
-Next session: run the app locally, evaluate balanced-fusion candidates and
-reranking on2021, and verify Docker build/startup/search/restart. No model run,
-2022 evaluation, or Azure deployment is initiated by this documentation update.
+The local app and two-image Docker workflow were exercised on 2026-11-17. Development continues on TREC 2021; no new 2022 evaluation or Azure deployment was run.

@@ -1,12 +1,10 @@
 # App image plus a separate trial-index image
 
-**Status:** files prepared; Compose configuration, source-index checksum and
-seven Python tests passed. Docker engine access is denied in this session, so
-neither image build nor the combined container startup has been verified.
+**Status (2026-11-17):** both Linux/x86-64 images built successfully. Empty-volume initialization, full-corpus search, app restart, container replacement and index reuse passed. See [verification details](VERIFICATION.md) and [recorded checks](../reports/docker-verification.json). Azure deployment and image distribution remain separate work.
 
 The existing `compose.yaml` remains the local bind-mount option. The standalone
 `compose.images.yaml` is an alternative; use one file at a time, not both stacks
-on port8000. This setup requires Linux containers on x86-64 Docker Desktop.
+on port 8000. This setup requires Linux containers on x86-64 Docker Desktop.
 
 ## Build and start on the machine that holds the index
 
