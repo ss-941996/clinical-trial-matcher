@@ -57,3 +57,11 @@ This is research retrieval, not criterion-level eligibility assessment. ARM/olde
 ## Deferred model work
 
 The full balanced-fusion reranking experiment was stopped before development selection and validation. [Its status record](../reports/reranking/balanced_reranker/README.md) identifies partial checkpoints. No new ranking-quality improvement is claimed. Concurrent native scoring overloaded this laptop; resume with one process if this work is revisited.
+
+## Single frontend pipeline follow-up — 2026-11-17
+
+The frontend method selector was removed. Browser requests omit `method`; the server uses `app/config.json` (`default_method: fusion`). Explicit research API overrides remain available. This selects the completed balanced-fusion coverage/eligible-recall/CPU trade-off, without claiming a winner on all metrics or promoting the unfinished cross-encoder combination.
+
+Eight focused API/index-image tests passed, including the configured-default/explicit-override contract. JavaScript syntax and Git whitespace checks passed. Only the app image was rebuilt; dependency and model layers were cached, and the existing index volume was reused without rebuilding its image. Docker readiness and `/config` confirmed the selected `fusion` default.
+
+An actual browser search using the built-in synthetic example displayed ten results from 200 candidates, with no method selector. The server-reported time was 14.7 seconds for that single request. No cross-encoder inference or benchmark evaluation was run. The earlier verification sections describe the previous multi-option frontend.

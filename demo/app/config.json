@@ -1,8 +1,8 @@
 {
-  "default_method": "bm25",
+  "default_method": "fusion",
   "rerank_pool": "baseline",
   "ce_blend_weight": 0.5,
   "fusion_balance_weight": 2.0,
   "experimental_arm": "baseline_blend_0.5",
-  "status": "Experimental development-selected configurations. BM25 remains the default."
+  "status": "Single frontend pipeline: balanced fusion, selected for eligible recall and CPU latency; not a winner on every metric. Original methods remain available through explicit research API requests."
 }

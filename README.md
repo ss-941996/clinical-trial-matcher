@@ -28,7 +28,7 @@ docker compose -f .\demo\compose.images.yaml up -d --no-build --pull never --no-
 
 This reuses the existing index image and volume. Avoid `down -v` if retaining the data. The images are local build artifacts, not stored in Git; see [image export/load instructions](demo/INDEX-IMAGE.md) for another computer.
 
-**Ranking in this version:** BM25 is the default. Balanced fusion is a separate retrieval option. The optional cross-encoder reranks the original BM25 pool; it is not balanced fusion followed by reranking. The combined [2021 experiment is incomplete and deferred](reports/reranking/balanced_reranker/README.md), with no new quality claim. All displayed results have eligibility unchecked.
+**Ranking in this version:** the frontend has one search action and uses server-selected balanced fusion, retaining 200 candidates and displaying ten. It is selected for candidate coverage, eligible recall@10 and CPU latency, not superiority on every metric. Explicit research API requests still support BM25 and the original BM25-pool cross-encoder; the frontend has no method selector. The combined [2021 experiment is incomplete and deferred](reports/reranking/balanced_reranker/README.md), with no new quality claim. All displayed results have eligibility unchecked.
 
 A staged pipeline that takes a free-text patient description, cleans it, extracts structured eligibility facts, narrows a large registry of clinical trials down to a short list, checks eligibility criterion by criterion, and returns an explainable top-10 ranking. A clinician or trial coordinator makes the final decision.
 
@@ -58,6 +58,8 @@ Why it is hard:
 Cheap stages shrink the pool; the expensive LLM stage only sees the survivors. Every LLM and embedding call is cached by content hash.
 
 ## 3. Pipeline
+
+The frontend exposes one server-configured pipeline (currently balanced fusion); other paths in the diagram are explicit research API options. See the [next development experiments](reports/next-retrieval-experiments.md).
 
 The working implementation is a fixed pipeline; autonomous agents are not
 required. Solid arrows below show available paths. Dashed arrows show planned
@@ -308,7 +310,7 @@ validation. See `reports/bm25_v1/eval.md`, `error_analysis.txt` and
 
 ## Experimental reranking and portable demo
 
-A separate [`demo/`](demo/README.md) package provides a FastAPI `POST /match` endpoint and a responsive frontend for patient notes, top-ten candidates, source eligibility criteria, and registry links. It supports original BM25, lexical fusion, and experimental cross-encoder reranking. BM25 remains the default; relevance scores do not establish eligibility.
+A separate [`demo/`](demo/README.md) package provides a FastAPI `POST /match` endpoint and a responsive frontend for patient notes, top-ten candidates, source eligibility criteria, and registry links. It supports original BM25, lexical fusion, and experimental cross-encoder reranking. The frontend automatically uses balanced fusion; explicit research API requests retain the other methods. Relevance scores do not establish eligibility.
 
 See [`reports/reranking/results.md`](reports/reranking/results.md) for the fixed comparison on 45 development and 30 reused internal-validation TREC 2021 topics. These exploratory results are not an untouched test. TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
 
@@ -326,7 +328,7 @@ Run the frontend and API locally with Python, or use the verified [two-image Doc
 subscription or paid model API. See [local commands and low-cost PoC options](demo/POC-OPTIONS.md).
 
 Balanced fusion is the candidate-retrieval baseline for subsequent versions;
-BM25 remains the comparison control and initial demo dropdown choice. Candidate
+BM25 remains the comparison control. The frontend uses the configured pipeline without a method dropdown. Candidate
 retrieval and reranking are fixed pipeline stages; autonomous agents are not
 required. Eligibility remains unassessed.
 

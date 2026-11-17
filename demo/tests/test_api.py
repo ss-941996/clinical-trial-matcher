@@ -70,3 +70,16 @@ def test_overlapping_search_gets_retry_response(engine):
             assert busy.status_code==429 and busy.headers['Retry-After']=='5'
         finally:release.set();thread.join(timeout=10)
         assert not thread.is_alive() and responses[0].status_code==200
+
+
+def test_configured_pipeline_is_used_when_browser_omits_method(engine):
+    engine.config.update(default_method='fusion',fusion_balance_weight=2.0)
+    with TestClient(create_app(engine)) as client:
+        note='A research patient has diabetes and prior stroke.'
+        automatic=client.post('/match',json={'note':note}).json()
+        explicit=client.post('/match',json={'note':note,'method':'fusion'}).json()
+        assert automatic['method']==explicit['method']=='fusion'
+        assert [x['trial_id'] for x in automatic['results']]==[x['trial_id'] for x in explicit['results']]
+        assert client.get('/config').json()['default_method']=='fusion'
+        assert client.post('/match',json={'note':note,'method':'bm25'}).json()['method']=='bm25'
+        assert '<select' not in client.get('/').text

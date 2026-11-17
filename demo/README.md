@@ -4,9 +4,13 @@ Paste a synthetic research patient note, search the full historical TREC 2021 co
 
 This package lives in `demo/` inside the project. It uses the existing `data/indexes/bm25.sqlite`; it does not modify the index. The index must contain the existing 375,580-record snapshot and the `identities` and `metadata` tables created by this project's loader.
 
-## Methods
+## One frontend pipeline
 
-- **BM25**: the original full-note baseline. This remains the default.
+The frontend has one search button and no method selector. It omits `method` from the request; the server selects `default_method` in `app/config.json`, currently balanced fusion (`fusion`). This offers the strongest completed eligible recall and avoids cross-encoder inference, but does not lead on nDCG@10. A future evaluated pipeline can replace the server default without changing the UI.
+
+## Research API methods
+
+- **BM25**: the original full-note baseline. Available for explicit research comparisons.
 - **Lexical fusion**: weighted BM25 searches using the full note, extracted registry-condition phrases, and the opening sentence. The three top-1,000 lists are combined with reciprocal rank fusion (RRF, constant 60). A second RRF blends this top-1,000 list with original BM25, using development-selected weights 2:1 in favor of the three-query fusion; keep 200. Field weights for the three-query component: title 3, conditions 5, summary 1, eligibility 0.5. This improves coverage in the exploratory comparison but does not beat original BM25 on nDCG@10.
 - **Cross-encoder**: a pinned MiniLM relevance model compares each note–trial pair and reorders the same 200 candidates. A frozen development-selected configuration is recorded in `app/config.json`. This is a general MS MARCO model, not a clinical eligibility classifier. Query and trial text are truncated to fixed field budgets within 512 model tokens. Scores are raw relevance logits, not eligibility probabilities.
 
@@ -58,7 +62,7 @@ The same image and index can run after Azure access expires. Users still need th
 
 ## API
 
-`POST /match` accepts `{ "note": "A research patient description...", "method": "bm25", "top_k": 10 }`. Methods: `bm25`, `fusion`, `rerank`. Results contain trial IDs, titles, conditions, full source eligibility text, original retrieval ranks, relevance scores, and `eligibility_status: "not_assessed"`. The response labels the April 27, 2021 snapshot.
+`POST /match` accepts `{ "note": "A research patient description...", "method": "bm25", "top_k": 10 }`. Omit `method` for the configured frontend pipeline (currently `fusion`). Explicit research overrides: `bm25`, `fusion`, `rerank`. Results contain trial IDs, titles, conditions, full source eligibility text, original retrieval ranks, relevance scores, and `eligibility_status: "not_assessed"`. The response labels the April 27, 2021 snapshot.
 
 `GET /health/live` and `/health/ready` support probes. `GET /config` exposes available methods. `GET /openapi.json` provides the API schema. One active match per process is allowed; overlapping calls return 429 with `Retry-After: 5`. Use one worker to preserve that limit and avoid loading multiple models. Input is bounded to 12,000 characters and output to ten trials.
 

@@ -1,0 +1,12 @@
+# Next development experiments: TREC 2021 only
+
+Balanced fusion is the user-facing coverage/latency baseline, not the winner on every metric. On 30 reused internal-validation patients it achieved nDCG@10 0.4484, eligible recall@10 0.0697 and recall@200 0.3982. Original BM25 nDCG@10 is 0.4701. These values are historical completed comparisons; no new experiment is run by this change.
+
+1. Inspect eligible misses on development patients and categorize lexical mismatch, overly broad query terms and truncation. Avoid patient-specific query patches.
+2. Prespecify a small set of retrieval changes. Try conservative diagnosis/synonym query variants only where development errors justify them, plus a limited fusion-weight comparison. Reweight existing ranked lists from cache; a genuinely new query needs a new cached retrieval run. Existing tuning on this split is exploratory and must be reported.
+3. Keep each patient's balanced-fusion 200 IDs fixed for reranking comparisons. Reuse the interrupted run's scores only with matching candidate IDs/order, model, token budgets and batching. Compare existing cross-encoder/RRF blends before downloading another model.
+4. Use five fixed development patients as a screening set, then the 45-patient development split for a promising setting. A screen is not a benchmark. Benchmark one versus two inference threads first, check score/rank consistency and isolate incompatible caches. One low-priority process, no concurrent scoring workers; checkpoint each patient and pause during interactive demo use.
+5. Freeze settings before checking the reused 30-patient internal-validation split. Report nDCG@10, eligible recall@10/@200, paired uncertainty, exclusions in the top ten and end-to-end latency. Do not promote a costly reranker for a negligible or uncertain gain. The project target is to preserve roughly 39.82% recall@200 while beating BM25's 0.4701 nDCG@10 and improving eligible recall@10.
+6. Only after development is complete, freeze the complete pipeline for a prespecified TREC 2022 evaluation, documenting its limited prior exposure. Current-registry refresh and Azure hosting follow separately.
+
+Deployment has one configured pipeline. Research variants stay out of the frontend. Any new default needs its measured trade-offs documented; the unfinished balanced-fusion reranking run is not a promoted result.

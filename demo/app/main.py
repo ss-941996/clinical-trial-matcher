@@ -16,7 +16,7 @@ STATIC=Path(__file__).parent/'static'
 class MatchRequest(BaseModel):
     model_config=ConfigDict(extra='forbid')
     note:str=Field(min_length=20,max_length=12000)
-    method:Literal['bm25','fusion','rerank']='bm25'
+    method:Literal['bm25','fusion','rerank']|None=None
     top_k:int=Field(default=10,ge=1,le=10)
 
     @field_validator('note')
@@ -30,6 +30,8 @@ def create_app(engine=None):
     if engine is None:
         config=json.loads((Path(__file__).parent/'config.json').read_text(encoding='utf-8'))
         engine=Engine(os.environ.get('TRIAL_INDEX_PATH','data/indexes/bm25.sqlite'),os.environ.get('RERANK_MODEL_DIR') or None,config=config)
+    selected_method=engine.config.get('default_method','fusion')
+    if selected_method not in {'bm25','fusion','rerank'}:raise ValueError('Invalid configured pipeline')
     username=os.environ.get('DEMO_USERNAME','');password=os.environ.get('DEMO_PASSWORD','')
     require_auth=os.environ.get('REQUIRE_AUTH','false').lower()=='true'
     if require_auth and (not username or not password):raise RuntimeError('REQUIRE_AUTH needs DEMO_USERNAME and DEMO_PASSWORD')
@@ -76,7 +78,7 @@ def create_app(engine=None):
 
     @app.get('/config',dependencies=[Depends(authenticate)])
     def config():
-        return dict(indexed_trials=engine.metadata['records'],snapshot='2021-04-27',reranking_available=engine.encoder is not None,default_method='bm25')
+        return dict(indexed_trials=engine.metadata['records'],snapshot='2021-04-27',reranking_available=engine.encoder is not None,default_method=selected_method)
 
     @app.get('/openapi.json',dependencies=[Depends(authenticate)],include_in_schema=False)
     def openapi():return app.openapi()
@@ -86,7 +88,7 @@ def create_app(engine=None):
         if not engine.ready:raise HTTPException(503,'Index is not ready')
         if not gate.acquire(blocking=False):raise HTTPException(429,'A search is already running. Please retry shortly.',headers={'Retry-After':'5'})
         try:
-            return engine.search(body.note,body.method,body.top_k)
+            return engine.search(body.note,body.method or selected_method,body.top_k)
         except ValueError as exc:raise HTTPException(422,str(exc)) from exc
         finally:gate.release()
     return app
