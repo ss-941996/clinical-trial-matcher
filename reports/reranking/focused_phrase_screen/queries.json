@@ -1,0 +1,27 @@
+{
+  "1": {
+    "query": "anaplastic astrocytoma",
+    "query_seconds": 0.8438279000001785,
+    "new_candidates_in_200": 19
+  },
+  "2": {
+    "query": "severe aortic valve stenosis",
+    "query_seconds": 0.8492888000000676,
+    "new_candidates_in_200": 12
+  },
+  "3": {
+    "query": "intraventricular hemorrhage",
+    "query_seconds": 0.2978731000002881,
+    "new_candidates_in_200": 16
+  },
+  "4": {
+    "query": "burkitt s lymphoma",
+    "query_seconds": 0.343095600000197,
+    "new_candidates_in_200": 14
+  },
+  "5": {
+    "query": "carotid artery disease",
+    "query_seconds": 0.7912143000003198,
+    "new_candidates_in_200": 17
+  }
+}

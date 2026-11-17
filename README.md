@@ -373,3 +373,5 @@ for clinical use. For this portfolio, the next convincing result is a reproducib
 improvement over our own fixed controls, together with a working local app.
 
 The local app and two-image Docker workflow were exercised on 2026-11-17. Development continues on TREC 2021; no new 2022 evaluation or Azure deployment was run.
+
+Sequential low-CPU development checks on 2026-11-17 are recorded in [the development update](reports/retrieval-development-update.md). An extra phrase query gave a small, uncertain recall gain; cached reranking failed its five-patient screen. The frontend remains on the existing balanced-fusion configuration. These experiments used 2021 development patients only, with no new model inference.

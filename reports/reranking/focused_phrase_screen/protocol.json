@@ -1,0 +1,23 @@
+{
+  "year": 2021,
+  "topics": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "purpose": "Exploratory development screen motivated by inspected development examples; not independent validation.",
+  "query": "Longest multiword phrase in existing registry-condition vocabulary; tie by earliest note occurrence. Fall back to existing focused query. A lexical heuristic, not a clinical diagnosis.",
+  "combination": "RRF k=60; original BM25 top1000 weight1, existing three-query RRF top1000 weight2, new weighted-BM25 phrase top1000 weight0.5; keep200.",
+  "selection": "Report both systems on the five reused patients. No tuning, promotion or wider run from this script.",
+  "execution": "One process; BelowNormal priority on Windows; one SQLite query at a time; 32MiB SQLite cache; 20-second per-query progress-handler guard; no ONNX inference.",
+  "index_sha256": "b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd",
+  "input_sha256": {
+    "data/raw/trec2021/topics2021.xml": "94bda921ce7c40a0353f251abb2ea938c77331759a9f83a36abd145ab5840aca",
+    "data/raw/trec2021/qrels2021.txt": "ba7a2cddc90285e75cd76adcd483394a6c9bacf7017113222058ba6537e6d8ac",
+    "demo/app/assets/condition_vocabulary.json": "ac206e7d975c3fbd653956d3ceaadeb2ae4cddf86dadb2b9f9ec6684d0de89c3",
+    "demo/app/retrieval.py": "21bcdfbf8db8fb5e091c65211183b11e95e38691cd5541b2a5266ef89a5b9bd0"
+  },
+  "code_sha256": "1fbe83adfb8801fb0037004cdeb00299a89629313c3a961de5cf022cb5a882c1"
+}

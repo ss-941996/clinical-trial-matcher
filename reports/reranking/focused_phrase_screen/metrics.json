@@ -1,0 +1,178 @@
+{
+  "balanced_2": {
+    "macro": {
+      "ndcg@10": 0.49506024590160563,
+      "eligible_total": 76.0,
+      "judged@10": 0.9400000000000001,
+      "eligible@10": 3.2,
+      "excluded@10": 3.8,
+      "unjudged@10": 0.6,
+      "eligible_recall@10": 0.05107354248570171,
+      "eligible_recall@30": 0.08207408499519561,
+      "eligible_recall@200": 0.279106954992913,
+      "excluded_eligible_pairs@10": 10.2,
+      "inversions@10": 4.4,
+      "inversion_rate@10": 0.4333333333333333
+    },
+    "per_topic": {
+      "1": {
+        "ndcg@10": 0.428784852972944,
+        "eligible_total": 47,
+        "judged@10": 0.9,
+        "eligible@10": 1,
+        "excluded@10": 6,
+        "unjudged@10": 1,
+        "eligible_recall@10": 0.02127659574468085,
+        "eligible_recall@30": 0.02127659574468085,
+        "eligible_recall@200": 0.2978723404255319,
+        "excluded_eligible_pairs@10": 6,
+        "inversions@10": 4,
+        "inversion_rate@10": 0.6666666666666666
+      },
+      "2": {
+        "ndcg@10": 0.6512019152469254,
+        "eligible_total": 138,
+        "judged@10": 1.0,
+        "eligible@10": 3,
+        "excluded@10": 7,
+        "unjudged@10": 0,
+        "eligible_recall@10": 0.021739130434782608,
+        "eligible_recall@30": 0.07246376811594203,
+        "eligible_recall@200": 0.37681159420289856,
+        "excluded_eligible_pairs@10": 21,
+        "inversions@10": 7,
+        "inversion_rate@10": 0.3333333333333333
+      },
+      "3": {
+        "ndcg@10": 0.3951516813590477,
+        "eligible_total": 32,
+        "judged@10": 0.9,
+        "eligible@10": 3,
+        "excluded@10": 2,
+        "unjudged@10": 1,
+        "eligible_recall@10": 0.09375,
+        "eligible_recall@30": 0.09375,
+        "eligible_recall@200": 0.21875,
+        "excluded_eligible_pairs@10": 6,
+        "inversions@10": 3,
+        "inversion_rate@10": 0.5
+      },
+      "4": {
+        "ndcg@10": 0.32485575605771155,
+        "eligible_total": 44,
+        "judged@10": 0.9,
+        "eligible@10": 3,
+        "excluded@10": 2,
+        "unjudged@10": 1,
+        "eligible_recall@10": 0.06818181818181818,
+        "eligible_recall@30": 0.11363636363636363,
+        "eligible_recall@200": 0.25,
+        "excluded_eligible_pairs@10": 6,
+        "inversions@10": 0,
+        "inversion_rate@10": 0.0
+      },
+      "5": {
+        "ndcg@10": 0.6753070238713994,
+        "eligible_total": 119,
+        "judged@10": 1.0,
+        "eligible@10": 6,
+        "excluded@10": 2,
+        "unjudged@10": 0,
+        "eligible_recall@10": 0.05042016806722689,
+        "eligible_recall@30": 0.1092436974789916,
+        "eligible_recall@200": 0.25210084033613445,
+        "excluded_eligible_pairs@10": 12,
+        "inversions@10": 8,
+        "inversion_rate@10": 0.6666666666666666
+      }
+    }
+  },
+  "balanced_plus_phrase": {
+    "macro": {
+      "ndcg@10": 0.4842756019375415,
+      "eligible_total": 76.0,
+      "judged@10": 0.9199999999999999,
+      "eligible@10": 3.0,
+      "excluded@10": 4.2,
+      "unjudged@10": 0.8,
+      "eligible_recall@10": 0.04482354248570171,
+      "eligible_recall@30": 0.08978325561996728,
+      "eligible_recall@200": 0.31640388053295493,
+      "excluded_eligible_pairs@10": 10.2,
+      "inversions@10": 6.0,
+      "inversion_rate@10": 0.6047619047619047
+    },
+    "per_topic": {
+      "1": {
+        "ndcg@10": 0.5035548493224855,
+        "eligible_total": 47,
+        "judged@10": 0.9,
+        "eligible@10": 1,
+        "excluded@10": 8,
+        "unjudged@10": 1,
+        "eligible_recall@10": 0.02127659574468085,
+        "eligible_recall@30": 0.02127659574468085,
+        "eligible_recall@200": 0.3404255319148936,
+        "excluded_eligible_pairs@10": 8,
+        "inversions@10": 6,
+        "inversion_rate@10": 0.75
+      },
+      "2": {
+        "ndcg@10": 0.623275277723793,
+        "eligible_total": 138,
+        "judged@10": 1.0,
+        "eligible@10": 3,
+        "excluded@10": 7,
+        "unjudged@10": 0,
+        "eligible_recall@10": 0.021739130434782608,
+        "eligible_recall@30": 0.09420289855072464,
+        "eligible_recall@200": 0.37681159420289856,
+        "excluded_eligible_pairs@10": 21,
+        "inversions@10": 11,
+        "inversion_rate@10": 0.5238095238095238
+      },
+      "3": {
+        "ndcg@10": 0.25983227167304035,
+        "eligible_total": 32,
+        "judged@10": 0.8,
+        "eligible@10": 2,
+        "excluded@10": 2,
+        "unjudged@10": 2,
+        "eligible_recall@10": 0.0625,
+        "eligible_recall@30": 0.09375,
+        "eligible_recall@200": 0.25,
+        "excluded_eligible_pairs@10": 4,
+        "inversions@10": 4,
+        "inversion_rate@10": 1.0
+      },
+      "4": {
+        "ndcg@10": 0.34498484178740507,
+        "eligible_total": 44,
+        "judged@10": 0.9,
+        "eligible@10": 3,
+        "excluded@10": 2,
+        "unjudged@10": 1,
+        "eligible_recall@10": 0.06818181818181818,
+        "eligible_recall@30": 0.11363636363636363,
+        "eligible_recall@200": 0.29545454545454547,
+        "excluded_eligible_pairs@10": 6,
+        "inversions@10": 0,
+        "inversion_rate@10": 0.0
+      },
+      "5": {
+        "ndcg@10": 0.6897307691809835,
+        "eligible_total": 119,
+        "judged@10": 1.0,
+        "eligible@10": 6,
+        "excluded@10": 2,
+        "unjudged@10": 0,
+        "eligible_recall@10": 0.05042016806722689,
+        "eligible_recall@30": 0.12605042016806722,
+        "eligible_recall@200": 0.31932773109243695,
+        "excluded_eligible_pairs@10": 12,
+        "inversions@10": 9,
+        "inversion_rate@10": 0.75
+      }
+    }
+  }
+}

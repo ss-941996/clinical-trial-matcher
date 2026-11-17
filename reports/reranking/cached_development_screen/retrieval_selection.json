@@ -1,0 +1,98 @@
+{
+  "best_development_arm": "balanced_2",
+  "allowed_arms": [
+    "balanced_1.5",
+    "balanced_2"
+  ],
+  "deployed": false,
+  "reason": "Development-only exploratory screen; no validation or promotion.",
+  "comparisons": {
+    "balanced_1.5": {
+      "ndcg@10": {
+        "mean_difference": 0.0051601051107214605,
+        "paired_bootstrap_95pct": [
+          -0.007792479756219943,
+          0.01663220989816791
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      },
+      "eligible_recall@10": {
+        "mean_difference": 0.0014747485165848672,
+        "paired_bootstrap_95pct": [
+          -0.00013485980950183368,
+          0.0034188219313785423
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      },
+      "eligible_recall@200": {
+        "mean_difference": -0.0013488997298868285,
+        "paired_bootstrap_95pct": [
+          -0.007188917944960541,
+          0.0035531233968617137
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      }
+    },
+    "balanced_2.5": {
+      "ndcg@10": {
+        "mean_difference": -0.0062630284863325805,
+        "paired_bootstrap_95pct": [
+          -0.017700480750602383,
+          0.005484399961646455
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      },
+      "eligible_recall@10": {
+        "mean_difference": -0.0017422279987901203,
+        "paired_bootstrap_95pct": [
+          -0.004881694640343179,
+          0.000844007054600672
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      },
+      "eligible_recall@200": {
+        "mean_difference": 0.00025463427904017866,
+        "paired_bootstrap_95pct": [
+          -0.0020457245135009797,
+          0.0025332326434995955
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      }
+    },
+    "balanced_3": {
+      "ndcg@10": {
+        "mean_difference": -0.014760369054400767,
+        "paired_bootstrap_95pct": [
+          -0.030681343561501654,
+          0.000935560449299243
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      },
+      "eligible_recall@10": {
+        "mean_difference": -0.002928449956794696,
+        "paired_bootstrap_95pct": [
+          -0.006648615279294279,
+          0.00012131395795491046
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      },
+      "eligible_recall@200": {
+        "mean_difference": -0.0023170112151481522,
+        "paired_bootstrap_95pct": [
+          -0.0067584034838176045,
+          0.0016319738801933103
+        ],
+        "replicates": 10000,
+        "seed": 941996
+      }
+    }
+  }
+}

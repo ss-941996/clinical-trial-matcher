@@ -1,0 +1,12 @@
+{
+  "completed": true,
+  "wall_seconds": 42.293,
+  "process_cpu_seconds": 18.094,
+  "below_normal_priority": true,
+  "single_process": true,
+  "queries_run_this_execution": 40,
+  "model_inference_pairs": 0,
+  "validation_evaluated": false,
+  "trec2022_accessed": false,
+  "deployed": false
+}

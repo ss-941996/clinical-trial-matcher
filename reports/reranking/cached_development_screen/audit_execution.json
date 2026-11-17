@@ -1,0 +1,11 @@
+{
+  "stage": "audit",
+  "wall_seconds": 1.621,
+  "process_cpu_seconds": 1.125,
+  "below_normal_priority": true,
+  "single_process": true,
+  "model_inference_pairs": 0,
+  "paid_api_calls": 0,
+  "validation_evaluated": false,
+  "trec2022_accessed": false
+}

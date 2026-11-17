@@ -1,0 +1,272 @@
+{
+  "1": {
+    "query": "anaplastic astrocytoma",
+    "query_seconds": 0.8438279000001785,
+    "origin": "five-patient cache",
+    "new_candidates_in_200": 19
+  },
+  "2": {
+    "query": "severe aortic valve stenosis",
+    "query_seconds": 0.8492888000000676,
+    "origin": "five-patient cache",
+    "new_candidates_in_200": 12
+  },
+  "3": {
+    "query": "intraventricular hemorrhage",
+    "query_seconds": 0.2978731000002881,
+    "origin": "five-patient cache",
+    "new_candidates_in_200": 16
+  },
+  "4": {
+    "query": "burkitt s lymphoma",
+    "query_seconds": 0.343095600000197,
+    "origin": "five-patient cache",
+    "new_candidates_in_200": 14
+  },
+  "5": {
+    "query": "carotid artery disease",
+    "query_seconds": 0.7912143000003198,
+    "origin": "five-patient cache",
+    "new_candidates_in_200": 17
+  },
+  "6": {
+    "query": "peritoneal dialysis",
+    "query_seconds": 1.379985399999896,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 31
+  },
+  "7": {
+    "query": "esophageal varices",
+    "query_seconds": 0.4518322000003536,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 16
+  },
+  "8": {
+    "query": "richter s transformation",
+    "query_seconds": 1.184493000000657,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 15
+  },
+  "9": {
+    "query": "anoxic brain injury",
+    "query_seconds": 0.6012548999997307,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 11
+  },
+  "10": {
+    "query": "systemic mastocytosis",
+    "query_seconds": 0.5954469999996945,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 9
+  },
+  "14": {
+    "query": "obesity hypoventilation syndrome",
+    "query_seconds": 0.5365424999999959,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 18
+  },
+  "15": {
+    "query": "coronary artery disease",
+    "query_seconds": 1.0646758000002592,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 2
+  },
+  "16": {
+    "query": "shortness of breath",
+    "query_seconds": 0.4109381999996913,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 5
+  },
+  "17": {
+    "query": "autologous stem cell transplant",
+    "query_seconds": 0.6309370999997554,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 13
+  },
+  "18": {
+    "query": "urethral stricture",
+    "query_seconds": 0.3232131999993726,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 22
+  },
+  "19": {
+    "query": "ventricular tachycardia",
+    "query_seconds": 0.36097239999980957,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 17
+  },
+  "20": {
+    "query": "menstrual cycle",
+    "query_seconds": 0.38576130000001285,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 18
+  },
+  "23": {
+    "query": "shortness of breath",
+    "query_seconds": 0.0829317000006995,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 8
+  },
+  "25": {
+    "query": "ductal breast carcinoma",
+    "query_seconds": 1.1148364999999103,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 8
+  },
+  "27": {
+    "query": "chronic hcv infection",
+    "query_seconds": 1.3912874999996347,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 11
+  },
+  "28": {
+    "query": "shortness of breath",
+    "query_seconds": 0.10012629999982892,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 17
+  },
+  "29": {
+    "query": "type 1 diabetes",
+    "query_seconds": 1.4313859000003504,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 0
+  },
+  "30": {
+    "query": "weight gain",
+    "query_seconds": 0.5056784999997035,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 20
+  },
+  "31": {
+    "query": "cervical cancer",
+    "query_seconds": 0.5549831999996968,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 8
+  },
+  "32": {
+    "query": "loss of appetite",
+    "query_seconds": 0.4560223999997106,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 22
+  },
+  "37": {
+    "query": "relapsing remitting multiple sclerosis rrms",
+    "query_seconds": 0.6009439999997994,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 15
+  },
+  "41": {
+    "query": "parkinson s disease",
+    "query_seconds": 1.1459979000001113,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 8
+  },
+  "42": {
+    "query": "shortness of breath",
+    "query_seconds": 0.1636889000001247,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 1
+  },
+  "43": {
+    "query": "aspiration pneumonia",
+    "query_seconds": 0.40774340000007214,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 13
+  },
+  "45": {
+    "query": "sickle cell disease",
+    "query_seconds": 1.4118544000002657,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 14
+  },
+  "46": {
+    "query": "loss of appetite",
+    "query_seconds": 0.12922120000075665,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 21
+  },
+  "49": {
+    "query": "short stature",
+    "query_seconds": 0.3298240000003716,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 18
+  },
+  "53": {
+    "query": "patient pain children drug bmi healthy",
+    "query_seconds": 1.4362552000002324,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 23
+  },
+  "55": {
+    "query": "aggressive behavior",
+    "query_seconds": 0.32923940000000584,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 24
+  },
+  "56": {
+    "query": "follow up",
+    "query_seconds": 0.7272047000005841,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 1
+  },
+  "60": {
+    "query": "acute urinary retention",
+    "query_seconds": 0.8665889999992942,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 15
+  },
+  "61": {
+    "query": "invasive ductal breast carcinoma",
+    "query_seconds": 0.2596727000000101,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 12
+  },
+  "62": {
+    "query": "cardiovascular risk factors",
+    "query_seconds": 0.7008392999996431,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 3
+  },
+  "64": {
+    "query": "alcoholic liver disease",
+    "query_seconds": 1.0019869999996445,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 1
+  },
+  "65": {
+    "query": "type 1 diabetes",
+    "query_seconds": 0.4168142999997144,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 0
+  },
+  "68": {
+    "query": "atypical hemolytic uremic syndrome",
+    "query_seconds": 0.3832464000006439,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 8
+  },
+  "69": {
+    "query": "flu disease vaccination children allergies food",
+    "query_seconds": 0.9376364999998259,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 13
+  },
+  "71": {
+    "query": "laparoscopic gastric bypass",
+    "query_seconds": 0.3344043999995847,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 16
+  },
+  "72": {
+    "query": "myasthenia gravis",
+    "query_seconds": 0.23660860000018147,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 13
+  },
+  "74": {
+    "query": "paget s disease of bone",
+    "query_seconds": 0.8143038999996861,
+    "origin": "new sequential query",
+    "new_candidates_in_200": 12
+  }
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "topic": "1",
+    "patient_note": "Patient is a 45-year-old man with a history of anaplastic astrocytoma of the spine complicated by severe lower extremity weakness and urinary retention s/p Foley catheter, high-dose steroids, hypertension, and chronic pain. The tumor is located in the T-L spine, unresectable anaplastic astrocytoma s/p radiation. Complicated by progressive lower extremity weakness and urinary retention. Patient initially presented with RLE weakness where his right knee gave out with difficulty walking and right anterior thigh numbness. MRI showed a spinal cord conus mass which was biopsied and found to be anaplastic astrocytoma. Therapy included field radiation t10-l1 followed by 11 cycles of temozolomide 7 days on and 7 days off. This was followed by CPT-11 Weekly x4 with Avastin Q2 weeks/ 2 weeks rest and repeat cycle.",
+    "trial_id": "NCT00002814",
+    "title": "A Phase II Trial of Paclitaxel and Topotecan With Filgrastim in Patients With Recurrent or Refractory Glioblastoma Multiforme or Anaplastic Astrocytoma",
+    "conditions": "Brain and Central Nervous System Tumors",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 284
+  },
+  {
+    "topic": "1",
+    "patient_note": "Patient is a 45-year-old man with a history of anaplastic astrocytoma of the spine complicated by severe lower extremity weakness and urinary retention s/p Foley catheter, high-dose steroids, hypertension, and chronic pain. The tumor is located in the T-L spine, unresectable anaplastic astrocytoma s/p radiation. Complicated by progressive lower extremity weakness and urinary retention. Patient initially presented with RLE weakness where his right knee gave out with difficulty walking and right anterior thigh numbness. MRI showed a spinal cord conus mass which was biopsied and found to be anaplastic astrocytoma. Therapy included field radiation t10-l1 followed by 11 cycles of temozolomide 7 days on and 7 days off. This was followed by CPT-11 Weekly x4 with Avastin Q2 weeks/ 2 weeks rest and repeat cycle.",
+    "trial_id": "NCT00003621",
+    "title": "Phase II Trial of Pre-Irradiation Chemotherapy With BCNU, Cisplatin and Oral Etoposide Combined With Radiation Therapy in the Treatment of Grade 3 Astrocytoma (Anaplastic Astrocytoma)",
+    "conditions": "Brain and Central Nervous System Tumors",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 220
+  },
+  {
+    "topic": "1",
+    "patient_note": "Patient is a 45-year-old man with a history of anaplastic astrocytoma of the spine complicated by severe lower extremity weakness and urinary retention s/p Foley catheter, high-dose steroids, hypertension, and chronic pain. The tumor is located in the T-L spine, unresectable anaplastic astrocytoma s/p radiation. Complicated by progressive lower extremity weakness and urinary retention. Patient initially presented with RLE weakness where his right knee gave out with difficulty walking and right anterior thigh numbness. MRI showed a spinal cord conus mass which was biopsied and found to be anaplastic astrocytoma. Therapy included field radiation t10-l1 followed by 11 cycles of temozolomide 7 days on and 7 days off. This was followed by CPT-11 Weekly x4 with Avastin Q2 weeks/ 2 weeks rest and repeat cycle.",
+    "trial_id": "NCT00003471",
+    "title": "Phase II Study of Antineoplastons A10 and AS2-1 in Adult Patients With Low Grade Astrocytoma",
+    "conditions": "Low-Grade Astrocytoma, Nos",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "1",
+    "patient_note": "Patient is a 45-year-old man with a history of anaplastic astrocytoma of the spine complicated by severe lower extremity weakness and urinary retention s/p Foley catheter, high-dose steroids, hypertension, and chronic pain. The tumor is located in the T-L spine, unresectable anaplastic astrocytoma s/p radiation. Complicated by progressive lower extremity weakness and urinary retention. Patient initially presented with RLE weakness where his right knee gave out with difficulty walking and right anterior thigh numbness. MRI showed a spinal cord conus mass which was biopsied and found to be anaplastic astrocytoma. Therapy included field radiation t10-l1 followed by 11 cycles of temozolomide 7 days on and 7 days off. This was followed by CPT-11 Weekly x4 with Avastin Q2 weeks/ 2 weeks rest and repeat cycle.",
+    "trial_id": "NCT00006474",
+    "title": "Phase I Trial of Temodar Plus O6-Benzylguanine (O6-BG) (NSC 637037) in the Treatment of Patients With Newly Diagnosed (Part 1) or Recurrent/Progressive (Parts 1 and 2) Cerebral Anaplastic Gliomas",
+    "conditions": "Brain and Central Nervous System Tumors",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "2",
+    "patient_note": "48 M with a h/o HTN hyperlipidemia, bicuspid aortic valve, and tobacco abuse who presented to his cardiologist on [**2148-10-1**] with progressive SOB and LE edema. TTE revealed severe aortic stenosis with worsening LV function. EF was 25%. RV pressure was 41 and had biatrial enlargement. Noted to have 2+ aortic insufficiency with mild MR. He was sent home from cardiology clinic with Lasix and BB (which he did not tolerate), continued to have worsening SOB and LE edema and finally presented here for evaluation.\nDuring this admission repeat echo confirmed critical aortic stenosis showing left ventricular hypertrophy with cavity dilation and severe global hypokinesis, severe aortic valve stenosis with underlying bicuspid aortic valve, dilated ascending aorta, mild pulmonary artery systolic hypertension. The patient underwent a preop workup for valvular replacement with preop chest CT scan and carotid US (showing moderate heterogeneous plaque with bilateral 1-39% ICA stenosis). He also underwent a cardiac cath with right heart cath to evaluate his pulm art pressures which showed no angiographically apparent flow-limiting coronary artery disease.",
+    "trial_id": "NCT00176410",
+    "title": "Statin Therapy in Asymptomatic Aortic Stenosis",
+    "conditions": "Aortic Valve Stenosis",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 443
+  },
+  {
+    "topic": "2",
+    "patient_note": "48 M with a h/o HTN hyperlipidemia, bicuspid aortic valve, and tobacco abuse who presented to his cardiologist on [**2148-10-1**] with progressive SOB and LE edema. TTE revealed severe aortic stenosis with worsening LV function. EF was 25%. RV pressure was 41 and had biatrial enlargement. Noted to have 2+ aortic insufficiency with mild MR. He was sent home from cardiology clinic with Lasix and BB (which he did not tolerate), continued to have worsening SOB and LE edema and finally presented here for evaluation.\nDuring this admission repeat echo confirmed critical aortic stenosis showing left ventricular hypertrophy with cavity dilation and severe global hypokinesis, severe aortic valve stenosis with underlying bicuspid aortic valve, dilated ascending aorta, mild pulmonary artery systolic hypertension. The patient underwent a preop workup for valvular replacement with preop chest CT scan and carotid US (showing moderate heterogeneous plaque with bilateral 1-39% ICA stenosis). He also underwent a cardiac cath with right heart cath to evaluate his pulm art pressures which showed no angiographically apparent flow-limiting coronary artery disease.",
+    "trial_id": "NCT00257777",
+    "title": "Intermittent Cold Blood vs Crystalloid Cardioplegia in Aortic Valve Surgery",
+    "conditions": "Aortic Valve Disease Coronary Artery Disease",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 838
+  },
+  {
+    "topic": "2",
+    "patient_note": "48 M with a h/o HTN hyperlipidemia, bicuspid aortic valve, and tobacco abuse who presented to his cardiologist on [**2148-10-1**] with progressive SOB and LE edema. TTE revealed severe aortic stenosis with worsening LV function. EF was 25%. RV pressure was 41 and had biatrial enlargement. Noted to have 2+ aortic insufficiency with mild MR. He was sent home from cardiology clinic with Lasix and BB (which he did not tolerate), continued to have worsening SOB and LE edema and finally presented here for evaluation.\nDuring this admission repeat echo confirmed critical aortic stenosis showing left ventricular hypertrophy with cavity dilation and severe global hypokinesis, severe aortic valve stenosis with underlying bicuspid aortic valve, dilated ascending aorta, mild pulmonary artery systolic hypertension. The patient underwent a preop workup for valvular replacement with preop chest CT scan and carotid US (showing moderate heterogeneous plaque with bilateral 1-39% ICA stenosis). He also underwent a cardiac cath with right heart cath to evaluate his pulm art pressures which showed no angiographically apparent flow-limiting coronary artery disease.",
+    "trial_id": "NCT00830726",
+    "title": "Water-and Salt-homeostasis in Healthy Humans, and in Patients With Heart- or Lung Disease, Evaluated by the Excretion of Aquaporin-2 and Epithelial Sodium Channels in the Urine",
+    "conditions": "Healthy Volunteers Heart Failure Aortic Stenosis Ischemic Heart Disease Pulmonary Hypertension",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "2",
+    "patient_note": "48 M with a h/o HTN hyperlipidemia, bicuspid aortic valve, and tobacco abuse who presented to his cardiologist on [**2148-10-1**] with progressive SOB and LE edema. TTE revealed severe aortic stenosis with worsening LV function. EF was 25%. RV pressure was 41 and had biatrial enlargement. Noted to have 2+ aortic insufficiency with mild MR. He was sent home from cardiology clinic with Lasix and BB (which he did not tolerate), continued to have worsening SOB and LE edema and finally presented here for evaluation.\nDuring this admission repeat echo confirmed critical aortic stenosis showing left ventricular hypertrophy with cavity dilation and severe global hypokinesis, severe aortic valve stenosis with underlying bicuspid aortic valve, dilated ascending aorta, mild pulmonary artery systolic hypertension. The patient underwent a preop workup for valvular replacement with preop chest CT scan and carotid US (showing moderate heterogeneous plaque with bilateral 1-39% ICA stenosis). He also underwent a cardiac cath with right heart cath to evaluate his pulm art pressures which showed no angiographically apparent flow-limiting coronary artery disease.",
+    "trial_id": "NCT00965679",
+    "title": "X-ray Fluoroscopy Fused With Computed Tomography (XFC) Technical Development",
+    "conditions": "Aortic Valve Stenosis",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "3",
+    "patient_note": "A 32 yo woman who presents following a severe 'exploding' headache. She and her husband report that yesterday she was in the kitchen and stood up and hit her head on the corner of a cabinet. The next morning she developed a sudden 'exploding' headache. She came to the hospital where head CT showed a significant amount of blood in her right ventricle. NSGY evaluated her for spontaneous intraventricular hemorrhage with a concern for an underlying vascular malformation. Cerebral angiogram was done which showed abnormal vasculature with a draining vein from L temporal lobe penetrating deep white matter consistent with AVM. The patient did continue to have a headaches but they were improving with pain medication. The patient refused PT evaluation but was ambulating independently without difficulty. She was discharged to home with her husband on [**2155-12-6**].",
+    "trial_id": "NCT00363662",
+    "title": "Diagnostic Utility of MRI in Intracerebral Hemorrhage",
+    "conditions": "Cerebral Hemorrhage",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": 268,
+    "lexical_rank": 225
+  },
+  {
+    "topic": "3",
+    "patient_note": "A 32 yo woman who presents following a severe 'exploding' headache. She and her husband report that yesterday she was in the kitchen and stood up and hit her head on the corner of a cabinet. The next morning she developed a sudden 'exploding' headache. She came to the hospital where head CT showed a significant amount of blood in her right ventricle. NSGY evaluated her for spontaneous intraventricular hemorrhage with a concern for an underlying vascular malformation. Cerebral angiogram was done which showed abnormal vasculature with a draining vein from L temporal lobe penetrating deep white matter consistent with AVM. The patient did continue to have a headaches but they were improving with pain medication. The patient refused PT evaluation but was ambulating independently without difficulty. She was discharged to home with her husband on [**2155-12-6**].",
+    "trial_id": "NCT00449787",
+    "title": "A Randomized Clinical Trial to Compare Naproxen and Sumatriptan for Headache Patients Discharged From the Emergency Department (ED)",
+    "conditions": "Migraine Tension-type Headache Primary Headache Disorder",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 501
+  },
+  {
+    "topic": "3",
+    "patient_note": "A 32 yo woman who presents following a severe 'exploding' headache. She and her husband report that yesterday she was in the kitchen and stood up and hit her head on the corner of a cabinet. The next morning she developed a sudden 'exploding' headache. She came to the hospital where head CT showed a significant amount of blood in her right ventricle. NSGY evaluated her for spontaneous intraventricular hemorrhage with a concern for an underlying vascular malformation. Cerebral angiogram was done which showed abnormal vasculature with a draining vein from L temporal lobe penetrating deep white matter consistent with AVM. The patient did continue to have a headaches but they were improving with pain medication. The patient refused PT evaluation but was ambulating independently without difficulty. She was discharged to home with her husband on [**2155-12-6**].",
+    "trial_id": "NCT00760903",
+    "title": "Magnetic Resonance (MR) Spectroscopy and Diffusion Tensor Imaging in Determining Brain Injury and Subsequent Clinical Outcome in Patients of Moderate Brain Trauma",
+    "conditions": "Brain Trauma",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "3",
+    "patient_note": "A 32 yo woman who presents following a severe 'exploding' headache. She and her husband report that yesterday she was in the kitchen and stood up and hit her head on the corner of a cabinet. The next morning she developed a sudden 'exploding' headache. She came to the hospital where head CT showed a significant amount of blood in her right ventricle. NSGY evaluated her for spontaneous intraventricular hemorrhage with a concern for an underlying vascular malformation. Cerebral angiogram was done which showed abnormal vasculature with a draining vein from L temporal lobe penetrating deep white matter consistent with AVM. The patient did continue to have a headaches but they were improving with pain medication. The patient refused PT evaluation but was ambulating independently without difficulty. She was discharged to home with her husband on [**2155-12-6**].",
+    "trial_id": "NCT00857662",
+    "title": "U.S. Multicenter, Randomized Controlled Study Comparing the Performance fo Onyx(EVOH) and TRUFILL® (n-BCA)in Presurgical Embolization of Brain Arteriovenous Malformations (BAVMs)",
+    "conditions": "Brain Arteriovenous Malformations",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "4",
+    "patient_note": "This is a 44 year old female with PMH of PCOS, Obesity, HTN who presented with symptoms of cholecystitis and was found incidentally to have a large pericardial effusion. A pericardiocentesis was performed and the fluid analysis was consistent with Burkitt's lymphoma. Pericardial fluid was kappa light chain restricted CD10 positive monotypic B cells expressing FMC-7, CD19, CD20, and myc rearrangement consistent with Burkitt's Lymphoma. A subsequent lumbar puncture and bone marrow biopsy were negative for any involvement which made this a primary cardiac lymphoma. A cardiac MRI showed a mass that was 3cm x 1cm on the lateral wall of the right atrium adjacent to the AV junction.\nPast Medical History:\n1. Rare migraines\n2. HTN\n3. Obesity\n4. PCOS/infertility\n5. Viral encephalitis/meningitis-->ICH-->seizure/stroke ([**2137**]) =- from severe sinus infxn, caused mild non-focal residual deficits\n6. CSF leak w/ meningitis s/p lumbar drain placement\n7. R LE DVT s/p IVC filter placement\n8. Knee surgery",
+    "trial_id": "NCT00002471",
+    "title": "Phase II Trial of Intensive, Short-Course Combination Chemotherapy in the Treatment of Newly Diagnosed Patients With Poor-Risk Nonlymphoblastic Lymphoma and Acute B-Lymphoblastic Leukemia and in Patients With Recurrent Non-Hodgkin's Lymphoma",
+    "conditions": "Leukemia Lymphoma",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 758
+  },
+  {
+    "topic": "4",
+    "patient_note": "This is a 44 year old female with PMH of PCOS, Obesity, HTN who presented with symptoms of cholecystitis and was found incidentally to have a large pericardial effusion. A pericardiocentesis was performed and the fluid analysis was consistent with Burkitt's lymphoma. Pericardial fluid was kappa light chain restricted CD10 positive monotypic B cells expressing FMC-7, CD19, CD20, and myc rearrangement consistent with Burkitt's Lymphoma. A subsequent lumbar puncture and bone marrow biopsy were negative for any involvement which made this a primary cardiac lymphoma. A cardiac MRI showed a mass that was 3cm x 1cm on the lateral wall of the right atrium adjacent to the AV junction.\nPast Medical History:\n1. Rare migraines\n2. HTN\n3. Obesity\n4. PCOS/infertility\n5. Viral encephalitis/meningitis-->ICH-->seizure/stroke ([**2137**]) =- from severe sinus infxn, caused mild non-focal residual deficits\n6. CSF leak w/ meningitis s/p lumbar drain placement\n7. R LE DVT s/p IVC filter placement\n8. Knee surgery",
+    "trial_id": "NCT00004232",
+    "title": "Augmenting Bone Marrow With CD34 Enriched Peripheral Blood Hematopoietic Stem Cells for Allogeneic Transplantation of Hematologic Malignancies",
+    "conditions": "Chronic Myeloproliferative Disorders Graft Versus Host Disease Leukemia Lymphoma Multiple Myeloma and Plasma Cell Neoplasm Myelodysplastic Syndromes Precancerous/Nonmalignant Condition",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 679
+  },
+  {
+    "topic": "4",
+    "patient_note": "This is a 44 year old female with PMH of PCOS, Obesity, HTN who presented with symptoms of cholecystitis and was found incidentally to have a large pericardial effusion. A pericardiocentesis was performed and the fluid analysis was consistent with Burkitt's lymphoma. Pericardial fluid was kappa light chain restricted CD10 positive monotypic B cells expressing FMC-7, CD19, CD20, and myc rearrangement consistent with Burkitt's Lymphoma. A subsequent lumbar puncture and bone marrow biopsy were negative for any involvement which made this a primary cardiac lymphoma. A cardiac MRI showed a mass that was 3cm x 1cm on the lateral wall of the right atrium adjacent to the AV junction.\nPast Medical History:\n1. Rare migraines\n2. HTN\n3. Obesity\n4. PCOS/infertility\n5. Viral encephalitis/meningitis-->ICH-->seizure/stroke ([**2137**]) =- from severe sinus infxn, caused mild non-focal residual deficits\n6. CSF leak w/ meningitis s/p lumbar drain placement\n7. R LE DVT s/p IVC filter placement\n8. Knee surgery",
+    "trial_id": "NCT00002663",
+    "title": "An Evaluation of the Toxicity and Therapeutic Effects of Epstein-Barr Virus-Immune T-Lymphocytes Derived From a Normal HLA-Compatible or Haplotype-Matched Donor in the Treatment of EBV-Associated Lymphoproliferative Diseases or Malignancies and Patients With Detectable Circulating Levels of EBV DNA Who Are at High Risk for EBV-Associated Lymphoproliferative Diseases",
+    "conditions": "EBV-induced Lymphomas EBV-associated Malignancies Transplant Patients With EBV Viremia at High Risk of Developing a Recurrent EBV Lymphoma",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "4",
+    "patient_note": "This is a 44 year old female with PMH of PCOS, Obesity, HTN who presented with symptoms of cholecystitis and was found incidentally to have a large pericardial effusion. A pericardiocentesis was performed and the fluid analysis was consistent with Burkitt's lymphoma. Pericardial fluid was kappa light chain restricted CD10 positive monotypic B cells expressing FMC-7, CD19, CD20, and myc rearrangement consistent with Burkitt's Lymphoma. A subsequent lumbar puncture and bone marrow biopsy were negative for any involvement which made this a primary cardiac lymphoma. A cardiac MRI showed a mass that was 3cm x 1cm on the lateral wall of the right atrium adjacent to the AV junction.\nPast Medical History:\n1. Rare migraines\n2. HTN\n3. Obesity\n4. PCOS/infertility\n5. Viral encephalitis/meningitis-->ICH-->seizure/stroke ([**2137**]) =- from severe sinus infxn, caused mild non-focal residual deficits\n6. CSF leak w/ meningitis s/p lumbar drain placement\n7. R LE DVT s/p IVC filter placement\n8. Knee surgery",
+    "trial_id": "NCT00002946",
+    "title": "A Phase I Trial of Oral Penclomedine",
+    "conditions": "Lymphoma Unspecified Adult Solid Tumor, Protocol Specific",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "5",
+    "patient_note": "74M hx of CAD s/p CABG, EF 60% prior CVA (no residual deficits), HTN, HL, DMII, Moderate to Severe PVD was referred to cardiology for evaluation of PVD, and on examination patient was found to have carotid bruits. Upon further review of symptoms the pt reports + Occasional dizziness, no prior syncope occasional HA, Denies CP/SOB. No sensory or motor defects. He recalls that he might have had a stroke 10-15 years ago without any residual deficit. Prior to CABG he only had diaphoresis.\nFurther review of systems is notable for absence of chest pain, dyspnea on exertion, paroxysmal nocturnal dyspnea, orthopnea, palpitations, syncope or presyncope. He underwent Carotid U/S that showed significant bilateral carotid stenosis, L>R. Angiography revealed an 80% stenosis of the R ICA and a 90% L ICA stenosis. Cerebral angiography further revealed patent right ACA and MCA and patent left ACA and left MCA.\nPast Medical History:\nCAD s/p CABG in [**2154**] ([**Hospital1 112**])\nPrior CVA\nBilateral carotid artery disease\nAnemia\nPVD\nHypertension\nDiabetes c/b retinopathy and peripheral neuropathy\nCataracts s/p surgery\nThyroid nodule\nColon polyps s/p resection\nIntermittent Lower back pain\nProteinuria\ns/p right elbow fracture as a child\nArthritis",
+    "trial_id": "NCT00000469",
+    "title": "Asymptomatic Carotid Artery Plaque Study (ACAPS)",
+    "conditions": "Cardiovascular Diseases Carotid Stenosis Cerebral Arteriosclerosis Cerebrovascular Disorders Heart Diseases Vascular Diseases",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 929
+  },
+  {
+    "topic": "5",
+    "patient_note": "74M hx of CAD s/p CABG, EF 60% prior CVA (no residual deficits), HTN, HL, DMII, Moderate to Severe PVD was referred to cardiology for evaluation of PVD, and on examination patient was found to have carotid bruits. Upon further review of symptoms the pt reports + Occasional dizziness, no prior syncope occasional HA, Denies CP/SOB. No sensory or motor defects. He recalls that he might have had a stroke 10-15 years ago without any residual deficit. Prior to CABG he only had diaphoresis.\nFurther review of systems is notable for absence of chest pain, dyspnea on exertion, paroxysmal nocturnal dyspnea, orthopnea, palpitations, syncope or presyncope. He underwent Carotid U/S that showed significant bilateral carotid stenosis, L>R. Angiography revealed an 80% stenosis of the R ICA and a 90% L ICA stenosis. Cerebral angiography further revealed patent right ACA and MCA and patent left ACA and left MCA.\nPast Medical History:\nCAD s/p CABG in [**2154**] ([**Hospital1 112**])\nPrior CVA\nBilateral carotid artery disease\nAnemia\nPVD\nHypertension\nDiabetes c/b retinopathy and peripheral neuropathy\nCataracts s/p surgery\nThyroid nodule\nColon polyps s/p resection\nIntermittent Lower back pain\nProteinuria\ns/p right elbow fracture as a child\nArthritis",
+    "trial_id": "NCT00004732",
+    "title": "Carotid Revascularization Endarterectomy Versus Stenting Trial (CREST)",
+    "conditions": "Atherosclerosis Stroke Carotid Stenosis Cerebral Infarction Myocardial Infarction",
+    "judgment": "eligible",
+    "location": "within_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": 514
+  },
+  {
+    "topic": "5",
+    "patient_note": "74M hx of CAD s/p CABG, EF 60% prior CVA (no residual deficits), HTN, HL, DMII, Moderate to Severe PVD was referred to cardiology for evaluation of PVD, and on examination patient was found to have carotid bruits. Upon further review of symptoms the pt reports + Occasional dizziness, no prior syncope occasional HA, Denies CP/SOB. No sensory or motor defects. He recalls that he might have had a stroke 10-15 years ago without any residual deficit. Prior to CABG he only had diaphoresis.\nFurther review of systems is notable for absence of chest pain, dyspnea on exertion, paroxysmal nocturnal dyspnea, orthopnea, palpitations, syncope or presyncope. He underwent Carotid U/S that showed significant bilateral carotid stenosis, L>R. Angiography revealed an 80% stenosis of the R ICA and a 90% L ICA stenosis. Cerebral angiography further revealed patent right ACA and MCA and patent left ACA and left MCA.\nPast Medical History:\nCAD s/p CABG in [**2154**] ([**Hospital1 112**])\nPrior CVA\nBilateral carotid artery disease\nAnemia\nPVD\nHypertension\nDiabetes c/b retinopathy and peripheral neuropathy\nCataracts s/p surgery\nThyroid nodule\nColon polyps s/p resection\nIntermittent Lower back pain\nProteinuria\ns/p right elbow fracture as a child\nArthritis",
+    "trial_id": "NCT00106886",
+    "title": "HOPE-2 Study (Heart Outcomes Prevention Evaluation-2 Study)",
+    "conditions": "Cardiovascular Disease Myocardial Infarction Stroke Cancer",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  },
+  {
+    "topic": "5",
+    "patient_note": "74M hx of CAD s/p CABG, EF 60% prior CVA (no residual deficits), HTN, HL, DMII, Moderate to Severe PVD was referred to cardiology for evaluation of PVD, and on examination patient was found to have carotid bruits. Upon further review of symptoms the pt reports + Occasional dizziness, no prior syncope occasional HA, Denies CP/SOB. No sensory or motor defects. He recalls that he might have had a stroke 10-15 years ago without any residual deficit. Prior to CABG he only had diaphoresis.\nFurther review of systems is notable for absence of chest pain, dyspnea on exertion, paroxysmal nocturnal dyspnea, orthopnea, palpitations, syncope or presyncope. He underwent Carotid U/S that showed significant bilateral carotid stenosis, L>R. Angiography revealed an 80% stenosis of the R ICA and a 90% L ICA stenosis. Cerebral angiography further revealed patent right ACA and MCA and patent left ACA and left MCA.\nPast Medical History:\nCAD s/p CABG in [**2154**] ([**Hospital1 112**])\nPrior CVA\nBilateral carotid artery disease\nAnemia\nPVD\nHypertension\nDiabetes c/b retinopathy and peripheral neuropathy\nCataracts s/p surgery\nThyroid nodule\nColon polyps s/p resection\nIntermittent Lower back pain\nProteinuria\ns/p right elbow fracture as a child\nArthritis",
+    "trial_id": "NCT00119041",
+    "title": "Diabetes Telemedicine Consultation: A Systems Improvement Intervention",
+    "conditions": "Diabetes Mellitus Type 2 Diabetes Mellitus, Type 1 Primary Care Provider",
+    "judgment": "eligible",
+    "location": "outside_cached_union",
+    "bm25_rank": null,
+    "lexical_rank": null
+  }
+]

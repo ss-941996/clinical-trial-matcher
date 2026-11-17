@@ -1,0 +1,20 @@
+{
+  "topics": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "promising_arms": [],
+  "deployed": false,
+  "cache_sha256": {
+    "1": "6046770b86b87c5b74db3766d0a6c69f9972a609d7618bf57a74448b4112ff8e",
+    "2": "e969ff3723a0ec77064d8e99195bce27c3080d2c3cb8ddc249dc8c224a5ee4cc",
+    "3": "63d5acde6578139add0227963ac5051061e1f2655238eb1d797156aa444a1795",
+    "4": "7cef97fdc1b0e86e2a651db7a5d505e7e6269f02fdd66c14b2706528b5cfa34d",
+    "5": "a82bbee72212d55c00f6c5876ce73e7ac3d71b3e3f3e29e418b74911c626cb5d"
+  },
+  "new_inference_pairs": 0,
+  "interpretation": "Five previously used development patients, reused model scores. Screening only; requires broader development confirmation."
+}

@@ -1,6 +1,8 @@
 # Next development experiments: TREC 2021 only
 
-Balanced fusion is the user-facing coverage/latency baseline, not the winner on every metric. On 30 reused internal-validation patients it achieved nDCG@10 0.4484, eligible recall@10 0.0697 and recall@200 0.3982. Original BM25 nDCG@10 is 0.4701. These values are historical completed comparisons; no new experiment is run by this change.
+Balanced fusion is the user-facing coverage/latency baseline, not the winner on every metric. On 30 reused internal-validation patients it achieved nDCG@10 0.4484, eligible recall@10 0.0697 and recall@200 0.3982. Original BM25 nDCG@10 is 0.4701. These values are historical completed comparisons on that population. The subsequent sequential development experiments are documented below.
+
+Completed on 2026-11-17: [sequential development results](retrieval-development-update.md). Cache-only weight changes retained the baseline; cached reranking failed the five-patient screen. The fixed extra phrase query raised 45-patient development recall@200 from 31.86% to 32.57% with essentially unchanged nDCG, but uncertainty includes no gain. No variant was promoted and no new inference or 2022 evaluation was run. Further steps below remain a research plan, not completed work.
 
 1. Inspect eligible misses on development patients and categorize lexical mismatch, overly broad query terms and truncation. Avoid patient-specific query patches.
 2. Prespecify a small set of retrieval changes. Try conservative diagnosis/synonym query variants only where development errors justify them, plus a limited fusion-weight comparison. Reweight existing ranked lists from cache; a genuinely new query needs a new cached retrieval run. Existing tuning on this split is exploratory and must be reported.

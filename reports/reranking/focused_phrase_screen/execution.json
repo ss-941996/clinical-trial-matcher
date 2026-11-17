@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "wall_seconds": 4.842,
+  "process_cpu_seconds": 2.734,
+  "below_normal_priority": true,
+  "single_process": true,
+  "model_inference_pairs": 0,
+  "validation_evaluated": false,
+  "trec2022_accessed": false,
+  "interpretation": "Small reused development screen only; candidate pool changed, so existing cross-encoder scores cannot be reused blindly. No deployment change."
+}
