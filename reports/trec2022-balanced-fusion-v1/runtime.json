@@ -1,0 +1,10 @@
+{
+  "python": "3.12.13 (main, Jun 23 2026, 15:23:43) [MSC v.1944 64 bit (AMD64)]",
+  "sqlite": "3.53.1",
+  "packages": {
+    "numpy": "2.5.5",
+    "pyarrow": "24.0.0",
+    "pytrec-eval-terrier": "0.5.10"
+  },
+  "resource_settings": "Retrieval: one low-priority sequential process, library thread env limits 1, no neural inference."
+}

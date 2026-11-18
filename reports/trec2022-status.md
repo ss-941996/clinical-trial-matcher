@@ -1,4 +1,8 @@
-# TREC 2022 evaluation deferred
+# TREC 2022 evaluation status
+
+On 2026-11-18 the user authorized evaluation of the frozen balanced-fusion baseline. The full 50-patient run is complete; no 2022-based tuning was performed. See [results, exposure and reproduction](trec2022-balanced-fusion-v1/README.md). Subsequent 2022 evaluations are regression checks.
+
+## Earlier deferral record
 
 On 2026-11-16 the user chose to defer 2022 evaluation until development on 2021
 is complete. No 2022 metrics were computed or used to choose model settings.

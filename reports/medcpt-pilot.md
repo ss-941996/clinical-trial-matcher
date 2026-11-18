@@ -65,3 +65,7 @@ and resource limits are in
 [the experiment guide](../experiments/reranking/MEDCPT.md). No Docker rebuild,
 frontend switch, index rebuild, remote provisioning or new 2022 evaluation was
 performed.
+
+## Subsequent screen cancelled
+
+A sequential expansion reused patient 1 and completed patient 2 before the user stopped MedCPT and requested the frozen balanced-fusion 2022 evaluation. Patient 3 was only partially scored; no five-patient aggregate was produced. Patient 2 raw results are in [its result file](medcpt/topic-2.json). The app never switched to MedCPT. The separate 2022 evaluation does not alter the scope of the 2021-only pilot above.

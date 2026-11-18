@@ -1,0 +1,42 @@
+{
+  "plan": {
+    "created_utc": "2026-11-18T11:39:38.2934609Z",
+    "method": "Paired patient-level bootstrap percentile 95% intervals",
+    "seed": 941996,
+    "resamples": 10000,
+    "metrics": [
+      "ndcg@10",
+      "eligible_recall@10",
+      "eligible_recall@200"
+    ],
+    "scope": "Fusion minus BM25; analysis specified before qrels access",
+    "code_sha256": "15fd9821f834ba905a9d19e9515d6d1653f790c774527a127ffb382399e06797"
+  },
+  "paired_fusion_minus_bm25": {
+    "ndcg@10": {
+      "paired_topics": 50,
+      "mean_delta": -0.02556589757165972,
+      "percentile_95_ci": [
+        -0.07477919425923191,
+        0.021734928972433575
+      ]
+    },
+    "eligible_recall@10": {
+      "paired_topics": 50,
+      "mean_delta": 0.0004194426161033249,
+      "percentile_95_ci": [
+        -0.009708551662888974,
+        0.011439978400963275
+      ]
+    },
+    "eligible_recall@200": {
+      "paired_topics": 50,
+      "mean_delta": 0.029138826327414574,
+      "percentile_95_ci": [
+        0.001591395783489279,
+        0.05907819172671817
+      ]
+    }
+  },
+  "note": "Patient-level paired bootstrap percentile intervals; no adjustment for multiple metrics; not a clinical-readiness test."
+}

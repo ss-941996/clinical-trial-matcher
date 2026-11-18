@@ -82,7 +82,7 @@ flowchart TD
 The T5-small/MiniLM-L2 experiment regressed on five reused 2021 development
 patients and was reverted from the frontend/Docker configuration. Its brief
 [results note](reports/paper-small-screen.md) are retained. The
-experimental build was cancelled; it was not deployed. 2022 remains deferred.
+experimental build was cancelled; it was not deployed. The frozen 2022 evaluation is [recorded separately](reports/trec2022-balanced-fusion-v1/README.md).
 
 The table below describes the longer-term target architecture.
 
@@ -259,7 +259,7 @@ nDCG@10 with linear gains 0/1/2, matching trec_eval. Secondary: eligible-only
 recall at 10/30/200 (grade 2 positives). Unjudged results have gain zero but remain
 explicitly marked unjudged in diagnostics. Recall is N/A for a topic with no
 eligible judgments. Every topic's nDCG and recall are independently checked with
-`pytrec_eval`. These are development results; TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
+`pytrec_eval`. These are development results; The frozen TREC 2022 evaluation is now complete; see [results](reports/trec2022-balanced-fusion-v1/README.md) and [limited prior exposure](reports/trec2022-status.md).
 
 ## 10. Roadmap
 
@@ -287,7 +287,7 @@ The [`demo/`](demo/README.md) package implements a research frontend and FastAPI
 
 Docker/Compose runs the app with a separate, versioned trial-index image and a persistent read-only index mount. Local image build, first initialization, search, restart and index reuse passed; see [verification](demo/VERIFICATION.md). An [Azure PoC plan](demo/AZURE.md) describes HTTPS, authentication, secrets, resource limits, persistent storage, and eventual cleanup. Azure deployment has not been executed. The same image and index can run locally after Azure access ends.
 
-TREC 2022 evaluation is deferred until development is complete; see [exposure/status record](reports/trec2022-status.md). A synthetic-note engineering PoC can proceed independently of the final retrieval benchmark. Continue model development on TREC 2021; repeated 2022 checks become regression measurements. Use synthetic/de-identified research notes.
+The existing balanced-fusion configuration was frozen and evaluated on all 50 TREC 2022 patients; see [results](reports/trec2022-balanced-fusion-v1/README.md) and [exposure/status record](reports/trec2022-status.md). A synthetic-note engineering PoC can proceed independently of the final retrieval benchmark. Continue model development on TREC 2021; repeated 2022 checks become regression measurements. Use synthetic/de-identified research notes.
 
 ## 12. First measured development result
 
@@ -299,13 +299,13 @@ Full corpus: **375,580 trials**. Fixed first **10 TREC 2021 topics**.
 
 This is an untuned development baseline, not held-out performance or a clinical
 validation. See `reports/bm25_v1/eval.md`, `error_analysis.txt` and
-`reports/validation.json`. All 14 tests pass. TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
+`reports/validation.json`. All 14 tests pass. The frozen TREC 2022 evaluation is now complete; see [results](reports/trec2022-balanced-fusion-v1/README.md) and [limited prior exposure](reports/trec2022-status.md).
 
 ## Experimental reranking and portable demo
 
 A separate [`demo/`](demo/README.md) package provides a FastAPI `POST /match` endpoint and a responsive frontend for patient notes, top-ten candidates, source eligibility criteria, and registry links. It supports original BM25, lexical fusion, and experimental cross-encoder reranking. The frontend automatically uses balanced fusion; explicit research API requests retain the other methods. Relevance scores do not establish eligibility.
 
-See [`reports/reranking/results.md`](reports/reranking/results.md) for the fixed comparison on 45 development and 30 reused internal-validation TREC 2021 topics. These exploratory results are not an untouched test. TREC 2022 scoring is deferred; see [status and limited prior exposure](reports/trec2022-status.md).
+See [`reports/reranking/results.md`](reports/reranking/results.md) for the fixed comparison on 45 development and 30 reused internal-validation TREC 2021 topics. These exploratory results are not an untouched test. The frozen TREC 2022 evaluation is now complete; see [results](reports/trec2022-balanced-fusion-v1/README.md) and [limited prior exposure](reports/trec2022-status.md).
 
 Docker Compose and an [Azure PoC plan](demo/AZURE.md) keep the index separate from the app image, so local Docker use can continue when Azure access ends. The Python API, browser workflow and two-image Docker build/run were checked locally; Azure deployment remains unverified. No Azure resources were created.
 
@@ -348,8 +348,7 @@ report eligible recall@10 alongside nDCG@10, and examine paired patient-level
 differences and uncertainty. Selection uses the 2021 development protocol; this
 reused validation set is not a new independent test. nDCG gives partial credit
 to grade1 excluded trials, so higher nDCG alone does not establish more eligible
-trials in the displayed ten. Freeze settings before a later holdout evaluation;
-2022 remains deferred with its limited exposure [documented](reports/trec2022-status.md).
+trials in the displayed ten. The existing balanced-fusion configuration has now been frozen and evaluated on 2022, with limited prior exposure [documented](reports/trec2022-status.md). Later versions require a new independent final evaluation set.
 
 Related research provides context, not a directly transferable pass mark:
 
@@ -365,7 +364,7 @@ equivalent. There is no single published minimum score that makes this PoC ready
 for clinical use. For this portfolio, the next convincing result is a reproducible
 improvement over our own fixed controls, together with a working local app.
 
-The local app and two-image Docker workflow were exercised on 2026-11-17. Development continues on TREC 2021; no new 2022 evaluation or Azure deployment was run.
+The local app and two-image Docker workflow were exercised on 2026-11-17. Development continues on TREC 2021. The frozen 2022 evaluation was subsequently completed on 2026-11-18; Azure deployment has not been run.
 
 Sequential low-CPU development checks on 2026-11-17 are recorded in [the development update](reports/retrieval-development-update.md). An extra phrase query gave a small, uncertain recall gain; cached reranking failed its five-patient screen. The frontend remains on the existing balanced-fusion configuration. These experiments used 2021 development patients only, with no new model inference.
 
@@ -382,3 +381,14 @@ one low-priority inference thread and cached scores; expand only if runtime and
 quality justify it. The one-patient FP32 pilot is complete: MedCPT increased eligible trials in the top ten from 1 to 2, but nDCG@10 fell from 0.4288 to 0.4165. Scoring 200 pairs took 290.37 seconds; this does not establish an overall improvement. The frontend remains on balanced fusion. See [results and limitations](reports/medcpt-pilot.md) and [exact run commands](experiments/reranking/MEDCPT.md). Reordering a fixed pool
 can improve nDCG/recall@10, but cannot change recall@200. Dense MedCPT retrieval
 would be a separate later experiment requiring trial embeddings.
+
+## Frozen TREC 2022 baseline evaluation
+
+All **50 patients** were evaluated sequentially against **375,580 trials**, without changing the selected balanced-fusion configuration or running a neural reranker.
+
+| Pipeline | nDCG@10 | Eligible recall@10 | Eligible recall@30 | Eligible recall@200 | Eligible trials@10 |
+|---|---:|---:|---:|---:|---:|
+| BM25 control | 0.3847 | 4.80% | 11.43% | 29.50% | 2.62 |
+| Balanced fusion | 0.3592 | 4.84% | 10.82% | 32.41% | 2.42 |
+
+See [the full report](reports/trec2022-balanced-fusion-v1/README.md) for paired uncertainty, per-patient results, latency, limited prior exposure and reproduction. These are first completed frozen 2022 label-based results; future 2022 checks are regression measurements. The frontend remains on balanced fusion.
