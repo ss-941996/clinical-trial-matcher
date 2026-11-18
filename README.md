@@ -57,41 +57,34 @@ Why it is hard:
 **Understand the data first, spend LLM calls last.**
 Cheap stages shrink the pool; the expensive LLM stage only sees the survivors. Every LLM and embedding call is cached by content hash.
 
-## 3. Pipeline
+## 3. Current frontend pipeline
 
-The frontend exposes one server-configured pipeline (currently balanced fusion); other paths in the diagram are explicit research API options. See the [next development experiments](reports/next-retrieval-experiments.md).
-
-The working implementation is a fixed pipeline; autonomous agents are not
-required. Solid arrows below show available paths. Dashed arrows show planned
-work. The detailed stage table afterward describes the longer-term architecture.
+Balanced fusion is restored as the single frontend search pipeline. It uses
+lexical retrieval and RRF; **no neural reranker runs in the default frontend**.
+The legacy optional cross-encoder is a separate research API comparison using
+the original BM25 candidate pool, not the balanced-fusion pool.
 
 ```mermaid
 flowchart TD
-    XML["Historical TREC trial XML"] --> CLEAN["Clean and profile 375,580 trials"]
-    CLEAN --> INDEX["Read-only SQLite FTS5 index"]
-    NOTE["Synthetic patient note in local frontend"] --> API["FastAPI: validate input"]
-    API --> ORIGINAL["Original full-note BM25: top 1,000"]
-    API --> QUERIES["Full note + condition phrases + opening sentence"]
-    INDEX --> ORIGINAL
-    INDEX --> QUERIES
-    QUERIES --> INNER["Weighted BM25 searches; equal RRF: top 1,000"]
-    ORIGINAL --> BALANCED["Balanced RRF: original weight 1, inner fusion weight 2"]
-    INNER --> BALANCED
-    BALANCED --> POOL["200 candidate trials"]
-    POOL --> DISPLAY["Top 10 with source criteria and registry links"]
-    ORIGINAL --> BASEPOOL["Original BM25 top 200: comparison pool"]
-    BASEPOOL --> CE["Optional experimental cross-encoder reranking"]
-    BASEPOOL --> DISPLAY
-    CE --> DISPLAY
-    POOL -.-> NEXT["Planned: evaluate reranking of balanced-fusion candidates"]
-    NEXT -.-> ELIG["Planned: criterion checks and missing-information explanations"]
-    DISPLAY --> STATUS["Eligibility not assessed; research use only"]
+    P[Patient note] --> O[Original full-note BM25: top 1000]
+    P --> Q[Full note + condition-focused query + opening sentence]
+    Q --> W[Weighted BM25: top 1000 per query]
+    DB[(Existing trial index)] --> O
+    DB --> W
+    W --> I[Equal-weight RRF: keep top 1000]
+    O --> B[Balanced RRF: original weight 1; multi-query weight 2]
+    I --> B
+    B --> C[Keep 200 candidates]
+    C --> T[Display top 10 by fusion rank]
+    T --> U[Source criteria and registry links; eligibility unchecked]
 ```
 
-The current cross-encoder experiment uses its frozen original BM25 candidate
-pool, with a fixed scoring batch protocol described in [demo/README.md](demo/README.md).
-Balanced-fusion reranking was started but stopped before selection and validation; it remains an incomplete experiment, not an evaluated combined system. Reranking the same 200 candidates changes top-ten quality but
-cannot change eligible recall@200.
+The T5-small/MiniLM-L2 experiment regressed on five reused 2021 development
+patients and was reverted from the frontend/Docker configuration. Its brief
+[results note](reports/paper-small-screen.md) are retained. The
+experimental build was cancelled; it was not deployed. 2022 remains deferred.
+
+The table below describes the longer-term target architecture.
 
 | # | Stage | Method | Output |
 |---|-------|--------|--------|
@@ -375,3 +368,17 @@ improvement over our own fixed controls, together with a working local app.
 The local app and two-image Docker workflow were exercised on 2026-11-17. Development continues on TREC 2021; no new 2022 evaluation or Azure deployment was run.
 
 Sequential low-CPU development checks on 2026-11-17 are recorded in [the development update](reports/retrieval-development-update.md). An extra phrase query gave a small, uncertain recall gain; cached reranking failed its five-patient screen. The frontend remains on the existing balanced-fusion configuration. These experiments used 2021 development patients only, with no new model inference.
+
+## Biomedical reranker candidate
+
+The next proposed screen keeps balanced fusion’s 200 candidates fixed and tests
+NCBI’s [MedCPT Cross Encoder](https://huggingface.co/ncbi/MedCPT-Cross-Encoder).
+It is trained for biomedical relevance using PubMed query–article pairs, rather
+than clinical-trial eligibility. Its model card declares public domain; see the
+[official repository and training details](https://github.com/ncbi/MedCPT) and
+[public-domain notice](https://github.com/ncbi/MedCPT/blob/main/LICENSE).
+It is a larger BERT-base model than MiniLM-L2, so first measure one patient with
+one low-priority inference thread and cached scores; expand only if runtime and
+quality justify it. No MedCPT inference has been run. Reordering a fixed pool
+can improve nDCG/recall@10, but cannot change recall@200. Dense MedCPT retrieval
+would be a separate later experiment requiring trial embeddings.

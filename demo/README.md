@@ -84,3 +84,11 @@ The service does not save submitted notes or write to the trial index. Access lo
 The next quality stage is criterion extraction and evidence-backed eligibility assessment, including missing information, followed by a frozen evaluation on untouched TREC 2022. Refreshing current trial/recruitment data is separate from benchmarking this historical snapshot. See `AZURE.md` for the portable Azure PoC plan and cleanup checklist.
 
 Sources: [TREC 2021](https://www.trec-cds.org/2021.html), [SQLite FTS5](https://www.sqlite.org/fts5.html), [pinned cross-encoder](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/tree/233902d25c440f23af6f7d6e94d2946bac0bee0a).
+
+## Reverted experiment (2026-11-18)
+
+The current frontend remains balanced fusion. A T5-small/MiniLM-L2
+experiment regressed on a five-patient development screen and its container
+build was cancelled. See [results](../reports/paper-small-screen.md). The failed experimental implementation and full reports were removed; only
+a short results note remains. The standard image does not load those models.
+The matcher CPU quota is reduced to one core in both Compose configurations.
