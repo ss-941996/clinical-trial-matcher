@@ -1,0 +1,48 @@
+{
+  "model": "ncbi/MedCPT-Cross-Encoder",
+  "revision": "71caf65d4927987813984f54c284405a13fcca49",
+  "settings": {
+    "batch_size": 2,
+    "threads": 1,
+    "note_tokens": 128,
+    "field_tokens": {
+      "title": 64,
+      "conditions": 48,
+      "summary": 112,
+      "eligibility": 157
+    },
+    "max_length": 512,
+    "pause_seconds": 0.05,
+    "precision": "float32",
+    "blend_weight": 0.5
+  },
+  "model_files": {
+    "README.md": "8ab1ceed3beea346789e0b9cd7e04d6373dcf8b738fb63b996c7d97bb25df2ec",
+    "LICENSE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "config.json": "1f375c7e8081f043c99fdb9c80059c44ed757cce7b05d333b7f3c81b1b713a42",
+    "pytorch_model.bin": "61d5ccd48869e03500544525fc231641d7daa9ba267b202c82724750038dc1e0",
+    "tokenizer.json": "6e046044df8a2fcedb10607075dca187cae61d806c0d80a96c5b81017edc90c9",
+    "tokenizer_config.json": "25e63abb25f637aa24981117b13394370693dd7bc140903d95008599b3abc1a9",
+    "special_tokens_map.json": "cb63d0cbbf45160dc9cd786a257759593b798ae0c72957011016dbc3972df4e4",
+    "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d",
+    "added_tokens.json": "691a5ce0135045c12b8410af8d472ff8de864094df40ac9af418d6c644c7588d",
+    "NCBI-PUBLIC-DOMAIN.txt": "455605fa53ddcfbfc59bae8a097c4b0452f7a45810519dbed9be57c6dd370289"
+  },
+  "code_sha256": {
+    "medcpt_screen.py": "1bb313fa93ddc567473fdb078024d51c15d767b769d0e285ed5041c9cfbd9b43",
+    "rerank.py": "75978c3fb16f43fd8d3855cb437950cf448a0d204541a01ca65a0c6a877feaa7",
+    "evaluate.py": "30cad4f206d4a42e24c415220ec3fb38912a8e3a4c6ac7423e7cf78a86d10d9c"
+  },
+  "inputs": {
+    "topics2021.xml": "94bda921ce7c40a0353f251abb2ea938c77331759a9f83a36abd145ab5840aca",
+    "qrels2021.txt": "ba7a2cddc90285e75cd76adcd483394a6c9bacf7017113222058ba6537e6d8ac"
+  },
+  "packages": {
+    "torch": "2.9.1+cpu",
+    "transformers": "4.57.3",
+    "tokenizers": "0.22.2",
+    "numpy": "2.5.5",
+    "pytrec-eval-terrier": "0.5.10"
+  },
+  "scope": "Reused 2021 development screen only; fixed balanced-fusion 200; no 2022; no frontend change."
+}

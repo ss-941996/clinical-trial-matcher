@@ -371,7 +371,7 @@ Sequential low-CPU development checks on 2026-11-17 are recorded in [the develop
 
 ## Biomedical reranker candidate
 
-The next proposed screen keeps balanced fusion’s 200 candidates fixed and tests
+The first development screen keeps balanced fusion’s 200 candidates fixed and tests
 NCBI’s [MedCPT Cross Encoder](https://huggingface.co/ncbi/MedCPT-Cross-Encoder).
 It is trained for biomedical relevance using PubMed query–article pairs, rather
 than clinical-trial eligibility. Its model card declares public domain; see the
@@ -379,6 +379,6 @@ than clinical-trial eligibility. Its model card declares public domain; see the
 [public-domain notice](https://github.com/ncbi/MedCPT/blob/main/LICENSE).
 It is a larger BERT-base model than MiniLM-L2, so first measure one patient with
 one low-priority inference thread and cached scores; expand only if runtime and
-quality justify it. No MedCPT inference has been run. Reordering a fixed pool
+quality justify it. The one-patient FP32 pilot is complete: MedCPT increased eligible trials in the top ten from 1 to 2, but nDCG@10 fell from 0.4288 to 0.4165. Scoring 200 pairs took 290.37 seconds; this does not establish an overall improvement. The frontend remains on balanced fusion. See [results and limitations](reports/medcpt-pilot.md) and [exact run commands](experiments/reranking/MEDCPT.md). Reordering a fixed pool
 can improve nDCG/recall@10, but cannot change recall@200. Dense MedCPT retrieval
 would be a separate later experiment requiring trial embeddings.
