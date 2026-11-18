@@ -1,0 +1,29 @@
+{
+  "registry_records": 612293,
+  "status_counts": {
+    "ACTIVE_NOT_RECRUITING": 22161,
+    "APPROVED_FOR_MARKETING": 245,
+    "AVAILABLE": 248,
+    "COMPLETED": 335306,
+    "ENROLLING_BY_INVITATION": 5281,
+    "NOT_YET_RECRUITING": 30227,
+    "NO_LONGER_AVAILABLE": 546,
+    "RECRUITING": 65080,
+    "SUSPENDED": 1758,
+    "TEMPORARILY_NOT_AVAILABLE": 37,
+    "TERMINATED": 34762,
+    "UNKNOWN": 98641,
+    "WITHDRAWN": 17009,
+    "WITHHELD": 992
+  },
+  "serving_records": 65080,
+  "missing": {
+    "title": 0,
+    "brief_summary": 992,
+    "eligibility": 1083,
+    "last_updated": 0
+  },
+  "duplicate_ids": 0,
+  "parse_failures": 0,
+  "scope": "Full registry for selected fields kept locally; serving FTS contains RECRUITING only. No eligibility assessment or current-corpus relevance evaluation."
+}

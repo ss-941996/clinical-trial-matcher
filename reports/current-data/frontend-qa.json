@@ -1,0 +1,13 @@
+{
+  "browser": "Codex in-app browser",
+  "url": "http://localhost:8000",
+  "displayed_records": 65080,
+  "snapshot": "2026-11-17",
+  "four_example_buttons": true,
+  "one_search_option": true,
+  "ten_results": true,
+  "expanded_source_criteria": true,
+  "reported_recruiting_status_and_dates": true,
+  "mobile_tested": false,
+  "known_retrieval_limitation": "Adult type-2-diabetes example retrieves NCT05065372, a youth type-1-diabetes study; age and diagnosis eligibility are not checked."
+}

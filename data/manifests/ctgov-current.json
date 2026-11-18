@@ -1,0 +1,19 @@
+{
+  "dataset_id": "ctgov-20261117T100005-recruiting",
+  "source": "https://clinicaltrials.gov/api/v2/studies",
+  "version": {
+    "apiVersion": "2.0.5",
+    "dataTimestamp": "2026-11-17T10:00:05"
+  },
+  "index": "data/current/ctgov-20261117T100005/bm25.sqlite",
+  "catalog": "data/current/ctgov-20261117T100005/catalog.sqlite",
+  "records": 65080,
+  "registry_records": 612293,
+  "bytes": 482504704,
+  "sha256": "572058e0a049e8db07650515ace70bd80912b4350c2e2fcea602527ce7670f71",
+  "download_manifest_sha256": "b4d0c8bb4b9500b1e8e4287dd9886a844846ef2aea298f0af2811f3dc9c27256",
+  "serving_statuses": [
+    "RECRUITING"
+  ],
+  "created_utc": "2026-11-18T12:42:18.730225+00:00"
+}

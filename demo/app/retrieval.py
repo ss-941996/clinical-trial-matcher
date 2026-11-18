@@ -61,10 +61,23 @@ class Engine:
         if not self.index_path.is_file():raise RuntimeError(f'Trial index not found: {self.index_path}')
         with closing(self.connect()) as db:
             self.metadata={k:json.loads(v) for k,v in db.execute('SELECT key,value FROM metadata')}
-            if self.metadata.get('records')!=self.expected_records:raise RuntimeError('Trial index record count differs from expected snapshot')
+            if self.expected_records is not None and self.metadata.get('records')!=self.expected_records:raise RuntimeError('Trial index record count differs from expected snapshot')
             db.execute('SELECT rowid FROM trials LIMIT 1').fetchone()
+            if not isinstance(self.metadata.get('records'),int) or self.metadata['records']<1:raise RuntimeError('Invalid index record count')
+            if self.metadata.get('dataset_kind')=='current-recruiting':
+                if self.metadata.get('schema_version')!=2 or self.metadata.get('serving_statuses')!=['RECRUITING']:raise RuntimeError('Invalid recruiting index contract')
+                counts=dict(db.execute('SELECT status,count(*) FROM trial_metadata GROUP BY status'))
+                if counts!={'RECRUITING':self.metadata['records']} or db.execute('SELECT count(*) FROM identities').fetchone()[0]!=self.metadata['records']:raise RuntimeError('Recruiting record count mismatch')
+                self.vocab=dict(db.execute('SELECT phrase,df FROM condition_vocabulary'))
         if self.model_dir:self.encoder=CrossEncoder(self.model_dir)
         self.ready=True
+
+    def dataset_info(self):
+        m=self.metadata;current=m.get('dataset_kind')=='current-recruiting'
+        return dict(snapshot=m.get('snapshot','2021-04-27'),indexed_trials=m['records'],
+            source=m.get('source','TREC 2021 historical ClinicalTrials.gov snapshot'),
+            data_timestamp=m.get('data_timestamp'),serving_statuses=m.get('serving_statuses',[]),
+            registry_records=m.get('registry_records',m['records']),historical=not current)
 
     def search(self,note,method='bm25',top_k=10):
         if not self.ready:raise RuntimeError('Index is not ready')
@@ -93,10 +106,15 @@ class Engine:
             results=[]
             for i,trial_id in enumerate(ranking[:top_k],1):
                 document=trial_document(db,trial_id)
+                extra=dict(status='UNKNOWN',last_updated=None)
+                if self.metadata.get('dataset_kind')=='current-recruiting':
+                    row=db.execute('SELECT status,last_updated,minimum_age,maximum_age,sex,countries FROM trial_metadata WHERE trial_id=?',(trial_id,)).fetchone()
+                    if row is None:raise RuntimeError('Missing trial metadata')
+                    extra=dict(zip(['status','last_updated','minimum_age','maximum_age','sex','countries'],row,strict=True));extra['countries']=json.loads(extra['countries'])
                 results.append(dict(rank=i,trial_id=trial_id,title=document['title'],conditions=document['conditions'],
                     eligibility_text=document['eligibility'],retrieval_rank=positions[trial_id],retrieval_score=score_map[trial_id],
                     reranker_score=ce_scores.get(trial_id),eligibility_status='not_assessed',
-                    registry_url='https://clinicaltrials.gov/study/'+trial_id))
-        return dict(schema_version='1.0',method=method,snapshot='2021-04-27',indexed_trials=self.metadata['records'],
+                    registry_url='https://clinicaltrials.gov/study/'+trial_id,**extra))
+        return dict(schema_version='1.1',method=method,**self.dataset_info(),
             candidate_count=len(original),rerank_scored_pairs=len(ce_scores),seconds=round(time.perf_counter()-started,3),results=results,
-            notice='Research retrieval only. Eligibility is not assessed. Historical records may no longer be recruiting.')
+            notice='Research retrieval only. Eligibility is not assessed. Registry status is reported as of the snapshot; verify the current record and contact the study team.')

@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-import numpy as np
+import math
 
 MODEL='cross-encoder/ms-marco-MiniLM-L6-v2'
 REVISION='233902d25c440f23af6f7d6e94d2946bac0bee0a'
@@ -28,7 +28,7 @@ def pack_pair(tokenizer,note,document):
 
 def ordered_candidates(candidates,scores):
     if len(candidates)!=len(set(candidates)):raise ValueError('Duplicate candidate')
-    if set(candidates)!=set(scores) or not all(np.isfinite(scores[d]) for d in candidates):raise ValueError('Invalid candidate score mapping')
+    if set(candidates)!=set(scores) or not all(math.isfinite(scores[d]) for d in candidates):raise ValueError('Invalid candidate score mapping')
     return sorted(candidates,key=lambda d:(-scores[d],d))
 
 def fuse(original,reranked,ce_weight):
@@ -49,6 +49,7 @@ class CrossEncoder:
         self.input_names={x.name for x in self.session.get_inputs()}
 
     def predict(self,note,documents,batch_size=8):
+        import numpy as np
         results=[]
         for start in range(0,len(documents),batch_size):
             pairs=[pack_pair(self.tokenizer,note,d) for d in documents[start:start+batch_size]]

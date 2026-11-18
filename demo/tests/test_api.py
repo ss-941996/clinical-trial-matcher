@@ -83,3 +83,33 @@ def test_configured_pipeline_is_used_when_browser_omits_method(engine):
         assert client.get('/config').json()['default_method']=='fusion'
         assert client.post('/match',json={'note':note,'method':'bm25'}).json()['method']=='bm25'
         assert '<select' not in client.get('/').text
+
+
+def test_global_search_budget_rejects_excess_requests(engine,monkeypatch):
+    monkeypatch.setenv('MAX_SEARCHES_PER_MINUTE','1')
+    with TestClient(create_app(engine)) as client:
+        note={'note':'A patient with diabetes history.'}
+        assert client.post('/match',json=note).status_code==200
+        response=client.post('/match',json=note)
+        assert response.status_code==429 and int(response.headers['Retry-After'])>0
+        assert client.get('/health/ready').status_code==200
+
+
+def test_current_index_uses_its_own_vocabulary_and_reports_freshness(engine):
+    with sqlite3.connect(engine.index_path) as db:
+        metadata=dict(schema_version=2,dataset_kind='current-recruiting',serving_statuses=['RECRUITING'],snapshot='2026-11-17',data_timestamp='2026-11-17T10:00:05',source='ClinicalTrials.gov API v2')
+        db.executemany('INSERT INTO metadata VALUES (?,?)',[(k,json.dumps(v)) for k,v in metadata.items()])
+        db.execute('CREATE TABLE trial_metadata(trial_id TEXT PRIMARY KEY,status TEXT,last_updated TEXT,minimum_age TEXT,maximum_age TEXT,sex TEXT,countries TEXT)')
+        db.executemany('INSERT INTO trial_metadata VALUES (?,?,?,?,?,?,?)',[(f'NCT{i:08}','RECRUITING','2026-11-01','18 Years','','ALL','["France"]') for i in [1,2]])
+        db.execute('CREATE TABLE condition_vocabulary(phrase TEXT PRIMARY KEY,df INTEGER)')
+        db.execute("INSERT INTO condition_vocabulary VALUES ('diabetes',1)")
+    with TestClient(create_app(engine)) as client:
+        assert engine.vocab=={'diabetes':1}
+        data=client.get('/config').json()
+        assert data['snapshot']=='2026-11-17' and not data['historical']
+        result=client.post('/match',json={'note':'A patient with diabetes history.'}).json()
+        assert result['results'][0]['status']=='RECRUITING'
+        assert result['results'][0]['countries']==['France']
+        assert result['results'][0]['last_updated']=='2026-11-01'
+    with sqlite3.connect(engine.index_path) as db:db.execute("UPDATE trial_metadata SET status='COMPLETED' WHERE trial_id='NCT00000001'")
+    with pytest.raises(RuntimeError,match='Recruiting record count mismatch'):engine.load()

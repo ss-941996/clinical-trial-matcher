@@ -1,0 +1,7 @@
+{
+  "index_sha256": "b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd",
+  "patient": "1",
+  "all_200_rankings_and_scores_unchanged": true,
+  "scope": "Compatibility regression against a previously evaluated patient; no new quality comparison or selection.",
+  "seconds": 15.731
+}

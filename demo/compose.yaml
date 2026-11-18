@@ -1,28 +1,30 @@
 services:
   matcher:
+    image: clinical-trial-matcher:local
     build:
       context: .
-    image: clinical-trial-matcher:local
     ports:
       - "127.0.0.1:8000:8000"
     environment:
+      TRIAL_INDEX_PATH: /data/bm25.sqlite
       DEMO_USERNAME: ${DEMO_USERNAME:-}
       DEMO_PASSWORD: ${DEMO_PASSWORD:-}
       REQUIRE_AUTH: ${REQUIRE_AUTH:-false}
+      MAX_SEARCHES_PER_MINUTE: 10
     volumes:
       - type: bind
-        source: ${TRIAL_INDEX_DIR:-../data/indexes}
+        source: ../data/current/ctgov-20261117T100005
         target: /data
         read_only: true
         bind:
           create_host_path: false
     read_only: true
     tmpfs:
-      - /tmp:size=128m,mode=1777
+      - /tmp:size=64m,mode=1777
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]
-    cpus: 1.0
-    mem_limit: 4g
+    cpus: 0.5
+    mem_limit: 1g
     init: true
-    stop_grace_period: 90s
+    stop_grace_period: 60s
     restart: unless-stopped

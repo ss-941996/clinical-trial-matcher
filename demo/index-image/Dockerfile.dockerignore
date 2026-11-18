@@ -1,9 +1,10 @@
-**
-!data/
-!data/indexes/
-!data/indexes/bm25.sqlite
+*
 !demo/
 !demo/index-image/
-!demo/index-image/Dockerfile
-!demo/index-image/seed_index.py
-!demo/index-image/manifest.json
+!demo/index-image/**
+!data/
+!data/current/
+!data/current/ctgov-20261117T100005/
+!data/current/ctgov-20261117T100005/bm25.sqlite
+!data/manifests/
+!data/manifests/ctgov-current.json

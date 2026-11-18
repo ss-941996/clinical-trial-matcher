@@ -2,6 +2,7 @@
 !app/
 !app/**
 !requirements-demo.txt
+!requirements-retrieval.txt
 !download_model.py
 !serve.py
 !Dockerfile

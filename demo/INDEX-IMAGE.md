@@ -1,110 +1,59 @@
-# App image plus a separate trial-index image
+# App image and versioned recruiting-index image
 
-**Status (2026-11-17):** both Linux/x86-64 images built successfully. Empty-volume initialization, full-corpus search, app restart, container replacement and index reuse passed. See [verification details](VERIFICATION.md) and [recorded checks](../reports/docker-verification.json). Azure deployment and image distribution remain separate work.
-
-The existing `compose.yaml` remains the local bind-mount option. The standalone
-`compose.images.yaml` is an alternative; use one file at a time, not both stacks
-on port 8000. This setup requires Linux containers on x86-64 Docker Desktop.
-
-## Build and start on the machine that holds the index
-
-Ensure Docker Desktop is running. From the repository root:
-
-```powershell
-cd demo
-docker compose -f compose.images.yaml config --quiet
-docker compose -f compose.images.yaml build
-docker compose -f compose.images.yaml up -d
-docker compose -f compose.images.yaml ps -a
-Invoke-RestMethod http://127.0.0.1:8000/health/ready
-```
-
-Build needs internet for the base image, Python dependencies and model download.
-The data build reads `../data/indexes/bm25.sqlite` and rejects any bytes that do
-not match `index-image/manifest.json`. The existing database is not modified.
-Open **http://127.0.0.1:8000** once health reports ready. `trial-index` exiting
-with code0 is expected: it initializes the data and completes; it is not a
-database server that needs to remain running.
-
-Do not run `build` or `up` if a preceding command failed. To inspect a failure:
-
-```powershell
-docker compose -f compose.images.yaml logs --tail 50
-```
-
-## What runs together
+The two-image Compose definition in `compose.images.yaml` pins a completed recruiting-only index by SHA-256 and uses a versioned named volume. `compose.yaml` is an alternative bind mount of the same local index. Run only one stack on port 8000.
 
 ```mermaid
 flowchart LR
-    DATA["Versioned trial-index image"] --> SEED["One-time verified copy"]
-    SEED --> VOLUME["Persistent versioned Docker volume"]
-    VOLUME -->|"read-only"| APP["App image: frontend + API + reranker"]
-    APP --> BROWSER["localhost:8000"]
+  FULL[Full local registry catalog] -->|RECRUITING only| INDEX[Versioned data image]
+  INDEX --> SEED[Copy and checksum once]
+  SEED --> VOL[Persistent local Docker volume]
+  VOL -->|read-only| APP[Lean API and frontend image]
+  APP --> UI[localhost:8000]
 ```
 
-- App tag: `clinical-trial-matcher:local`.
-- Data tag: `clinical-trial-index:trec2021-b70ca9cdb12e`.
-- Persistent volume: `clinical-trial-index-trec2021-b70ca9cdb12e`.
-- Dataset:375,580 trials,2,220,654,592 bytes. Full SHA-256 is pinned in the manifest
-  and Compose definition. The image build verifies it; the initializer verifies
-  the volume before allowing the app to start.
-- First run copies the index into the empty volume. Later runs reuse a valid
-  index without copying it. A checksum/size mismatch fails rather than replacing
-  existing data. The non-root app mounts the volume read-only.
-- An app-only update does not need another data download. Only pull/load/build
-  the app image when its version changes; keep the data tag and volume unchanged.
-  Re-downloading is necessary if the data image was removed and is needed again,
-  or when deliberately selecting a different dataset version.
-- Allow several GB of free Docker disk space beyond the existing database:
-  the data image and initialized volume each contain the2.22GB index, in addition
-  to app/model layers and build cache. Keeping the index separate saves repeated
-  transfers on app updates, not total local storage.
+## Build and run sequentially
 
-## Share both images without a registry
-
-After a successful local build and startup test, and after checking the dataset
-terms for the intended recipients, export the two images:
+From the project root, after `src/current_data.py --stage fetch`, `--stage build` and `scripts/prepare_current_demo.py` have completed:
 
 ```powershell
-docker image save --output matcher-app.tar clinical-trial-matcher:local
-docker image save --output matcher-index-trec2021.tar clinical-trial-index:trec2021-b70ca9cdb12e
+docker compose -f .\demo\compose.images.yaml config --quiet
+docker compose -f .\demo\compose.images.yaml build trial-index
+docker compose -f .\demo\compose.images.yaml build matcher
+docker compose -f .\demo\compose.images.yaml up -d --no-build --pull never
+docker compose -f .\demo\compose.images.yaml ps -a
+Invoke-RestMethod http://localhost:8000/health/ready
 ```
 
-Give the recipient both archives and `compose.images.yaml`. They do not need
-Python, the source index folder, or Azure. In the folder containing those files:
+Open http://localhost:8000. The initializer exits successfully; that is expected. It checks bytes, checksum and record-count metadata. A different existing index is rejected rather than overwritten. First startup copies the index; later complete starts verify and reuse it. An app-only update can skip the initializer:
 
 ```powershell
-docker image load --input matcher-app.tar
-docker image load --input matcher-index-trec2021.tar
-docker compose -f compose.images.yaml up -d --no-build --pull never
+docker compose -f .\demo\compose.images.yaml build matcher
+docker compose -f .\demo\compose.images.yaml up -d --no-build --pull never --no-deps --force-recreate matcher
 ```
 
-`--no-build --pull never` uses the already loaded images, so source/build paths
-are not needed on the recipient's computer. A compatible Docker installation is
-still required. Images have not been published or exported by this session.
+The first Windows-to-Docker data-context transfer took several minutes on this low-memory host; app-only updates skip that transfer.
 
-For a later app-only update, deliver/load only the new app archive, then run:
+The app contains no downloaded model and needs no inference service. The full local registry catalog and raw pages are excluded from both images. Images are Linux/x86-64; other platforms are unverified. The serving manifest `data/manifests/ctgov-current.json` records exact index bytes, source release, counts and checksum. Historical TREC data/image/volume are separate and are not deleted by migration.
+
+## Let another person run it
+
+Publish public images (see [Azure instructions](AZURE.md)) or export the built images and send the Compose file. From the repository root:
 
 ```powershell
-docker compose -f compose.images.yaml up -d --no-build --pull never --no-deps --force-recreate matcher
+$m = Get-Content .\data\manifests\ctgov-current.json -Raw | ConvertFrom-Json
+$tag = "$($m.dataset_id)-$($m.sha256.Substring(0,12))"
+docker image save -o clinical-trial-demo.tar clinical-trial-matcher:local "clinical-trial-index:$tag"
 ```
 
-This command is for an already initialized installation; initial startup must
-include the data service. If sharing through a registry later, replace the local
-app tag with a release tag and the data tag with a registry-qualified fixed tag.
-
-## Stop and preserve data
+The recipient loads the archive, places the supplied `compose.images.yaml` in a directory and runs:
 
 ```powershell
-docker compose -f compose.images.yaml down
+docker image load -i .\clinical-trial-demo.tar
+docker compose -f .\compose.images.yaml up -d --no-build --pull never
 ```
 
-Ordinary `down` preserves the named volume. **Do not add `--volumes`/`-v` if you
-want to retain the index.** A deliberate dataset upgrade should use a new data
-tag, full checksum and volume name together; do not overwrite an active volume.
+No repository, raw database or Python installation is needed for this no-build path. Keep `--no-build` because the distributed Compose file also contains developer build paths. The index copy uses additional local disk space; the data image and initialized volume both contain its bytes. App updates reuse existing data layers when those layers are available locally. A new machine or Azure replica still needs to pull the data image.
 
-Screenshots and a demo video can be captured in the local browser. No Azure
-subscription or paid inference service is required. Eligibility remains unchecked.
+Stop with `docker compose -f .\compose.images.yaml down`. Retain the volume by omitting `-v`. For a new data release use a new data tag and volume; never overwrite a historical release or claim its evaluation metrics apply to the refreshed corpus.
 
-References: [Compose startup dependencies](https://docs.docker.com/compose/how-tos/startup-order/),
-[Docker volumes](https://docs.docker.com/engine/storage/volumes/).
+Run `python .\demo\verify_current.py` locally for sequential startup/search/restart/replacement/reuse checks. The previous `verify_docker.py` and `verify_app_update.py` are historical TREC/model checks; current lean-image checks live in `verify_current.py`.

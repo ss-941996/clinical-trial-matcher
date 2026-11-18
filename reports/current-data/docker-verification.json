@@ -1,0 +1,121 @@
+{
+  "utc": "2026-11-18T12:53:52.667434+00:00",
+  "first_start_seconds": 53.088,
+  "seed_log": "trial-index-1  | Initialized verified index volume.",
+  "config": {
+    "snapshot": "2026-11-17",
+    "indexed_trials": 65080,
+    "source": "ClinicalTrials.gov API v2",
+    "data_timestamp": "2026-11-17T10:00:05",
+    "serving_statuses": [
+      "RECRUITING"
+    ],
+    "registry_records": 612293,
+    "historical": false,
+    "reranking_available": false,
+    "default_method": "fusion"
+  },
+  "examples": [
+    {
+      "seconds": 5.364,
+      "ids": [
+        "NCT03878706",
+        "NCT05065372",
+        "NCT06888050",
+        "NCT06299800",
+        "NCT06273072",
+        "NCT07771010",
+        "NCT06246799",
+        "NCT06546085",
+        "NCT04581447",
+        "NCT06772168"
+      ],
+      "statuses": [
+        "RECRUITING"
+      ]
+    },
+    {
+      "seconds": 5.028,
+      "ids": [
+        "NCT05541367",
+        "NCT07395336",
+        "NCT07827573",
+        "NCT06756932",
+        "NCT07222215",
+        "NCT03723928",
+        "NCT07062965",
+        "NCT06590857",
+        "NCT06179303",
+        "NCT07766018"
+      ],
+      "statuses": [
+        "RECRUITING"
+      ]
+    },
+    {
+      "seconds": 4.086,
+      "ids": [
+        "NCT07301255",
+        "NCT06970080",
+        "NCT07823842",
+        "NCT06772454",
+        "NCT03263130",
+        "NCT07746687",
+        "NCT07426458",
+        "NCT03762395",
+        "NCT00576069",
+        "NCT06778746"
+      ],
+      "statuses": [
+        "RECRUITING"
+      ]
+    },
+    {
+      "seconds": 3.475,
+      "ids": [
+        "NCT06859164",
+        "NCT06290336",
+        "NCT06123715",
+        "NCT02915120",
+        "NCT06054633",
+        "NCT07701174",
+        "NCT07759336",
+        "NCT06911359",
+        "NCT07727551",
+        "NCT06833372"
+      ],
+      "statuses": [
+        "RECRUITING"
+      ]
+    }
+  ],
+  "before": {
+    "container": "c9bcd8d98c1e1cbce18cbb0bf497b4c038a9eee1544ee890c2e31b3e8fa209f6",
+    "image": "sha256:6f581715362ad04c6a0b48587e7021a0c1b4b7fec3879585127632ef2541c780",
+    "index": {
+      "sha256": "572058e0a049e8db07650515ace70bd80912b4350c2e2fcea602527ce7670f71",
+      "bytes": 482504704,
+      "inode": 326690,
+      "mtime_ns": 1795006465828288977
+    },
+    "volume": "clinical-trial-index-ctgov-20261117T100005-recruiting-572058e0a049"
+  },
+  "container_stats": "{\"BlockIO\":\"2.13MB / 0B\",\"CPUPerc\":\"0.21%\",\"Container\":\"c9bcd8d98c1e1cbce18cbb0bf497b4c038a9eee1544ee890c2e31b3e8fa209f6\",\"ID\":\"c9bcd8d98c1e\",\"MemPerc\":\"7.52%\",\"MemUsage\":\"77.04MiB / 1GiB\",\"Name\":\"clinical-trial-matcher-images-matcher-1\",\"NetIO\":\"6.94kB / 116kB\",\"PIDs\":\"4\"}",
+  "lean_runtime": "No model runtime installed",
+  "restart_seconds": 4.059,
+  "replacement_seconds": 4.067,
+  "after_replacement": {
+    "container": "f90916d8834ddf03e65c536b1c7aa6062c84e837d1197befa5c0516c463ed78e",
+    "image": "sha256:6f581715362ad04c6a0b48587e7021a0c1b4b7fec3879585127632ef2541c780",
+    "index": {
+      "sha256": "572058e0a049e8db07650515ace70bd80912b4350c2e2fcea602527ce7670f71",
+      "bytes": 482504704,
+      "inode": 326690,
+      "mtime_ns": 1795006465828288977
+    },
+    "volume": "clinical-trial-index-ctgov-20261117T100005-recruiting-572058e0a049"
+  },
+  "reuse_log": "trial-index-1  | Initialized verified index volume.\ntrial-index-1  | Reused verified index; no copy needed.",
+  "replacement_scope": "Same app image, new app container; proves update procedure and persistent index reuse, not a second software build.",
+  "passed": true
+}

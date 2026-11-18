@@ -1,3 +1,5 @@
+> Historical TREC/model Docker verification. For the refreshed recruiting-only, model-free image, see [current results](../reports/current-data/README.md) and [current Docker checks](../reports/current-data/docker-verification.json).
+
 # Local verification — 2026-11-17
 
 ## App and tests

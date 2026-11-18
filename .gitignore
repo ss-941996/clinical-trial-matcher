@@ -25,3 +25,7 @@ __pycache__/
 
 # Isolated MedCPT experiment environment
 .venv-medcpt/
+
+# Versioned local registry catalogs and serving indexes
+/data/current/
+.venv-demo/

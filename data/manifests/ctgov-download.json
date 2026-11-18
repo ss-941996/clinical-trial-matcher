@@ -1,0 +1,10 @@
+{
+  "release": "ctgov-20261117T100005",
+  "download_manifest": "data/raw/ctgov/ctgov-20261117T100005/download.json",
+  "sha256": "b4d0c8bb4b9500b1e8e4287dd9886a844846ef2aea298f0af2811f3dc9c27256",
+  "version": {
+    "apiVersion": "2.0.5",
+    "dataTimestamp": "2026-11-17T10:00:05"
+  },
+  "records": 612293
+}

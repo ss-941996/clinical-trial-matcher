@@ -1,0 +1,12 @@
+{
+  "latest_api_version": {
+    "apiVersion": "2.0.5",
+    "dataTimestamp": "2026-11-17T10:00:05"
+  },
+  "api_recruiting_count": 65080,
+  "resource_limits_verified": true,
+  "tests_passed": 30,
+  "azure_bicep_compiled": true,
+  "azure_deployed": false,
+  "azure_template_sha256": "286e87a5a47d91886b22ed23710d9dcd5f5c0b8888ef4bbeb8eaef6965cd84d0"
+}

@@ -1,12 +1,15 @@
 name: clinical-trial-matcher-images
 services:
   trial-index:
-    image: clinical-trial-index:trec2021-b70ca9cdb12e
+    image: clinical-trial-index:ctgov-20261117T100005-recruiting-572058e0a049
     build:
       context: ..
       dockerfile: demo/index-image/Dockerfile
+      args:
+        INDEX_PATH: data/current/ctgov-20261117T100005/bm25.sqlite
+        INDEX_MANIFEST_PATH: data/manifests/ctgov-current.json
     environment:
-      EXPECTED_INDEX_SHA256: b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd
+      EXPECTED_INDEX_SHA256: 572058e0a049e8db07650515ace70bd80912b4350c2e2fcea602527ce7670f71
     volumes:
       - type: volume
         source: trial-index
@@ -32,6 +35,7 @@ services:
       DEMO_USERNAME: ${DEMO_USERNAME:-}
       DEMO_PASSWORD: ${DEMO_PASSWORD:-}
       REQUIRE_AUTH: ${REQUIRE_AUTH:-false}
+      MAX_SEARCHES_PER_MINUTE: 10
     volumes:
       - type: volume
         source: trial-index
@@ -41,14 +45,14 @@ services:
           nocopy: true
     read_only: true
     tmpfs:
-      - /tmp:size=128m,mode=1777
+      - /tmp:size=64m,mode=1777
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]
-    cpus: 1.0
-    mem_limit: 4g
+    cpus: 0.5
+    mem_limit: 1g
     init: true
-    stop_grace_period: 90s
+    stop_grace_period: 60s
     restart: unless-stopped
 volumes:
   trial-index:
-    name: clinical-trial-index-trec2021-b70ca9cdb12e
+    name: clinical-trial-index-ctgov-20261117T100005-recruiting-572058e0a049
