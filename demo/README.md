@@ -1,5 +1,13 @@
 # Clinical Trial Matcher demo
 
+# Selected hybrid runtime
+
+The new source default combines balanced lexical retrieval with MedCPT vector
+search and weighted RRF; it displays the top ten without a cross-encoder.
+See [HYBRID.md](HYBRID.md) for the verified local pilot and commands.
+The existing Compose/Azure definitions below explicitly use the legacy lexical
+configuration and current recruiting index until hybrid packaging is completed.
+
 One search button runs balanced fusion over a versioned **recruiting-only ClinicalTrials.gov index**. The frontend includes four synthetic notes: diabetes, breast cancer, asthma, and knee osteoarthritis. It displays ten candidates, original eligibility text, reported recruiting status, last registry update, and snapshot date. Eligibility is **not assessed**.
 
 The historical 375,580-trial TREC corpus remains at `data/indexes/bm25.sqlite`. Completed TREC metrics describe that historical corpus; they do not measure relevance on the new recruiting collection. TREC 2022 has already been evaluated and is now a regression set, not an untouched holdout.

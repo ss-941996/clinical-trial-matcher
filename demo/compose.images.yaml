@@ -32,6 +32,7 @@ services:
       - "127.0.0.1:8000:8000"
     environment:
       TRIAL_INDEX_PATH: /data/bm25.sqlite
+      TRIAL_PIPELINE: fusion
       DEMO_USERNAME: ${DEMO_USERNAME:-}
       DEMO_PASSWORD: ${DEMO_PASSWORD:-}
       REQUIRE_AUTH: ${REQUIRE_AUTH:-false}

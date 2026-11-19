@@ -1,0 +1,4 @@
+-r requirements-retrieval.txt
+numpy==2.5.5
+onnxruntime==1.32.0
+tokenizers==0.22.2

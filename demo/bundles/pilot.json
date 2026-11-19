@@ -1,0 +1,14 @@
+{
+  "source_index": "../../data/cache/medcpt-hybrid-pilot-5120-v1/pilot.sqlite",
+  "source_index_sha256": "e3d79899669ea43b9a6019aa2077871596f37c2e296f7d481239fb1ce5075444",
+  "vector_cache": "../../data/cache/medcpt-hybrid-pilot-5120-v1",
+  "protocol": "../../reports/medcpt-hybrid-pilot-5120-v1/protocol.json",
+  "query_model_dir": "../../models/medcpt-retrieval/query",
+  "output_dir": "../../data/indexes/medcpt-pilot-portable-v1",
+  "collection": {
+    "dataset_kind": "historical-pilot",
+    "snapshot": "2021-04-27",
+    "source": "TREC 2021 historical subset; 5,120 cached MedCPT trials",
+    "collection_notice": "Historical pilot subset; favours earlier trial IDs. Not current recruiting trials. Eligibility unchecked."
+  }
+}

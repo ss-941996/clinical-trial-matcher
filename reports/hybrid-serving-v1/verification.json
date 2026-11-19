@@ -1,0 +1,68 @@
+{
+  "pipeline": "lexical_medcpt_rrf",
+  "records": 5120,
+  "cross_encoder": false,
+  "patients": {
+    "1": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.207,
+      "timing": {
+        "lexical_seconds": 0.543,
+        "semantic_seconds": 0.651
+      }
+    },
+    "2": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.174,
+      "timing": {
+        "lexical_seconds": 0.625,
+        "semantic_seconds": 0.537
+      }
+    },
+    "3": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.014,
+      "timing": {
+        "lexical_seconds": 0.438,
+        "semantic_seconds": 0.562
+      }
+    },
+    "4": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.106,
+      "timing": {
+        "lexical_seconds": 0.516,
+        "semantic_seconds": 0.576
+      }
+    },
+    "5": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.446,
+      "timing": {
+        "lexical_seconds": 0.729,
+        "semantic_seconds": 0.701
+      }
+    }
+  },
+  "index_sha256": "c7a087cb78163cd98b04901bdb6d36b8de2895d6c75d89a99b378315e3dc5f6a",
+  "total_seconds_including_startup": 9.869,
+  "passed": true,
+  "live_http_smoke": {
+    "passed": true,
+    "port": 8765,
+    "candidates": 200,
+    "displayed": 10,
+    "seconds": 0.393,
+    "rerank_scored_pairs": 0,
+    "assets_served": true
+  },
+  "api_tests": {
+    "passed": 13,
+    "seconds": 4.86
+  }
+}

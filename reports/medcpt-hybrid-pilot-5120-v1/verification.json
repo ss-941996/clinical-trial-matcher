@@ -1,0 +1,7 @@
+{
+  "checks": 6,
+  "passed": 6,
+  "seconds": 2.11,
+  "command": "python -m pytest experiments/medcpt_hybrid/test_run.py experiments/medcpt_hybrid/test_cpu_guard.py -q -p no:cacheprovider",
+  "scope": "Implementation checks, not retrieval-quality evaluation. Old encoding and evaluation workers were stopped before this test run."
+}

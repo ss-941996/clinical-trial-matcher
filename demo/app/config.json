@@ -1,8 +1,10 @@
 {
-  "default_method": "fusion",
+  "default_method": "hybrid",
+  "hybrid_bundle": "../../data/indexes/medcpt-pilot-5120",
+  "semantic_rrf_weight": 1.0,
   "rerank_pool": "baseline",
   "ce_blend_weight": 0.5,
   "fusion_balance_weight": 2.0,
   "experimental_arm": "baseline_blend_0.5",
-  "status": "Single frontend pipeline: balanced fusion, selected for eligible recall and CPU latency; not a winner on every metric. Original methods remain available through explicit research API requests."
+  "status": "Selected pipeline: balanced lexical top1000 + MedCPT top1000, equal-weight RRF k60, keep200, display10. No cross-encoder. Pilot evidence only; matching vectors are required."
 }

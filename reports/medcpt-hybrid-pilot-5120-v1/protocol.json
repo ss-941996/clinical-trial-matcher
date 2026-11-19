@@ -1,0 +1,119 @@
+{
+  "scope": "Exploratory subset pilot, not full-corpus performance",
+  "year": 2021,
+  "sample_count": 5120,
+  "topics": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "seed": 941996,
+  "sampling": "User-capped sorted-ID prefix of original uniform random 20,000 sample. Independent of labels, but biased toward earlier trial IDs; not representative.",
+  "parent_protocol_sha256": "87f2909e94ac2e2fb1ac5749588ca07010cf40ff2dd7691cb26bcb0653b39a58",
+  "selected_ids_sha256": "42108bcfa15f283b0d62217082126297567a01bd17ebf4e912375189be6557ec",
+  "eligibility_denominator": "Grade-2 judgments intersected with selected trial IDs; zero-positive recall excluded from macro",
+  "selection": "Among hybrid vector weights .25,.5,1,2 choose macro eligible recall@200, then nDCG@10, then name. Five reused patients; exploratory.",
+  "lexical": "Recompute BM25 and weighted three-query searches against subset FTS; inner RRF k60; balanced outer weights1,2; top1000",
+  "vector": "MedCPT Article/Query CLS embeddings, dynamic-int8 per-channel ONNX, unnormalized float32 dot product; top1000 exact",
+  "fields": {
+    "title": 48,
+    "conditions": 48,
+    "summary": 96,
+    "eligibility": 61
+  },
+  "query_max_tokens": 128,
+  "article_max_tokens": 256,
+  "batch_size": 4,
+  "reranker": "Apache-2.0 cross-encoder/ms-marco-MiniLM-L2-v2 quantized ONNX; pure score order of fixed200",
+  "reranker_manifest": {
+    "model": "cross-encoder/ms-marco-MiniLM-L2-v2",
+    "revision": "1b5cd67b15209f24824c50370e0397743aa9b787",
+    "license": "apache-2.0",
+    "files": {
+      "README.md": "3dc8fbdadf2bdc0030dba643e163c12356965825f8c1053111eab404bdf6fade",
+      "config.json": "7868e36c3024c21f7a3ac64e058b36898a331035784cce7ec1496b434aa44c4f",
+      "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+      "onnx/model_quint8_avx2.onnx": "2c7f4c682cf9320acb3748c619b2e21d24ef460e2f96b98b0ab6b190c5eb2ca9"
+    }
+  },
+  "promotion": "No automatic expansion. Five-query functional screen; report hybrid recall and reranker differences for review.",
+  "execution": "One process, BelowNormal priority, numeric and inference threads1, no GPU, no paid API",
+  "model_manifests": {
+    "article": {
+      "model": "ncbi/MedCPT-Article-Encoder",
+      "revision": "d05a736da4bb84ee4057b7f7999485be6ed85465",
+      "license": "public-domain",
+      "files": {
+        "README.md": "27328ae1218fb0167e8ac00b70de513446ebae73a8640083595e24fb08deefa5",
+        "LICENSE": "76b0009b86bfcb6dbbe5d51aa95a8103ddb2e9d582dca41c3d88e371175ce34e",
+        "config.json": "3fea00b31d018d676d6b7e2f6cddcfe1abc69bcb88f5f09f51b848212e1671d1",
+        "model.safetensors": "a5d5ffe4d8666c1d0aa15f371b94fc3492ca8f927e5621abd4b3ee9fc845b0f3",
+        "tokenizer.json": "6e046044df8a2fcedb10607075dca187cae61d806c0d80a96c5b81017edc90c9",
+        "tokenizer_config.json": "cabeefb4bbba68c42d40a56bfc1e73dd2e5dfb6e0ca90a66349519c375452d1e",
+        "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+        "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+      }
+    },
+    "query": {
+      "model": "ncbi/MedCPT-Query-Encoder",
+      "revision": "d83a36cc6b8e3a5c5e9d9d6ba156808c1643dcbc",
+      "license": "public-domain",
+      "files": {
+        "README.md": "4451e5399fe6e8c5a4b9db86ad9ae324e2b337f0f4c7e963aaf6131b3e8dd635",
+        "LICENSE": "76b0009b86bfcb6dbbe5d51aa95a8103ddb2e9d582dca41c3d88e371175ce34e",
+        "config.json": "3fea00b31d018d676d6b7e2f6cddcfe1abc69bcb88f5f09f51b848212e1671d1",
+        "model.safetensors": "19d78c0d5eaee2f81e6c47c5425bbadcc0c6af016cbb5da4a000d64e59d6e342",
+        "tokenizer.json": "6e046044df8a2fcedb10607075dca187cae61d806c0d80a96c5b81017edc90c9",
+        "tokenizer_config.json": "cabeefb4bbba68c42d40a56bfc1e73dd2e5dfb6e0ca90a66349519c375452d1e",
+        "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+        "vocab.txt": "79489a52be45e6fa033521e8ce8e4f62aedc0a742ee2aa6fc04667e5b0b1454d"
+      }
+    }
+  },
+  "onnx_manifests": {
+    "article": {
+      "source": "d05a736da4bb84ee4057b7f7999485be6ed85465",
+      "precision": "dynamic int8 per-channel reduce-range",
+      "onnx_sha256": "11168d4757c716ecec5c48800b72fe42d3714ecaa32f3d8028a2506859c5b59e",
+      "float_onnx_sha256": "26628d9fdcfbdb71ae4128cf466a104be0c755419540cdca87ac279c7b589152",
+      "sanity_cosines": [
+        0.9940807223320007,
+        0.9906693696975708
+      ],
+      "sanity_scope": "Two sample texts only; not a retrieval quality evaluation",
+      "seconds": 74.98704929999985,
+      "peak_process_mib": 2044.34765625,
+      "torch": "2.9.1+cpu",
+      "ort": "1.32.0"
+    },
+    "query": {
+      "source": "d83a36cc6b8e3a5c5e9d9d6ba156808c1643dcbc",
+      "precision": "dynamic int8 per-channel reduce-range",
+      "onnx_sha256": "9122a041f34a9a74194a64a04732bd26e5a9a973df3b44ee560497d117813852",
+      "float_onnx_sha256": "ac0e2f593a0a683195c3d742889182ca7b40a1f2d4acea956d9726a344b1a0f6",
+      "sanity_cosines": [
+        0.990871012210846,
+        0.9905824065208435
+      ],
+      "sanity_scope": "Two sample texts only; not a retrieval quality evaluation",
+      "seconds": 80.84009040000001,
+      "peak_process_mib": 2044.34765625,
+      "torch": "2.9.1+cpu",
+      "ort": "1.32.0"
+    }
+  },
+  "code_sha256": {
+    "pilot.py": "5102435d4cd7d8c0f74c0734afa6eeb72ac42d969bebdf8ba328ff4373011bed",
+    "run.py": "7aaf8daa79cf5cd6d09bc4a4317c9e85b54f758ec19878878820dae8e4f4ce74",
+    "optimize.py": "5c56e96b7cc8bab4f37fdb5721fa4de21e7c7744903f3cd4794c094a6723dabc"
+  },
+  "historical_index_sha256": "b70ca9cdb12e5c4e709f767b25a8798aa56e2dc1102ec80722d3211f6669b1cd",
+  "input_sha256": {
+    "data\\raw\\trec2021\\topics2021.xml": "94bda921ce7c40a0353f251abb2ea938c77331759a9f83a36abd145ab5840aca",
+    "data\\raw\\trec2021\\qrels2021.txt": "ba7a2cddc90285e75cd76adcd483394a6c9bacf7017113222058ba6537e6d8ac",
+    "demo\\app\\retrieval.py": "caf0655e3133d927149b80c72e9cb18f2f8588f11cac8a3537e7e118ec8e94dc",
+    "demo\\app\\rerank.py": "d1c316179c7ecb9f65cbcb1d8d907fd4b377ee12bb5207cef58ac8a359649b01"
+  }
+}

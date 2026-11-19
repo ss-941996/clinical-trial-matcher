@@ -29,3 +29,4 @@ __pycache__/
 # Versioned local registry catalogs and serving indexes
 /data/current/
 .venv-demo/
+.venv-hybrid/

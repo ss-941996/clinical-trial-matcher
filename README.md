@@ -1,12 +1,65 @@
 # Clinical Trial Matcher: patient note → ranked trials
 
-**Status:** The balanced-fusion research demo, four synthetic frontend examples, recruiting-only registry refresh and two-image Docker workflow are implemented and locally verified. Azure deployment files are prepared and compile locally; hosted deployment remains unverified. Eligibility reasoning in the staged architecture below is future work.
+**Status:** The selected source pipeline is balanced lexical + MedCPT vector search, fused with weighted RRF, retaining 200 candidates and displaying ten directly. Its frontend/backend and configurable bundle builder are implemented and locally tested with 5,120 historical trials. The existing Docker/Azure definitions retain the earlier lexical recruiting-data demo until hybrid packaging is completed. Azure is not deployed. Eligibility reasoning is future work.
 
-## Recruiting demo refresh (2026-11-18)
+## Selected hybrid pipeline (2026-11-19)
 
-The serving corpus is now **65,080 recruiting trials**, from the ClinicalTrials.gov release timestamp **2026-11-17T10:00:05**. All **612,293 registry records** for the selected fields are kept locally. The historical TREC index is unchanged; historical benchmark scores do not evaluate this current recruiting-only collection.
+The frontend and backend now support the selected pipeline, with one search
+button and no cross-encoder:
 
-The frontend has four synthetic examples and one balanced-fusion search action. It shows reported recruiting status, last registry update and snapshot date. Eligibility remains unchecked. The default app is model-free and needs no paid inference API.
+```mermaid
+flowchart TD
+    P[Patient note] --> L[Balanced lexical search: top 1,000]
+    P --> M[MedCPT biomedical vectors: top 1,000]
+    L --> F[Weighted RRF: equal weights, constant 60]
+    M --> F
+    F --> C[Keep top 200 unique trials]
+    C --> T[Display top 10 directly]
+```
+
+The default source configuration is hybrid. The local serving bundle reuses
+**5,120 historical trial vectors**; it does not cover the current recruiting
+collection. Both retrieval branches search the identical collection and startup
+checks file hashes and trial identities. Query inference is local, one ONNX
+thread; no trial encoding or model downloads occur during search.
+
+On five reused 2021 development notes, hybrid reached **0.3030 nDCG@10**,
+**27.78% eligible recall@10**, **88.89% recall@200**. Only eight judged eligible
+trials occur across three patients; this sorted-prefix subset favours earlier
+trial IDs. These screening results do not establish full-corpus improvement.
+MiniLM-L2 reranking hurt top-ten quality and is excluded from the selected flow.
+
+See [local commands and rollout limits](demo/HYBRID.md),
+[pilot results](reports/medcpt-hybrid-pilot-5120-v1/README.md), and
+[experiment protocol](experiments/medcpt_hybrid/README.md).
+The existing Docker Compose workflows explicitly retain the legacy lexical
+pipeline and current recruiting index until a hybrid image/bundle is packaged.
+The earlier frontend descriptions below document that legacy version.
+Eligibility checks and automated registry updates remain future work.
+
+## Roadmap: current-data hybrid demo
+
+| Stage | Status |
+|---|---|
+| 1. Generalise configuration and bundle building | Implemented: configurable paths, dynamic record count, model/token settings from verified protocol, collection metadata from the bundle |
+| 2. Prepare 20,000 current recruiting trials | Pending; select and document a reproducible collection |
+| 3. Encode and build indexes locally | Pending; one core, low priority, sequential checkpoints and progress logs |
+| 4. Test the current-data frontend/backend | Pending; the historical pilot is already operational |
+| 5. Package app and matching data Docker images | Pending for the hybrid pipeline |
+| 6. Deploy the tested demo on Azure | Pending; no Azure compute used for encoding |
+
+Use [the configurable hybrid run/build commands](demo/HYBRID.md) and
+[Step 1 verification](reports/hybrid-configurable-v1/README.md).
+The default remains top 1,000 from each branch, equal-weight RRF, keep 200,
+display ten. Changing collections requires a compatible prepared bundle, not
+application code changes. Any patient description is encoded live at search
+time; trial vectors are prepared once locally.
+
+## Legacy lexical recruiting demo refresh (2026-11-18)
+
+The legacy lexical demo corpus contains **65,080 recruiting trials**, from the ClinicalTrials.gov release timestamp **2026-11-17T10:00:05**. All **612,293 registry records** for the selected fields are kept locally. The historical TREC index is unchanged; historical benchmark scores do not evaluate this current recruiting-only collection.
+
+The frontend has four synthetic examples and one balanced-fusion search action. It shows reported recruiting status, last registry update and snapshot date. Eligibility remains unchecked. That earlier lexical version is model-free; the new hybrid runtime loads its local query encoder and uses no paid inference API.
 
 Local checks passed: sequential data/API/index tests, current-image builds, first volume initialization, four searches, restart, app-container replacement and unchanged index reuse at 0.5 CPU / 1 GiB. See [current migration and operational results](reports/current-data/README.md). The Azure template compiles; **Azure has not been deployed or tested**. See [exact local commands](demo/README.md) and [the low-cost Azure setup](demo/AZURE.md).
 

@@ -1,0 +1,8 @@
+{
+  "completed": 5120,
+  "total": 5120,
+  "new_this_run": 0,
+  "reused": 5120,
+  "precision": "unchanged cached dynamic-int8 MedCPT outputs",
+  "excluded_parent_records": 256
+}

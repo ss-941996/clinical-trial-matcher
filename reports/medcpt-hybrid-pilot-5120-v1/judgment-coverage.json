@@ -1,0 +1,27 @@
+{
+  "1": {
+    "subset_eligible": 4,
+    "full_eligible": 47,
+    "subset_judged": 8
+  },
+  "2": {
+    "subset_eligible": 0,
+    "full_eligible": 138,
+    "subset_judged": 3
+  },
+  "3": {
+    "subset_eligible": 0,
+    "full_eligible": 32,
+    "subset_judged": 2
+  },
+  "4": {
+    "subset_eligible": 1,
+    "full_eligible": 44,
+    "subset_judged": 5
+  },
+  "5": {
+    "subset_eligible": 3,
+    "full_eligible": 119,
+    "subset_judged": 7
+  }
+}

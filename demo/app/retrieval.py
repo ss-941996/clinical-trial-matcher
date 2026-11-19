@@ -48,9 +48,10 @@ def rank_fusion(lists,k=200,weights=None):
     return sorted(scores.items(),key=lambda x:(-x[1],x[0]))[:k]
 
 class Engine:
-    def __init__(self,index_path,model_dir=None,expected_records=375580,config=None):
+    def __init__(self,index_path,model_dir=None,expected_records=375580,config=None,vector_dir=None):
         self.index_path=Path(index_path).resolve();self.model_dir=Path(model_dir) if model_dir else None
         self.expected_records=expected_records;self.encoder=None;self.ready=False;self.config=config or {}
+        self.vector_dir=vector_dir;self.semantic=None
         self.vocab=json.loads((Path(__file__).parent/'assets/condition_vocabulary.json').read_text(encoding='utf-8'))
 
     def connect(self):
@@ -58,6 +59,7 @@ class Engine:
         db.execute('PRAGMA cache_size=-65536');return db
 
     def load(self):
+        self.ready=False
         if not self.index_path.is_file():raise RuntimeError(f'Trial index not found: {self.index_path}')
         with closing(self.connect()) as db:
             self.metadata={k:json.loads(v) for k,v in db.execute('SELECT key,value FROM metadata')}
@@ -69,7 +71,15 @@ class Engine:
                 counts=dict(db.execute('SELECT status,count(*) FROM trial_metadata GROUP BY status'))
                 if counts!={'RECRUITING':self.metadata['records']} or db.execute('SELECT count(*) FROM identities').fetchone()[0]!=self.metadata['records']:raise RuntimeError('Recruiting record count mismatch')
                 self.vocab=dict(db.execute('SELECT phrase,df FROM condition_vocabulary'))
-        if self.model_dir:self.encoder=CrossEncoder(self.model_dir)
+        if self.vector_dir:
+            from .semantic import SemanticIndex
+            self.semantic=SemanticIndex(self.vector_dir,self.index_path)
+            with closing(self.connect()) as db:
+                if self.semantic.ids!={r[0] for r in db.execute('SELECT trial_id FROM identities')}:
+                    raise RuntimeError('Lexical and semantic trial identities differ')
+        if self.config.get('default_method')=='hybrid' and self.semantic is None:
+            raise RuntimeError('Hybrid search requires a matching MedCPT vector bundle; see demo/HYBRID.md')
+        if self.model_dir and self.config.get('default_method')!='hybrid':self.encoder=CrossEncoder(self.model_dir)
         self.ready=True
 
     def dataset_info(self):
@@ -77,20 +87,27 @@ class Engine:
         return dict(snapshot=m.get('snapshot','2021-04-27'),indexed_trials=m['records'],
             source=m.get('source','TREC 2021 historical ClinicalTrials.gov snapshot'),
             data_timestamp=m.get('data_timestamp'),serving_statuses=m.get('serving_statuses',[]),
-            registry_records=m.get('registry_records',m['records']),historical=not current)
+            registry_records=m.get('registry_records',m['records']),historical=not current,
+            collection_notice=m.get('collection_notice',''))
 
     def search(self,note,method='bm25',top_k=10):
         if not self.ready:raise RuntimeError('Index is not ready')
-        if method not in {'bm25','fusion','rerank'}:raise ValueError('Unknown method')
+        if method not in {'bm25','fusion','rerank','hybrid'}:raise ValueError('Unknown method')
+        if method=='hybrid' and self.semantic is None:raise ValueError('MedCPT vector index is unavailable')
         if method=='rerank' and self.encoder is None:raise ValueError('Reranking model is unavailable')
         started=time.perf_counter()
         with closing(self.connect()) as db:
-            pool=self.config.get('rerank_pool','baseline') if method=='rerank' else 'lexical_rrf' if method=='fusion' else 'baseline'
+            pool=self.config.get('rerank_pool','baseline') if method=='rerank' else 'lexical_rrf' if method in {'fusion','hybrid'} else 'baseline'
             if pool=='lexical_rrf':
-                balanced=method=='fusion' and self.config.get('fusion_balance_weight') is not None
+                balanced=method=='hybrid' or method=='fusion' and self.config.get('fusion_balance_weight') is not None
                 hits=rank_fusion([search_fts(db,q,1000,True) for q in [note,focused(note,self.vocab),opening(note)]],k=1000 if balanced else 200)
-                if balanced:hits=rank_fusion([search_fts(db,note,1000),hits],weights=[1.,self.config['fusion_balance_weight']])
+                if balanced:hits=rank_fusion([search_fts(db,note,1000),hits],k=1000 if method=='hybrid' else 200,weights=[1.,self.config.get('fusion_balance_weight',2.)])
             else:hits=search_fts(db,note)
+            lexical_seconds=time.perf_counter()-started;dense_seconds=0.
+            if method=='hybrid':
+                tick=time.perf_counter();dense=self.semantic.search(note,1000)
+                dense_seconds=time.perf_counter()-tick
+                hits=rank_fusion([hits,dense],k=200,weights=[1.,self.config.get('semantic_rrf_weight',1.)])
             original=[d for d,_ in hits];score_map=dict(hits);positions={d:i for i,d in enumerate(original,1)}
             ranking=original;ce_scores={}
             if method=='rerank' and ranking:
@@ -117,4 +134,6 @@ class Engine:
                     registry_url='https://clinicaltrials.gov/study/'+trial_id,**extra))
         return dict(schema_version='1.1',method=method,**self.dataset_info(),
             candidate_count=len(original),rerank_scored_pairs=len(ce_scores),seconds=round(time.perf_counter()-started,3),results=results,
+            pipeline='lexical_medcpt_rrf' if method=='hybrid' else method,
+            timing=dict(lexical_seconds=round(lexical_seconds,3),semantic_seconds=round(dense_seconds,3)),
             notice='Research retrieval only. Eligibility is not assessed. Registry status is reported as of the snapshot; verify the current record and contact the study team.')

@@ -85,6 +85,50 @@ def test_configured_pipeline_is_used_when_browser_omits_method(engine):
         assert '<select' not in client.get('/').text
 
 
+def test_hybrid_adds_semantic_only_candidates_without_reranking(engine,monkeypatch):
+    calls=[]
+    class Semantic:
+        def __init__(self,*args):self.ids={'NCT00000001','NCT00000002'}
+        def search(self,note,count):
+            calls.append(count)
+            return [('NCT00000002',10.),('NCT00000001',1.)]
+    monkeypatch.setattr('app.semantic.SemanticIndex',Semantic)
+    engine.vector_dir='test-bundle';engine.config.update(default_method='hybrid',fusion_balance_weight=2.,semantic_rrf_weight=1.)
+    with TestClient(create_app(engine)) as client:
+        cfg=client.get('/config').json()
+        assert cfg['default_method']=='hybrid' and cfg['semantic_available'] and not cfg['reranking_available']
+        response=client.post('/match',json={'note':'A patient with diabetes taking metformin.'})
+        assert response.status_code==200
+        result=response.json()
+        assert result['pipeline']=='lexical_medcpt_rrf' and result['candidate_count']==2
+        assert result['rerank_scored_pairs']==0 and calls==[1000]
+        assert {r['trial_id'] for r in result['results']}==Semantic().ids
+        assert all(r['reranker_score'] is None for r in result['results'])
+        assert '<select' not in client.get('/').text
+        assert 'pipeline-description' in client.get('/').text
+        assert client.post('/match',json={'note':'A patient with diabetes history.','method':'rerank'}).status_code==422
+
+
+def test_hybrid_refuses_missing_or_mismatched_vectors(engine,monkeypatch):
+    engine.config['default_method']='hybrid'
+    with pytest.raises(RuntimeError,match='matching MedCPT'):engine.load()
+    class Mismatched:
+        def __init__(self,*args):self.ids={'NCT99999999'}
+    monkeypatch.setattr('app.semantic.SemanticIndex',Mismatched)
+    engine.vector_dir='test-bundle'
+    with pytest.raises(RuntimeError,match='identities differ'):engine.load()
+
+
+def test_semantic_bundle_refuses_corrupt_model_before_inference(engine,tmp_path):
+    from app.semantic import SemanticIndex,digest
+    bundle=tmp_path/'vectors';bundle.mkdir()
+    (bundle/'damaged-model').write_bytes(b'corrupt')
+    manifest=dict(schema_version=1,dimensions=768,similarity='dot_product',query_max_tokens=128,
+        index_sha256=digest(engine.index_path),files={'damaged-model':'0'*64})
+    (bundle/'manifest.json').write_text(json.dumps(manifest))
+    with pytest.raises(RuntimeError,match='Corrupt or unsafe'):SemanticIndex(bundle,engine.index_path)
+
+
 def test_global_search_budget_rejects_excess_requests(engine,monkeypatch):
     monkeypatch.setenv('MAX_SEARCHES_PER_MINUTE','1')
     with TestClient(create_app(engine)) as client:

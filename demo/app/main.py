@@ -12,13 +12,14 @@ from fastapi.responses import FileResponse,JSONResponse
 from fastapi.security import HTTPBasic,HTTPBasicCredentials
 from pydantic import BaseModel,ConfigDict,Field,field_validator
 from .retrieval import Engine
+from .settings import load_settings
 
 STATIC=Path(__file__).parent/'static'
 
 class MatchRequest(BaseModel):
     model_config=ConfigDict(extra='forbid')
     note:str=Field(min_length=20,max_length=12000)
-    method:Literal['bm25','fusion','rerank']|None=None
+    method:Literal['bm25','fusion','hybrid']|None=None
     top_k:int=Field(default=10,ge=1,le=10)
 
     @field_validator('note')
@@ -30,10 +31,10 @@ class MatchRequest(BaseModel):
 
 def create_app(engine=None):
     if engine is None:
-        config=json.loads((Path(__file__).parent/'config.json').read_text(encoding='utf-8'))
-        engine=Engine(os.environ.get('TRIAL_INDEX_PATH','data/indexes/bm25.sqlite'),os.environ.get('RERANK_MODEL_DIR') or None,expected_records=None,config=config)
+        config,index,bundle=load_settings()
+        engine=Engine(index,expected_records=None,config=config,vector_dir=bundle)
     selected_method=engine.config.get('default_method','fusion')
-    if selected_method not in {'bm25','fusion','rerank'}:raise ValueError('Invalid configured pipeline')
+    if selected_method not in {'bm25','fusion','hybrid'}:raise ValueError('Invalid configured pipeline')
     username=os.environ.get('DEMO_USERNAME','');password=os.environ.get('DEMO_PASSWORD','')
     require_auth=os.environ.get('REQUIRE_AUTH','false').lower()=='true'
     if require_auth and (not username or not password):raise RuntimeError('REQUIRE_AUTH needs DEMO_USERNAME and DEMO_PASSWORD')
@@ -82,7 +83,9 @@ def create_app(engine=None):
 
     @app.get('/config',dependencies=[Depends(authenticate)])
     def config():
-        return dict(**engine.dataset_info(),reranking_available=engine.encoder is not None,default_method=selected_method)
+        return dict(**engine.dataset_info(),reranking_available=False,default_method=selected_method,
+            semantic_available=engine.semantic is not None,semantic_rrf_weight=engine.config.get('semantic_rrf_weight',1.),
+            pipeline='lexical_medcpt_rrf' if selected_method=='hybrid' else selected_method)
 
     @app.get('/openapi.json',dependencies=[Depends(authenticate)],include_in_schema=False)
     def openapi():return app.openapi()

@@ -1,0 +1,10 @@
+{
+  "completed": 5376,
+  "total": 20000,
+  "new_this_run": 5376,
+  "seconds_this_run": 2489.2874471000005,
+  "records_per_second": 2.1596541637901225,
+  "estimated_remaining_minutes": 112.85757572665676,
+  "last_shard_seconds": 220.33659210000042,
+  "peak_process_mib": 297.1953125
+}

@@ -1,0 +1,68 @@
+{
+  "pipeline": "lexical_medcpt_rrf",
+  "records": 5120,
+  "cross_encoder": false,
+  "patients": {
+    "1": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.504,
+      "timing": {
+        "lexical_seconds": 0.643,
+        "semantic_seconds": 0.825
+      }
+    },
+    "2": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.43,
+      "timing": {
+        "lexical_seconds": 0.754,
+        "semantic_seconds": 0.662
+      }
+    },
+    "3": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.111,
+      "timing": {
+        "lexical_seconds": 0.492,
+        "semantic_seconds": 0.604
+      }
+    },
+    "4": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.217,
+      "timing": {
+        "lexical_seconds": 0.565,
+        "semantic_seconds": 0.635
+      }
+    },
+    "5": {
+      "top10_exact_match": true,
+      "candidates": 200,
+      "seconds": 1.503,
+      "timing": {
+        "lexical_seconds": 0.894,
+        "semantic_seconds": 0.593
+      }
+    }
+  },
+  "index_sha256": "5e3cfe7b35089bf244c67171575f522170099bf2006cead4e3e0ae8d8ac4dc8c",
+  "total_seconds_including_startup": 14.518,
+  "passed": true,
+  "api_tests": {
+    "passed": 25,
+    "seconds": 4.68
+  },
+  "bundle_builder_checks": {
+    "synthetic_collection_sizes": [
+      2,
+      7
+    ],
+    "record_count_derived": true,
+    "failed_copy_not_published": true,
+    "source_hash_and_identity_checks": true
+  }
+}

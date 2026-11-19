@@ -73,6 +73,7 @@ resource app 'Microsoft.App/containerApps@2025-07-01' = {
           resources: { cpu: json('0.5'), memory: '1Gi' }
           env: concat([
             { name: 'TRIAL_INDEX_PATH', value: '/data/bm25.sqlite' }
+            { name: 'TRIAL_PIPELINE', value: 'fusion' }
             { name: 'MAX_SEARCHES_PER_MINUTE', value: '10' }
             { name: 'DEMO_USERNAME', value: demoUsername }
             { name: 'REQUIRE_AUTH', value: empty(demoUsername) ? 'false' : 'true' }

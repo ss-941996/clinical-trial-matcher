@@ -1,0 +1,100 @@
+{
+  "selected_hybrid": "hybrid_1",
+  "metrics": {
+    "macro": {
+      "ndcg@10": 0.0240706083825508,
+      "eligible_total": 1.6,
+      "judged@10": 0.04,
+      "eligible@10": 0.0,
+      "excluded@10": 0.4,
+      "unjudged@10": 9.6,
+      "eligible_recall@10": 0.0,
+      "eligible_recall@30": 0.16666666666666666,
+      "eligible_recall@200": 0.8888888888888888,
+      "excluded_eligible_pairs@10": 0.0,
+      "inversions@10": 0.0,
+      "inversion_rate@10": null
+    },
+    "per_topic": {
+      "1": {
+        "ndcg@10": 0.120353041912754,
+        "eligible_total": 4,
+        "judged@10": 0.2,
+        "eligible@10": 0,
+        "excluded@10": 2,
+        "unjudged@10": 8,
+        "eligible_recall@10": 0.0,
+        "eligible_recall@30": 0.5,
+        "eligible_recall@200": 1.0,
+        "excluded_eligible_pairs@10": 0,
+        "inversions@10": 0,
+        "inversion_rate@10": null
+      },
+      "2": {
+        "ndcg@10": 0.0,
+        "eligible_total": 0,
+        "judged@10": 0.0,
+        "eligible@10": 0,
+        "excluded@10": 0,
+        "unjudged@10": 10,
+        "eligible_recall@10": null,
+        "eligible_recall@30": null,
+        "eligible_recall@200": null,
+        "excluded_eligible_pairs@10": 0,
+        "inversions@10": 0,
+        "inversion_rate@10": null
+      },
+      "3": {
+        "ndcg@10": 0.0,
+        "eligible_total": 0,
+        "judged@10": 0.0,
+        "eligible@10": 0,
+        "excluded@10": 0,
+        "unjudged@10": 10,
+        "eligible_recall@10": null,
+        "eligible_recall@30": null,
+        "eligible_recall@200": null,
+        "excluded_eligible_pairs@10": 0,
+        "inversions@10": 0,
+        "inversion_rate@10": null
+      },
+      "4": {
+        "ndcg@10": 0.0,
+        "eligible_total": 1,
+        "judged@10": 0.0,
+        "eligible@10": 0,
+        "excluded@10": 0,
+        "unjudged@10": 10,
+        "eligible_recall@10": 0.0,
+        "eligible_recall@30": 0.0,
+        "eligible_recall@200": 1.0,
+        "excluded_eligible_pairs@10": 0,
+        "inversions@10": 0,
+        "inversion_rate@10": null
+      },
+      "5": {
+        "ndcg@10": 0.0,
+        "eligible_total": 3,
+        "judged@10": 0.0,
+        "eligible@10": 0,
+        "excluded@10": 0,
+        "unjudged@10": 10,
+        "eligible_recall@10": 0.0,
+        "eligible_recall@30": 0.0,
+        "eligible_recall@200": 0.6666666666666666,
+        "excluded_eligible_pairs@10": 0,
+        "inversions@10": 0,
+        "inversion_rate@10": null
+      }
+    }
+  },
+  "seconds": {
+    "1": 64.07098169999881,
+    "2": 57.2698507999994,
+    "3": 52.313275700000304,
+    "4": 64.62752929999988,
+    "5": 56.32134389999919
+  },
+  "peak_process_mib": 576.4609375,
+  "promising_for_expansion": false
+}

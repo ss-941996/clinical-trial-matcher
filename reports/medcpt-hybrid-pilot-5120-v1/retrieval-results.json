@@ -1,0 +1,562 @@
+{
+  "scope": "5,120-trial sorted-prefix subset; five reused development patients",
+  "selected_hybrid": "hybrid_1",
+  "arms": {
+    "balanced_fusion": {
+      "macro": {
+        "ndcg@10": 0.20926027194247912,
+        "eligible_total": 1.6,
+        "judged@10": 0.16,
+        "eligible@10": 0.4,
+        "excluded@10": 0.6,
+        "unjudged@10": 8.4,
+        "eligible_recall@10": 0.19444444444444442,
+        "eligible_recall@30": 0.27777777777777773,
+        "eligible_recall@200": 0.5555555555555555,
+        "excluded_eligible_pairs@10": 0.4,
+        "inversions@10": 0.2,
+        "inversion_rate@10": 0.5
+      },
+      "per_topic": {
+        "1": {
+          "ndcg@10": 0.27044903730690983,
+          "eligible_total": 4,
+          "judged@10": 0.3,
+          "eligible@10": 1,
+          "excluded@10": 2,
+          "unjudged@10": 7,
+          "eligible_recall@10": 0.25,
+          "eligible_recall@30": 0.5,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 2,
+          "inversions@10": 1,
+          "inversion_rate@10": 0.5
+        },
+        "2": {
+          "ndcg@10": 0.3065735963827292,
+          "eligible_total": 0,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "3": {
+          "ndcg@10": 0.0,
+          "eligible_total": 0,
+          "judged@10": 0.0,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 10,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "4": {
+          "ndcg@10": 0.0,
+          "eligible_total": 1,
+          "judged@10": 0.2,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 8,
+          "eligible_recall@10": 0.0,
+          "eligible_recall@30": 0.0,
+          "eligible_recall@200": 0.0,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "5": {
+          "ndcg@10": 0.46927872602275644,
+          "eligible_total": 3,
+          "judged@10": 0.2,
+          "eligible@10": 1,
+          "excluded@10": 0,
+          "unjudged@10": 8,
+          "eligible_recall@10": 0.3333333333333333,
+          "eligible_recall@30": 0.3333333333333333,
+          "eligible_recall@200": 0.6666666666666666,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        }
+      }
+    },
+    "medcpt_dense": {
+      "macro": {
+        "ndcg@10": 0.09906361167446749,
+        "eligible_total": 1.6,
+        "judged@10": 0.08,
+        "eligible@10": 0.4,
+        "excluded@10": 0.4,
+        "unjudged@10": 9.2,
+        "eligible_recall@10": 0.19444444444444442,
+        "eligible_recall@30": 0.611111111111111,
+        "eligible_recall@200": 0.8888888888888888,
+        "excluded_eligible_pairs@10": 0.2,
+        "inversions@10": 0.0,
+        "inversion_rate@10": 0.0
+      },
+      "per_topic": {
+        "1": {
+          "ndcg@10": 0.2013363322207467,
+          "eligible_total": 4,
+          "judged@10": 0.2,
+          "eligible@10": 1,
+          "excluded@10": 1,
+          "unjudged@10": 8,
+          "eligible_recall@10": 0.25,
+          "eligible_recall@30": 0.5,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 1,
+          "inversions@10": 0,
+          "inversion_rate@10": 0.0
+        },
+        "2": {
+          "ndcg@10": 0.0,
+          "eligible_total": 0,
+          "judged@10": 0.0,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 10,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "3": {
+          "ndcg@10": 0.0,
+          "eligible_total": 0,
+          "judged@10": 0.0,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 10,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "4": {
+          "ndcg@10": 0.13755548414400529,
+          "eligible_total": 1,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.0,
+          "eligible_recall@30": 1.0,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "5": {
+          "ndcg@10": 0.15642624200758548,
+          "eligible_total": 3,
+          "judged@10": 0.1,
+          "eligible@10": 1,
+          "excluded@10": 0,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.3333333333333333,
+          "eligible_recall@30": 0.3333333333333333,
+          "eligible_recall@200": 0.6666666666666666,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        }
+      }
+    },
+    "hybrid_0.25": {
+      "macro": {
+        "ndcg@10": 0.28960785789939775,
+        "eligible_total": 1.6,
+        "judged@10": 0.16,
+        "eligible@10": 0.4,
+        "excluded@10": 0.8,
+        "unjudged@10": 8.4,
+        "eligible_recall@10": 0.19444444444444442,
+        "eligible_recall@30": 0.27777777777777773,
+        "eligible_recall@200": 0.5555555555555555,
+        "excluded_eligible_pairs@10": 0.4,
+        "inversions@10": 0.0,
+        "inversion_rate@10": 0.0
+      },
+      "per_topic": {
+        "1": {
+          "ndcg@10": 0.4781373381389026,
+          "eligible_total": 4,
+          "judged@10": 0.3,
+          "eligible@10": 1,
+          "excluded@10": 2,
+          "unjudged@10": 7,
+          "eligible_recall@10": 0.25,
+          "eligible_recall@30": 0.5,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 2,
+          "inversions@10": 0,
+          "inversion_rate@10": 0.0
+        },
+        "2": {
+          "ndcg@10": 0.38685280723454163,
+          "eligible_total": 0,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "3": {
+          "ndcg@10": 0.0,
+          "eligible_total": 0,
+          "judged@10": 0.0,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 10,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "4": {
+          "ndcg@10": 0.1137704181007881,
+          "eligible_total": 1,
+          "judged@10": 0.2,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 8,
+          "eligible_recall@10": 0.0,
+          "eligible_recall@30": 0.0,
+          "eligible_recall@200": 0.0,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "5": {
+          "ndcg@10": 0.46927872602275644,
+          "eligible_total": 3,
+          "judged@10": 0.2,
+          "eligible@10": 1,
+          "excluded@10": 0,
+          "unjudged@10": 8,
+          "eligible_recall@10": 0.3333333333333333,
+          "eligible_recall@30": 0.3333333333333333,
+          "eligible_recall@200": 0.6666666666666666,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        }
+      }
+    },
+    "hybrid_0.5": {
+      "macro": {
+        "ndcg@10": 0.29946262036588517,
+        "eligible_total": 1.6,
+        "judged@10": 0.12,
+        "eligible@10": 0.6,
+        "excluded@10": 0.6,
+        "unjudged@10": 8.8,
+        "eligible_recall@10": 0.27777777777777773,
+        "eligible_recall@30": 0.3611111111111111,
+        "eligible_recall@200": 0.8888888888888888,
+        "excluded_eligible_pairs@10": 0.4,
+        "inversions@10": 0.2,
+        "inversion_rate@10": 0.5
+      },
+      "per_topic": {
+        "1": {
+          "ndcg@10": 0.5176231250161016,
+          "eligible_total": 4,
+          "judged@10": 0.3,
+          "eligible@10": 2,
+          "excluded@10": 1,
+          "unjudged@10": 7,
+          "eligible_recall@10": 0.5,
+          "eligible_recall@30": 0.75,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 2,
+          "inversions@10": 1,
+          "inversion_rate@10": 0.5
+        },
+        "2": {
+          "ndcg@10": 0.38685280723454163,
+          "eligible_total": 0,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "3": {
+          "ndcg@10": 0.0,
+          "eligible_total": 0,
+          "judged@10": 0.0,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 10,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "4": {
+          "ndcg@10": 0.12355844355602609,
+          "eligible_total": 1,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.0,
+          "eligible_recall@30": 0.0,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "5": {
+          "ndcg@10": 0.46927872602275644,
+          "eligible_total": 3,
+          "judged@10": 0.1,
+          "eligible@10": 1,
+          "excluded@10": 0,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.3333333333333333,
+          "eligible_recall@30": 0.3333333333333333,
+          "eligible_recall@200": 0.6666666666666666,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        }
+      }
+    },
+    "hybrid_1": {
+      "macro": {
+        "ndcg@10": 0.30303402395807916,
+        "eligible_total": 1.6,
+        "judged@10": 0.12,
+        "eligible@10": 0.6,
+        "excluded@10": 0.6,
+        "unjudged@10": 8.8,
+        "eligible_recall@10": 0.27777777777777773,
+        "eligible_recall@30": 0.5555555555555555,
+        "eligible_recall@200": 0.8888888888888888,
+        "excluded_eligible_pairs@10": 0.4,
+        "inversions@10": 0.2,
+        "inversion_rate@10": 0.5
+      },
+      "per_topic": {
+        "1": {
+          "ndcg@10": 0.5214831023890925,
+          "eligible_total": 4,
+          "judged@10": 0.3,
+          "eligible@10": 2,
+          "excluded@10": 1,
+          "unjudged@10": 7,
+          "eligible_recall@10": 0.5,
+          "eligible_recall@30": 1.0,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 2,
+          "inversions@10": 1,
+          "inversion_rate@10": 0.5
+        },
+        "2": {
+          "ndcg@10": 0.38685280723454163,
+          "eligible_total": 0,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "3": {
+          "ndcg@10": 0.0,
+          "eligible_total": 0,
+          "judged@10": 0.0,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 10,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "4": {
+          "ndcg@10": 0.13755548414400529,
+          "eligible_total": 1,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.0,
+          "eligible_recall@30": 0.0,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "5": {
+          "ndcg@10": 0.46927872602275644,
+          "eligible_total": 3,
+          "judged@10": 0.1,
+          "eligible@10": 1,
+          "excluded@10": 0,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.3333333333333333,
+          "eligible_recall@30": 0.6666666666666666,
+          "eligible_recall@200": 0.6666666666666666,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        }
+      }
+    },
+    "hybrid_2": {
+      "macro": {
+        "ndcg@10": 0.280347588872467,
+        "eligible_total": 1.6,
+        "judged@10": 0.1,
+        "eligible@10": 0.4,
+        "excluded@10": 0.6,
+        "unjudged@10": 9.0,
+        "eligible_recall@10": 0.19444444444444442,
+        "eligible_recall@30": 0.4444444444444444,
+        "eligible_recall@200": 0.8888888888888888,
+        "excluded_eligible_pairs@10": 0.2,
+        "inversions@10": 0.0,
+        "inversion_rate@10": 0.0
+      },
+      "per_topic": {
+        "1": {
+          "ndcg@10": 0.4243704800563472,
+          "eligible_total": 4,
+          "judged@10": 0.2,
+          "eligible@10": 1,
+          "excluded@10": 1,
+          "unjudged@10": 8,
+          "eligible_recall@10": 0.25,
+          "eligible_recall@30": 1.0,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 1,
+          "inversions@10": 0,
+          "inversion_rate@10": 0.0
+        },
+        "2": {
+          "ndcg@10": 0.3065735963827292,
+          "eligible_total": 0,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "3": {
+          "ndcg@10": 0.0,
+          "eligible_total": 0,
+          "judged@10": 0.0,
+          "eligible@10": 0,
+          "excluded@10": 0,
+          "unjudged@10": 10,
+          "eligible_recall@10": null,
+          "eligible_recall@30": null,
+          "eligible_recall@200": null,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "4": {
+          "ndcg@10": 0.20151514190050246,
+          "eligible_total": 1,
+          "judged@10": 0.1,
+          "eligible@10": 0,
+          "excluded@10": 1,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.0,
+          "eligible_recall@30": 0.0,
+          "eligible_recall@200": 1.0,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        },
+        "5": {
+          "ndcg@10": 0.46927872602275644,
+          "eligible_total": 3,
+          "judged@10": 0.1,
+          "eligible@10": 1,
+          "excluded@10": 0,
+          "unjudged@10": 9,
+          "eligible_recall@10": 0.3333333333333333,
+          "eligible_recall@30": 0.3333333333333333,
+          "eligible_recall@200": 0.6666666666666666,
+          "excluded_eligible_pairs@10": 0,
+          "inversions@10": 0,
+          "inversion_rate@10": null
+        }
+      }
+    }
+  },
+  "timing": {
+    "1": {
+      "lexical_seconds": 2.3437135000003764,
+      "dense_seconds": 0.9470965000000433
+    },
+    "2": {
+      "lexical_seconds": 1.0611606000002212,
+      "dense_seconds": 0.778304699999353
+    },
+    "3": {
+      "lexical_seconds": 0.6466698000003817,
+      "dense_seconds": 0.7736365999990085
+    },
+    "4": {
+      "lexical_seconds": 0.6752655999989656,
+      "dense_seconds": 0.799105199999758
+    },
+    "5": {
+      "lexical_seconds": 0.9242505000001984,
+      "dense_seconds": 0.8060064999990573
+    }
+  },
+  "peak_process_mib": 233.29296875,
+  "zero_eligible_topics": [
+    "2",
+    "3"
+  ],
+  "timing_scope": "First-run sequential queries, model loading excluded; dense includes vector shard disk reads; not a p95 estimate"
+}

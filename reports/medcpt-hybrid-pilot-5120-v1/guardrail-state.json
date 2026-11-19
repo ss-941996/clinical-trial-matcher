@@ -1,0 +1,25 @@
+{
+  "observed_at_utc": "2026-11-19T12:13:41+00:00",
+  "system_cpu_percent": 44.43204641821023,
+  "paused": false,
+  "affinity_mask": 8192,
+  "high_samples": 0,
+  "low_samples": 0,
+  "pids": [
+    34304
+  ],
+  "mode": "fixed_single_cpu",
+  "automatic_pausing": false,
+  "workers": [
+    {
+      "pid": 34304,
+      "alive": false,
+      "cpu_seconds": 330.1875,
+      "cpu_delta_seconds": 0.25
+    }
+  ],
+  "experiment_cpu_percent_of_machine": 0.35714285714285715,
+  "encoded": 5120,
+  "encoding_total": 5120,
+  "checkpoint_age_seconds": 336.3808169364929
+}
