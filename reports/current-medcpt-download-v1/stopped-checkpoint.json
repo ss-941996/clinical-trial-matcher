@@ -1,0 +1,37 @@
+{
+  "verified_utc": "2026-11-19T18:14:23.372356+00:00",
+  "stage": "stopped",
+  "vectors_verified": 11288,
+  "total_trials": 65160,
+  "source_bytes_covered": 162005442,
+  "source_mib_covered": 154.5,
+  "source_mib_total": 868.46,
+  "source_percent": 17.7901,
+  "last_trial_id": "NCT05460416",
+  "sqlite_integrity": "ok",
+  "all_vector_checksums": "ok",
+  "all_vectors_finite": true,
+  "resume_command": ".\\scripts\\run_current_medcpt.ps1 -Action Start",
+  "files": {
+    "catalog.sqlite": {
+      "bytes": 338407424,
+      "sha256": "a9fd505ce4386da43bd98d761d4998cc201300cb947f3df0553a62fe5a5baa40"
+    },
+    "bm25.sqlite": {
+      "bytes": 483037184,
+      "sha256": "f46559d7a0d42c9f03545d3db4bd2b2db9ac5056de47895e685fab01c13cb425"
+    },
+    "protocol.json": {
+      "bytes": 3729,
+      "sha256": "b64e51783c8ab2eecf44f4e1811af85bb8cc60b054c0e6202e9e1b0872c39442"
+    },
+    "source.json": {
+      "bytes": 196,
+      "sha256": "421c41e2ed325e2e6bc9edadacbcbdc060ba8634a7a48653825d1703f05d0a1b"
+    },
+    "vectors.sqlite": {
+      "bytes": 46600192,
+      "sha256": "df053684a22d273ce8fcbea0ba65a0432b653d183cfd7e81d4354d33f534f516"
+    }
+  }
+}

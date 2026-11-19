@@ -1,0 +1,9 @@
+{
+  "records": 65160,
+  "unique_trial_ids": 65160,
+  "duplicates": 0,
+  "status_counts": {
+    "RECRUITING": 65160
+  },
+  "seconds": 32.62
+}

@@ -39,11 +39,17 @@ Eligibility checks and automated registry updates remain future work.
 
 ## Roadmap: current-data hybrid demo
 
+The user expanded the collection from 20,000 to **all 65,160 recruiting trials**
+in the 19 November 2026 local download. A resumable, single-core MedCPT runner
+saves every four-trial inference batch and logs 10% source-byte milestones.
+See [checkpoint guarantees, live logs and stop/resume commands](reports/current-medcpt-download-v1/README.md).
+
+
 | Stage | Status |
 |---|---|
 | 1. Generalise configuration and bundle building | Implemented: configurable paths, dynamic record count, model/token settings from verified protocol, collection metadata from the bundle |
-| 2. Prepare 20,000 current recruiting trials | Pending; select and document a reproducible collection |
-| 3. Encode and build indexes locally | Pending; one core, low priority, sequential checkpoints and progress logs |
+| 2. Prepare the full current recruiting download | Complete; 65,160 unique recruiting trials imported and validated with source checksum |
+| 3. Encode and build indexes locally | In progress; one core, low priority, per-batch durable checkpoints and progress logs |
 | 4. Test the current-data frontend/backend | Pending; the historical pilot is already operational |
 | 5. Package app and matching data Docker images | Pending for the hybrid pipeline |
 | 6. Deploy the tested demo on Azure | Pending; no Azure compute used for encoding |
@@ -453,3 +459,5 @@ All **50 patients** were evaluated sequentially against **375,580 trials**, with
 | Balanced fusion | 0.3592 | 4.84% | 10.82% | 32.41% | 2.42 |
 
 See [the full report](reports/trec2022-balanced-fusion-v1/README.md) for paired uncertainty, per-patient results, latency, limited prior exposure and reproduction. These are first completed frozen 2022 label-based results; future 2022 checks are regression measurements. The frontend remains on balanced fusion.
+
+Current MedCPT encoding was safely paused at user request on 19 November 2026: **11,288 vectors saved (154.50 / 868.46 MiB; 17.79%)**. See [checkpoint and resume instructions](reports/current-medcpt-download-v1/README.md).

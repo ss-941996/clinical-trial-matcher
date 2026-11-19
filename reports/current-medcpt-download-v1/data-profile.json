@@ -1,0 +1,11 @@
+{
+  "records": 65160,
+  "status_counts": {
+    "RECRUITING": 65160
+  },
+  "recruiting": 65160,
+  "source_sha256": "afa198248b554be7f5792d200c56b5e23a671c438bc293d6f8f9445f5484383d",
+  "source_bytes": 910651336,
+  "snapshot_download_date": "2026-11-19",
+  "registry_release_timestamp": null
+}

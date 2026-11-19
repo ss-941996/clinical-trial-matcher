@@ -1,0 +1,16 @@
+{
+  "tests_passed": 37,
+  "test_seconds": 9.95,
+  "dataset_records": 65160,
+  "recruiting_records": 65160,
+  "duplicates": 0,
+  "source_bytes": 910651336,
+  "batch_size": 4,
+  "checkpoint_summary_interval": 32,
+  "liveness_seconds": 30,
+  "source_byte_milestone_interval_percent": 10,
+  "requested_duty_cycle": 0.5,
+  "worker_logical_cpus": 1,
+  "resume_test": "Graceful stop after first four vectors, resume encoded remaining two, complete resume invoked no model",
+  "status": "Background preparation/encoding run launched; see local progress.json for live state"
+}
