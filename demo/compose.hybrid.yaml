@@ -1,0 +1,60 @@
+name: clinical-trial-matcher-hybrid
+services:
+  trial-index:
+    image: clinical-trial-hybrid-index:${HYBRID_INDEX_VERSION:?set HYBRID_INDEX_VERSION for this bundle}
+    build:
+      context: ./index-image
+      dockerfile: Dockerfile.hybrid
+      additional_contexts:
+        serving_bundle: ${HYBRID_BUNDLE_PATH:?set HYBRID_BUNDLE_PATH to the completed serving bundle}
+    volumes:
+      - type: volume
+        source: hybrid-index
+        target: /data
+        volume:
+          nocopy: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    network_mode: none
+    restart: "no"
+
+  matcher:
+    image: clinical-trial-matcher:hybrid
+    build:
+      context: .
+      args:
+        REQUIREMENTS: requirements-hybrid.txt
+    depends_on:
+      trial-index:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      TRIAL_PIPELINE: hybrid
+      TRIAL_INDEX_PATH: /data/bundle/bm25.sqlite
+      TRIAL_HYBRID_BUNDLE: /data/bundle
+      DEMO_USERNAME: ${DEMO_USERNAME:-}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+      REQUIRE_AUTH: ${REQUIRE_AUTH:-false}
+    volumes:
+      - type: volume
+        source: hybrid-index
+        target: /data
+        read_only: true
+        volume:
+          nocopy: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 0.5
+    mem_limit: 1g
+    init: true
+    stop_grace_period: 60s
+    restart: unless-stopped
+
+volumes:
+  hybrid-index:
+    name: clinical-trial-hybrid-${HYBRID_INDEX_VERSION:?set HYBRID_INDEX_VERSION for this bundle}

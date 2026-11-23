@@ -1,6 +1,104 @@
 CLINICAL TRIAL MATCHER - IMPLEMENTATION PLAN
 Prepared: 16 November 2026
 
+CURRENT DATA DEMO ROADMAP
+Status checked: 23 November 2026, 16:53 Berlin time.
+
+PHASE 1 - SHIP THE HYBRID DEMO
+1. [x] Configure hybrid retrieval.
+   - Run balanced SQLite keyword search and MedCPT vector search. Combine
+     rankings by NCT ID with weighted reciprocal rank fusion. Keep up to 200
+     candidates and show up to 10 results without a reranker.
+2. [x] Prepare the first registry snapshot.
+   - Validate and import all 65,160 recruiting trials from the 19 November
+     ClinicalTrials.gov download. Record its source, date, and checksum.
+3. [ ] Finish the local embeddings and indexes. In progress.
+   - At 16:53 Berlin time the worker reported 41,472 of 65,160 encoded
+     (63.6%), with about 7 hours 35 minutes of encoding left.
+   - Read progress.json and live.jsonl under
+     data/current/ctgov-download-20261119-medcpt/ for current status.
+   - Done when the worker reports stage: complete and serving-bundle contains
+     bm25.sqlite, the vector shards, query model and tokenizer, and manifest.
+4. [ ] Verify hybrid search locally and add the match explanation.
+   - Start demo/serve_hybrid.py against the new serving bundle. Check readiness
+     and /config, then submit a synthetic note through the UI and /match.
+   - Confirm the response uses hybrid search, returns at most ten unique NCT
+     IDs, and opens trial details. Record cold and warm latency. Check that
+     invalid input gets a useful error.
+   - Add a "Why did this match?" panel using actual matched terms, available
+     keyword and vector ranks, and cited text from the trial record. Label
+     this as evidence for why the trial was retrieved.
+5. [ ] Build, test, and publish the first pair of images to GHCR.
+   - Use demo/compose.hybrid.yaml to build separate linux/amd64 app and index
+     images from the tested app and finished bundle. Record startup time and
+     peak RAM. Verify that a restart and an app-only rebuild reuse the index.
+   - Sign in to GHCR and use scripts/publish_hybrid_images.ps1 to push both.
+     Example initial tags: clinical-trial-matcher:hybrid-v1 and
+     clinical-trial-hybrid-index:ctgov-20261119-medcpt-v1, under
+     ghcr.io/ss-941996/. Record the digest returned for each image.
+6. [ ] Deploy and verify the Azure demo.
+   - Adapt the existing keyword-only Bicep template for the hybrid app and
+     configure it to pull from GHCR. Pin the app and index image digests.
+   - Run the index image as an init container that seeds a shared volume.
+     Mount the bundle read only in the app. Use Container Apps Consumption
+     with zero to one replica and size it from the Docker measurements.
+   - Run the first post-deploy smoke check by hand if the runner is still
+     pending. Measure the hosted cold start and confirm a warm search works.
+7. [ ] Record the baseline release.
+   - Save the Azure revision, published image tags and digests, snapshot date,
+     trial count, and smoke check result. Use this release as the comparison
+     baseline and as the first rollback target for Phase 2.
+
+PHASE 2 - REGISTRY REFRESH AND AZURE RELEASE CHECKS
+1. [ ] Make the post-deploy smoke check repeatable.
+   - Accept the app or revision URL and expected snapshot, trial count, and
+     index version. Use bounded readiness retries so a cold start can finish.
+   - Check /health/ready and /config, confirm the expected version and hybrid
+     pipeline, submit a synthetic note to /match, and verify trial details for
+     a returned NCT ID. Return a clear pass or failure and record latency.
+2. [ ] Download and verify a recruiting snapshot locally.
+   - Extend src/current_data.py with a recruiting-only scope and a separate
+     download checkpoint for that scope. Read /version, skip an already
+     processed release, and fetch all /studies JSON pages with the RECRUITING
+     filter. Retry recoverable errors and retain the previous valid snapshot.
+   - Check that the release timestamp did not change across pagination and
+     that the unique NCT ID count equals the API total. Convert the verified
+     pages to the JSON array the current MedCPT importer expects.
+3. [ ] Compare snapshots by NCT ID.
+   - Count new, removed, text-changed, metadata-only, and unchanged trials.
+     Remove trials that left the recruiting set from both search paths.
+   - Reuse a cached vector when the exact MedCPT input text hash and the model,
+     tokenizer and preprocessing settings match. Encode cache misses locally.
+     Optionally export a CSV of the changes for review.
+4. [ ] Build and validate the refreshed serving bundle locally.
+   - Rebuild SQLite for the new recruiting set. Export matching vector shards
+     and package them with the compatible query model and manifest in a new
+     release directory. Record the registry release and counts.
+   - Verify checksums, equality of SQLite and vector NCT ID sets, and a local
+     synthetic search. A failed or incomplete build leaves the live release
+     in place. Store snapshots and reusable vectors locally. GHCR holds the
+     published index images.
+5. [ ] Add the index-only build and GHCR publish path.
+   - Build only trial-index from the validated bundle in the hybrid Compose
+     file. Give each refresh a new tag based on the snapshot; for example,
+     ghcr.io/ss-941996/clinical-trial-hybrid-index:ctgov-20261130-medcpt-v1.
+   - Add an index-only mode to scripts/publish_hybrid_images.ps1. Push only the
+     new index image to GHCR, record its registry digest, and keep the old tag
+     and digest. For app-only changes, use the existing -AppOnly mode and
+     retain the previously deployed index digest.
+6. [ ] Deploy the refreshed image and prove rollback.
+   - Create an Azure revision that points to the new GHCR index digest and
+     pins the same app digest. A GHCR push alone does not change Azure's live
+     revision. After the init container seeds the bundle, run the smoke check
+     against the new revision and confirm the displayed snapshot and count.
+   - Record both releases. If the new revision fails its smoke check, restore
+     the previous working revision or redeploy its recorded image digests.
+7. [ ] Dry-run and schedule the local job.
+   - Start with a weekly local schedule after a full dry run. Verify that a
+     repeated release skips work, a partial download never reaches publishing,
+     and a failed check preserves the last good deployment. Initially review
+     the refresh report before publishing and deploying each new image.
+
 OBJECTIVE AND CURRENT STATUS
 Turn a synthetic free-text patient note into an explainable top-10 trial list.
 The supplied README defines the intended product. This document records the

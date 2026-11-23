@@ -14,6 +14,8 @@ Container Apps' monthly subscription-level grants currently cover 180,000 vCPU-s
 
 ## Publish images when ready
 
+For the MedCPT hybrid images, use the [hybrid GHCR publishing instructions](HYBRID.md#publish-the-tested-hybrid-images-to-ghcr). The commands and Azure template below are for the keyword-only demo.
+
 From the project root after local Docker verification. Replace `YOUR_GITHUB_USERNAME` with the account that owns your packages; publishing changes a remote service and is a manual next step.
 
 ```powershell

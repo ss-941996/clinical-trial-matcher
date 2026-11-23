@@ -111,7 +111,56 @@ recall@10 **27.78%**, recall@200 **88.89%**. Recall covers only three patients
 with eight judged eligible trials in this subset. Weight selection reused these
 patients. This is a screening result, not a full-corpus quality claim.
 
-The existing Docker Compose definitions explicitly retain the legacy lexical
-pipeline and current recruiting data. They do not yet package the hybrid bundle;
-existing images have not been rebuilt for this change. Packaging this hybrid
-runtime and matching index for Docker is a separate next step. Azure is unchanged.
+## Package the completed hybrid bundle in Docker
+
+After the current MedCPT run reports `stage: complete`, run these commands from
+the repository root with Docker Compose 2.17 or newer and BuildKit enabled:
+
+```powershell
+$env:HYBRID_BUNDLE_PATH = (Resolve-Path '.\data\current\ctgov-download-20261119-medcpt\serving-bundle' -ErrorAction Stop).Path
+$env:HYBRID_INDEX_VERSION = 'ctgov-20261119-medcpt-v1'
+docker compose -f demo/compose.hybrid.yaml up --build -d
+```
+
+Open <http://127.0.0.1:8000>. The index image verifies and copies the published
+SQLite index, vector shards, query encoder and manifest into the versioned
+volume. The app mounts that volume read only and encodes incoming notes on CPU.
+The image build uses only the finished serving bundle as its data input;
+encoding checkpoints and the raw download stay outside the build context.
+
+To rebuild only the app with the same index already in place:
+
+```powershell
+docker compose -f demo/compose.hybrid.yaml up --build -d --no-deps matcher
+```
+
+Use a new `HYBRID_INDEX_VERSION` for each refreshed bundle so it gets a separate
+image tag and volume. For Azure Container Apps, the same index image can run as
+an init container and seed a shared replica volume mounted at `/data`. The app
+then uses the same bundle paths as in Compose. The volume is reseeded for new
+replicas. Measure the full bundle's startup time and peak app memory before
+choosing Azure resources; the local 1 GiB Compose limit is a starting point.
+
+## Publish the tested hybrid images to GHCR
+
+After testing both images locally, sign in to GHCR with a GitHub token that
+can write packages. Enter the token at Docker's password prompt. Use the same
+index version that you built locally and pick a new app version for each release.
+
+```powershell
+$owner = 'ss-941996'
+docker login ghcr.io --username $owner
+.\scripts\publish_hybrid_images.ps1 -Owner $owner -AppVersion 'hybrid-v1' -IndexVersion $env:HYBRID_INDEX_VERSION
+```
+
+The script pushes the two existing local `linux/amd64` images. Record the
+`sha256` image digests shown by `docker push` for deployment. For a later app
+release that reuses the same published index image, run:
+
+```powershell
+.\scripts\publish_hybrid_images.ps1 -Owner $owner -AppVersion 'hybrid-v2' -AppOnly
+```
+
+The packages can stay private with GHCR pull credentials configured in Azure.
+The existing Azure template is for the keyword-only demo and still needs to be
+adapted for these hybrid images.
