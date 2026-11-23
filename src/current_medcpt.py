@@ -32,7 +32,15 @@ def save(path,value):
     temp=path.with_suffix(path.suffix+'.tmp')
     with temp.open('w',encoding='utf-8') as stream:
         json.dump(value,stream,indent=2);stream.write('\n');stream.flush();os.fsync(stream.fileno())
-    temp.replace(path)
+    import time as _checkpoint_time
+    for attempt in range(120):
+        try:
+            temp.replace(path)
+            break
+        except PermissionError:
+            if attempt == 119:
+                raise
+            _checkpoint_time.sleep(0.5)
 
 
 def read(path):return json.loads(Path(path).read_text(encoding='utf-8'))
