@@ -1,0 +1,7 @@
+﻿{
+    "stage":  "stopped",
+    "completed":  54644,
+    "total":  65160,
+    "last_saved_utc":  "2026-11-24T17:10:03+00:00",
+    "reason":  "Graceful stop requested; committed batches are saved"
+}
