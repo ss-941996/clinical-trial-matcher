@@ -2,7 +2,7 @@ CLINICAL TRIAL MATCHER - IMPLEMENTATION PLAN
 Prepared: 16 November 2026
 
 CURRENT DATA DEMO ROADMAP
-Status checked: 23 November 2026, 16:53 Berlin time.
+Status checked: 25 November 2026, 15:27 Berlin time.
 
 PHASE 1 - SHIP THE HYBRID DEMO
 1. [x] Configure hybrid retrieval.
@@ -12,9 +12,9 @@ PHASE 1 - SHIP THE HYBRID DEMO
 2. [x] Prepare the first registry snapshot.
    - Validate and import all 65,160 recruiting trials from the 19 November
      ClinicalTrials.gov download. Record its source, date, and checksum.
-3. [ ] Finish the local embeddings and indexes. In progress.
-   - At 16:53 Berlin time the worker reported 41,472 of 65,160 encoded
-     (63.6%), with about 7 hours 35 minutes of encoding left.
+3. [x] Finish the local embeddings and indexes.
+   - At 15:27 Berlin time the worker reported stage: complete with 65,160
+     of 65,160 vectors. The serving bundle manifest is present.
    - Read progress.json and live.jsonl under
      data/current/ctgov-download-20261119-medcpt/ for current status.
    - Done when the worker reports stage: complete and serving-bundle contains
@@ -98,6 +98,87 @@ PHASE 2 - REGISTRY REFRESH AND AZURE RELEASE CHECKS
      repeated release skips work, a partial download never reaches publishing,
      and a failed check preserves the last good deployment. Initially review
      the refresh report before publishing and deploying each new image.
+
+NOVEMBER 2026 ACADEMIC PAPER - HYBRID CLINICAL TRIAL RETRIEVAL
+Working title: Hybrid Retrieval for Recruiting Clinical Trials Using BM25 and MedCPT.
+Scope: Use the 65,160 recruiting trials downloaded from ClinicalTrials.gov on
+19 November 2026 throughout the paper. Use the five-section structure of
+Pradeep et al. (SIGIR 2022) as a format reference. The paper covers retrieval
+design and experiments. Hosting and registry refresh are industry deliverables.
+
+Shared with industry Phase 1:
+1. [x] Implement the hybrid retrieval pipeline and verify its design in code.
+2. [x] Validate and import the November snapshot. Build the SQLite FTS5 index.
+3. [x] Finish offline MedCPT encoding and confirm the serving bundle exists.
+4. [ ] Verify live note encoding, fused results, and trial details locally.
+       Use the same snapshot and search settings for the app and the paper.
+
+Mermaid diagram of the implemented pipeline:
+
+```mermaid
+flowchart TD
+    subgraph Offline["Offline indexing"]
+        T["ClinicalTrials.gov<br/>65,160 recruiting trials"]
+        T --> L["Build SQLite FTS5 keyword index"]
+        T --> A["MedCPT article encoder<br/>Encode trials missing from the checkpoint"]
+        A --> V["Store 768-dimensional trial vectors<br/>NumPy shards keyed by NCT ID"]
+    end
+    subgraph Online["Online search"]
+        P["Patient note"] --> B["Balanced lexical search<br/>Plain BM25 + fused field-weighted queries"]
+        B --> BL["Up to 1,000 lexical candidates"]
+        P --> Q["MedCPT query encoder<br/>Encode the note live"]
+        Q --> S["Rank trial vectors by dot product"]
+        S --> VL["Up to 1,000 vector candidates"]
+        BL --> F["Weighted RRF by NCT ID<br/>Default lexical:dense weights 1:1"]
+        VL --> F
+        F --> C["Up to 200 unique candidates"]
+        C --> UI["Return up to 10 trials in fused rank order"]
+    end
+    L --> B
+    V --> S
+```
+
+Paper structure:
+1. Introduction. Define patient-note-to-trial retrieval and ask what adding
+   MedCPT changes in the top ten, query latency, and resource use.
+2. Task Description and Data. Document snapshot provenance, recruiting filter,
+   indexed fields, NCT IDs, synthetic test notes, and any relevance judgments.
+3. System Architecture. Describe the diagram, checkpointed article encoding,
+   live query encoding, lexical fusion, and the final weighted RRF.
+4. Results. Compare plain BM25 and full hybrid on the same November snapshot
+   and fixed notes. Use one main results table with two rows and report paired
+   differences. Place the evaluation protocol at the start of this section.
+5. Conclusion. Summarize measured trade-offs and limits of one snapshot,
+   synthetic queries, and any relevance judgments. Finalize the abstract
+   after results are available.
+
+Paper presentation:
+- Follow the compact two-column ACM/SIGIR layout of the reference paper,
+  with Abstract, CCS Concepts, Keywords, the five main sections, and References.
+- Use one compact architecture figure in Section 3 with an ACM-style caption:
+  a patient note branches into balanced lexical and MedCPT retrieval, then
+  rejoins at weighted RRF. Label the two offline indexes and the 1,000 / 200 /
+  10 cutoffs. Keep checkpointing and vector storage details in the text.
+- Keep the main comparison to plain BM25 and full hybrid. Balanced lexical
+  and MedCPT alone are optional diagnostic runs for later supplementary
+  material. If those runs are included in judged comparisons, pool them too.
+
+Paper-only checklist:
+1. [x] Agree on the compact paper scope, five sections, diagram, and two methods.
+2. [ ] Freeze synthetic notes, settings, hardware, and timing protocol.
+3. [ ] Run plain BM25 and full hybrid. Save per-note rankings and timings.
+       Report median and p95 query latency in the main table. Summarize memory,
+       index size and build time alongside it. Use overlap to describe ranking
+       changes and distinguish per-session encoding time from total build time.
+4. [ ] For relevance claims, pool the top ten from both methods per note and
+       obtain blinded grades. Report nDCG@10 and the paired difference with a
+       confidence interval. Treat recall@200 as a separate deeper judging exercise.
+5. [ ] Write the results and limitations. Finalize the abstract and conclusion.
+
+Target sequence agreed 25 November 2026 (Berlin time):
+25 Nov: Finish the bundle, check the app locally, run the paper experiments.
+26 Nov: Publish the two Docker images, host on Azure, smoke-test, close Phase 1.
+27 Nov: Start Phase 2 with local registry refresh and Azure release checks.
 
 OBJECTIVE AND CURRENT STATUS
 Turn a synthetic free-text patient note into an explainable top-10 trial list.
