@@ -1,0 +1,46 @@
+{
+  "note_count": 100,
+  "areas": {
+    "Oncology": 10,
+    "Cardiovascular": 10,
+    "Neurology": 10,
+    "Endocrine and metabolic": 10,
+    "Respiratory": 10,
+    "Rheumatology and immune-mediated disease": 10,
+    "Gastroenterology and hepatology": 10,
+    "Kidney and hematology": 10,
+    "Mental health and behavioral medicine": 10,
+    "Infectious disease and dermatology": 10
+  },
+  "note_sha256": "9c48bca95bd2be9e6782c8045a3c6f5f6498974141864ac398d27968d3a01c8d",
+  "bundle_manifest_sha256": "7f2e345e3773a8958ec4b10cba813301279a4bd90c55cd74c02ccbe10d117d8a",
+  "index_sha256": "99462e4fdaae25521b8adc77555416b4525a00eb06e7e6868ecbe0368cd1fcf6",
+  "index_bytes": 483037184,
+  "bundle_bytes": 796956812,
+  "query_model_bytes": 110007075,
+  "vector_shards_bytes": 203167590,
+  "cpu": "Intel Core Ultra 5 235U",
+  "logical_cpus": 14,
+  "python": "3.12.13",
+  "platform": "win32",
+  "logical_cpu_affinity": 1,
+  "numeric_threads": 1,
+  "seed": 20261126,
+  "repetitions": 3,
+  "warmup_notes": [
+    "Synthetic adult with chronic tinnitus and sleep disruption.",
+    "Adult with confirmed Wilson disease and persistent movement symptoms.",
+    "Adult with atopic eye inflammation and recurring severe irritation.",
+    "Older adult with a knee replacement and persistent postoperative stiffness.",
+    "Adult with hereditary angioedema and recurring swelling episodes."
+  ],
+  "methods": [
+    "bm25",
+    "medcpt",
+    "hybrid"
+  ],
+  "fusion_balance_weight": 2.0,
+  "semantic_rrf_weight": 1.0,
+  "timing": "In-process ranking, including live query encoding when used. Excludes startup, result hydration and HTTP.",
+  "memory": "Maximum of the separate worker process peak resident memory readings, including startup and warm-up."
+}

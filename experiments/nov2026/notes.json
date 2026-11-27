@@ -1,0 +1,502 @@
+[
+  {
+    "id": "S001",
+    "area": "Oncology",
+    "note": "Adult with metastatic non-small cell lung cancer and an EGFR exon 19 deletion. Disease progressed after osimertinib. Seeking a study for subsequent systemic therapy."
+  },
+  {
+    "id": "S002",
+    "area": "Oncology",
+    "note": "Woman with metastatic triple-negative breast cancer. Liver lesions progressed after a taxane, with measurable disease on recent imaging."
+  },
+  {
+    "id": "S003",
+    "area": "Oncology",
+    "note": "Adult with recurrent glioblastoma after radiation and temozolomide. Recent MRI shows enhancing tumor, and corticosteroid dose has been stable."
+  },
+  {
+    "id": "S004",
+    "area": "Oncology",
+    "note": "Man with prostate cancer metastatic to bone and rising PSA despite androgen deprivation. Previously received an androgen receptor pathway inhibitor."
+  },
+  {
+    "id": "S005",
+    "area": "Oncology",
+    "note": "Adult with unresectable cutaneous melanoma harboring BRAF V600E. Received prior immune checkpoint therapy and now has progressive nodal disease."
+  },
+  {
+    "id": "S006",
+    "area": "Oncology",
+    "note": "Adult with locally advanced pancreatic ductal adenocarcinoma. Tumor involves nearby vessels and has not been surgically removed. No prior systemic treatment."
+  },
+  {
+    "id": "S007",
+    "area": "Oncology",
+    "note": "Adult with mismatch repair deficient colorectal adenocarcinoma and lung metastases. Cancer progressed after initial therapy."
+  },
+  {
+    "id": "S008",
+    "area": "Oncology",
+    "note": "Adult with relapsed acute myeloid leukemia after intensive induction and consolidation. Molecular testing found an FLT3 mutation."
+  },
+  {
+    "id": "S009",
+    "area": "Oncology",
+    "note": "Woman with recurrent high-grade serous ovarian cancer. Disease returned within six months of the last platinum treatment."
+  },
+  {
+    "id": "S010",
+    "area": "Oncology",
+    "note": "Adult with multiple myeloma relapsing after a proteasome inhibitor and an immunomodulatory agent. Has measurable monoclonal protein."
+  },
+  {
+    "id": "S011",
+    "area": "Cardiovascular",
+    "note": "Adult with heart failure and a left ventricular ejection fraction of 35 percent. Breathless with ordinary activity despite ongoing treatment."
+  },
+  {
+    "id": "S012",
+    "area": "Cardiovascular",
+    "note": "Older adult with preserved ejection fraction, exercise intolerance, and a recent admission for fluid overload."
+  },
+  {
+    "id": "S013",
+    "area": "Cardiovascular",
+    "note": "Adult with intermittent atrial fibrillation and recurrent palpitations despite a prior catheter ablation."
+  },
+  {
+    "id": "S014",
+    "area": "Cardiovascular",
+    "note": "Adult with blood pressure above goal on three medications, including a diuretic. Home measurements show a similar pattern."
+  },
+  {
+    "id": "S015",
+    "area": "Cardiovascular",
+    "note": "Adult with peripheral artery disease and calf pain after walking two blocks. Interested in a supervised walking study."
+  },
+  {
+    "id": "S016",
+    "area": "Cardiovascular",
+    "note": "Adult with aortic stenosis, exertional breathlessness, and no previous valve replacement."
+  },
+  {
+    "id": "S017",
+    "area": "Cardiovascular",
+    "note": "Adult with recurrent chest discomfort on exertion following placement of a coronary stent. No recent acute coronary event."
+  },
+  {
+    "id": "S018",
+    "area": "Cardiovascular",
+    "note": "Adult with an inherited cardiomyopathy, thickened left ventricular wall, and shortness of breath during activity."
+  },
+  {
+    "id": "S019",
+    "area": "Cardiovascular",
+    "note": "Adult with LDL cholesterol persistently elevated despite a maximally tolerated statin. Family history of early coronary events."
+  },
+  {
+    "id": "S020",
+    "area": "Cardiovascular",
+    "note": "Adult who recently recovered from a heart attack and is interested in a study of remote cardiac rehabilitation."
+  },
+  {
+    "id": "S021",
+    "area": "Neurology",
+    "note": "Adult with relapsing-remitting multiple sclerosis and a new MRI lesion while taking a disease-modifying therapy."
+  },
+  {
+    "id": "S022",
+    "area": "Neurology",
+    "note": "Adult with Parkinson disease and troublesome periods when levodopa wears off. Walking becomes slow before the next dose."
+  },
+  {
+    "id": "S023",
+    "area": "Neurology",
+    "note": "Older adult with mild cognitive impairment and confirmed cerebral amyloid on imaging. Independent in most daily activities."
+  },
+  {
+    "id": "S024",
+    "area": "Neurology",
+    "note": "Adult with focal seizures despite trials of two antiseizure drugs. Episodes include altered awareness."
+  },
+  {
+    "id": "S025",
+    "area": "Neurology",
+    "note": "Adult with chronic migraine on more than fifteen days per month. Prior preventive therapies gave limited relief."
+  },
+  {
+    "id": "S026",
+    "area": "Neurology",
+    "note": "Adult with amyotrophic lateral sclerosis and worsening hand weakness. Spirometry has been collected at the neurology clinic."
+  },
+  {
+    "id": "S027",
+    "area": "Neurology",
+    "note": "Adult recovering from an ischemic stroke with persistent weakness on one side and impaired use of the hand."
+  },
+  {
+    "id": "S028",
+    "area": "Neurology",
+    "note": "Adult with generalized myasthenia gravis, acetylcholine receptor antibodies, and intermittent trouble swallowing."
+  },
+  {
+    "id": "S029",
+    "area": "Neurology",
+    "note": "Adult with a pathogenic Huntington disease variant and early motor symptoms affecting daily tasks."
+  },
+  {
+    "id": "S030",
+    "area": "Neurology",
+    "note": "Young adult with chronic symptoms after concussion, including dizziness and difficulty concentrating."
+  },
+  {
+    "id": "S031",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with type 2 diabetes and persistently elevated HbA1c while taking metformin. Interested in a study involving glucose monitoring."
+  },
+  {
+    "id": "S032",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with type 1 diabetes using an insulin pump. Reports frequent overnight hypoglycemia despite monitor alerts."
+  },
+  {
+    "id": "S033",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with obesity and obstructive sleep apnea who is interested in a structured weight management study."
+  },
+  {
+    "id": "S034",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with metabolic dysfunction-associated steatohepatitis and evidence of moderate liver fibrosis. No history of decompensation."
+  },
+  {
+    "id": "S035",
+    "area": "Endocrine and metabolic",
+    "note": "Adolescent with severe obesity and abnormal glucose tolerance who has participated in family-based lifestyle counseling."
+  },
+  {
+    "id": "S036",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with primary hyperparathyroidism and elevated calcium on repeated testing. Has a history of kidney stones."
+  },
+  {
+    "id": "S037",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with growth hormone excess and elevated IGF-1 after pituitary surgery. Interested in a study for residual acromegaly."
+  },
+  {
+    "id": "S038",
+    "area": "Endocrine and metabolic",
+    "note": "Postmenopausal adult with a low bone density result and a previous vertebral fragility fracture."
+  },
+  {
+    "id": "S039",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with autoimmune adrenal insufficiency who reports fatigue while taking replacement glucocorticoids."
+  },
+  {
+    "id": "S040",
+    "area": "Endocrine and metabolic",
+    "note": "Adult with recurrent gout flares and persistently high serum urate despite a prescribed urate-lowering regimen."
+  },
+  {
+    "id": "S041",
+    "area": "Respiratory",
+    "note": "Adult with severe asthma, elevated blood eosinophils, and two exacerbations in the past year despite inhaled therapy."
+  },
+  {
+    "id": "S042",
+    "area": "Respiratory",
+    "note": "Adult with chronic obstructive pulmonary disease, persistent exertional dyspnea, and frequent flare-ups."
+  },
+  {
+    "id": "S043",
+    "area": "Respiratory",
+    "note": "Adult with cystic fibrosis and a chronic productive cough. Spirometry shows a recent decline from baseline."
+  },
+  {
+    "id": "S044",
+    "area": "Respiratory",
+    "note": "Adult with idiopathic pulmonary fibrosis and worsening exercise tolerance. Recent imaging shows a usual interstitial pneumonia pattern."
+  },
+  {
+    "id": "S045",
+    "area": "Respiratory",
+    "note": "Adult with bronchiectasis and repeated chest infections. Daily sputum production persists between episodes."
+  },
+  {
+    "id": "S046",
+    "area": "Respiratory",
+    "note": "Adult with obstructive sleep apnea and difficulty tolerating positive airway pressure. Interested in alternatives evaluated in studies."
+  },
+  {
+    "id": "S047",
+    "area": "Respiratory",
+    "note": "Adult with pulmonary arterial hypertension and exertional limitation despite background treatment."
+  },
+  {
+    "id": "S048",
+    "area": "Respiratory",
+    "note": "Adult with pulmonary sarcoidosis and persistent cough after initial treatment. Parenchymal changes remain on imaging."
+  },
+  {
+    "id": "S049",
+    "area": "Respiratory",
+    "note": "Adult with persistent shortness of breath several months after COVID-19. Interested in research evaluating respiratory rehabilitation."
+  },
+  {
+    "id": "S050",
+    "area": "Respiratory",
+    "note": "Adult with systemic sclerosis-associated interstitial lung disease and worsening forced vital capacity."
+  },
+  {
+    "id": "S051",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with rheumatoid arthritis and swollen hand joints despite methotrexate. Rheumatoid factor is positive."
+  },
+  {
+    "id": "S052",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with systemic lupus erythematosus and proteinuria. Biopsy has shown lupus nephritis."
+  },
+  {
+    "id": "S053",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with psoriasis and inflammatory joint pain, including swollen digits and stiffness after waking."
+  },
+  {
+    "id": "S054",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with inflammatory back pain and sacroiliitis seen on MRI. Symptoms persist despite an anti-inflammatory drug."
+  },
+  {
+    "id": "S055",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Older adult with giant cell arteritis who has experienced a relapse during glucocorticoid tapering."
+  },
+  {
+    "id": "S056",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with Sjogren disease, dry eyes and mouth, and fatigue that interferes with daily activities."
+  },
+  {
+    "id": "S057",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with muscle weakness from dermatomyositis and a persistent characteristic rash despite treatment."
+  },
+  {
+    "id": "S058",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with recurrent oral ulcers and inflammatory eye disease associated with Behcet disease."
+  },
+  {
+    "id": "S059",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with ANCA-associated vasculitis and prior kidney involvement who is currently in remission."
+  },
+  {
+    "id": "S060",
+    "area": "Rheumatology and immune-mediated disease",
+    "note": "Adult with systemic sclerosis and painful digital ulcers that recur in winter."
+  },
+  {
+    "id": "S061",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with moderate Crohn disease, abdominal pain, and inflammation in the terminal ileum despite a prior biologic."
+  },
+  {
+    "id": "S062",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with active ulcerative colitis and persistent rectal bleeding while on maintenance therapy."
+  },
+  {
+    "id": "S063",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with celiac disease and gastrointestinal symptoms despite a reported gluten-free diet."
+  },
+  {
+    "id": "S064",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with chronic constipation and recurrent abdominal pain fitting irritable bowel syndrome with constipation."
+  },
+  {
+    "id": "S065",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with primary biliary cholangitis and persistent itching despite ongoing therapy."
+  },
+  {
+    "id": "S066",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with compensated cirrhosis attributed to prior hepatitis C. Interested in a study of monitoring or prevention of complications."
+  },
+  {
+    "id": "S067",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with eosinophilic esophagitis, recurrent solid-food dysphagia, and eosinophilia on biopsy."
+  },
+  {
+    "id": "S068",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with chronic pancreatitis and recurring abdominal pain that limits oral intake."
+  },
+  {
+    "id": "S069",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with primary sclerosing cholangitis and a recent increase in alkaline phosphatase."
+  },
+  {
+    "id": "S070",
+    "area": "Gastroenterology and hepatology",
+    "note": "Adult with diabetic gastroparesis, early satiety, and delayed gastric emptying on testing."
+  },
+  {
+    "id": "S071",
+    "area": "Kidney and hematology",
+    "note": "Adult with chronic kidney disease from type 2 diabetes, persistent albuminuria, and declining eGFR."
+  },
+  {
+    "id": "S072",
+    "area": "Kidney and hematology",
+    "note": "Adult on maintenance hemodialysis with persistent itching that interferes with sleep."
+  },
+  {
+    "id": "S073",
+    "area": "Kidney and hematology",
+    "note": "Adult with biopsy-confirmed IgA nephropathy and ongoing proteinuria despite supportive therapy."
+  },
+  {
+    "id": "S074",
+    "area": "Kidney and hematology",
+    "note": "Adult with autosomal dominant polycystic kidney disease and enlarging kidneys on serial imaging."
+  },
+  {
+    "id": "S075",
+    "area": "Kidney and hematology",
+    "note": "Adult with recurrent calcium kidney stones despite increasing daily fluid intake."
+  },
+  {
+    "id": "S076",
+    "area": "Kidney and hematology",
+    "note": "Adult with homozygous sickle cell disease and recurrent vaso-occlusive pain admissions."
+  },
+  {
+    "id": "S077",
+    "area": "Kidney and hematology",
+    "note": "Adult with transfusion-dependent beta thalassemia and evidence of iron overload."
+  },
+  {
+    "id": "S078",
+    "area": "Kidney and hematology",
+    "note": "Adult with immune thrombocytopenia and sustained low platelet counts following initial treatment."
+  },
+  {
+    "id": "S079",
+    "area": "Kidney and hematology",
+    "note": "Adult with severe hemophilia A receiving factor replacement and experiencing breakthrough joint bleeds."
+  },
+  {
+    "id": "S080",
+    "area": "Kidney and hematology",
+    "note": "Adult with lower-risk myelodysplastic syndrome and persistent anemia requiring red blood cell transfusions."
+  },
+  {
+    "id": "S081",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with major depression that persisted after two courses of antidepressant therapy. Interested in a supervised clinical study."
+  },
+  {
+    "id": "S082",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with post-traumatic stress symptoms including avoidance and nightmares despite prior counseling."
+  },
+  {
+    "id": "S083",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with generalized anxiety and persistent daily worry that disrupts concentration and work."
+  },
+  {
+    "id": "S084",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with obsessive-compulsive disorder and time-consuming contamination rituals after a prior course of therapy."
+  },
+  {
+    "id": "S085",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with bipolar I disorder and residual depressive symptoms on a stable mood stabilizer."
+  },
+  {
+    "id": "S086",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with schizophrenia and persistent avolition and social withdrawal while positive symptoms are stable."
+  },
+  {
+    "id": "S087",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with alcohol use disorder who completed withdrawal management and is seeking relapse prevention research."
+  },
+  {
+    "id": "S088",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with insomnia lasting more than a year and prolonged sleep onset despite trying behavioral changes."
+  },
+  {
+    "id": "S089",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adult with opioid use disorder on maintenance medication interested in a study supporting engagement in care."
+  },
+  {
+    "id": "S090",
+    "area": "Mental health and behavioral medicine",
+    "note": "Adolescent with attention deficit hyperactivity disorder and continuing classroom impairment despite initial treatment."
+  },
+  {
+    "id": "S091",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with well-controlled HIV on antiretroviral therapy who is interested in a study of long-acting treatment."
+  },
+  {
+    "id": "S092",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with chronic hepatitis B and measurable surface antigen despite viral suppression on oral therapy."
+  },
+  {
+    "id": "S093",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult recently diagnosed with latent tuberculosis infection after a positive interferon-gamma release assay. No symptoms of active disease."
+  },
+  {
+    "id": "S094",
+    "area": "Infectious disease and dermatology",
+    "note": "Older adult with recurrent urinary tract infections interested in a prevention study."
+  },
+  {
+    "id": "S095",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with several recurrences of Clostridioides difficile infection following previous antibiotic courses."
+  },
+  {
+    "id": "S096",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with moderate plaque psoriasis involving the trunk and limbs despite topical therapy."
+  },
+  {
+    "id": "S097",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with atopic dermatitis and persistent itching and sleep disturbance despite prescription creams."
+  },
+  {
+    "id": "S098",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with hidradenitis suppurativa, painful draining nodules, and disease affecting both axillae."
+  },
+  {
+    "id": "S099",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with patchy alopecia areata and progression of scalp hair loss over several months."
+  },
+  {
+    "id": "S100",
+    "area": "Infectious disease and dermatology",
+    "note": "Adult with vitiligo affecting the face and hands, with new areas appearing over the past year."
+  }
+]

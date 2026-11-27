@@ -1,0 +1,99 @@
+{
+  "methods": {
+    "bm25": {
+      "observations": 300,
+      "median_ms": 293.00014999999996,
+      "p95_ms": 541.6177299999999,
+      "peak_mib": 51.59375,
+      "median_load_s": 3.274403399998846,
+      "minimum_returned": 10,
+      "median_ms_by_repetition": [
+        337.92150000000004,
+        378.83050000000003,
+        195.6842
+      ]
+    },
+    "medcpt": {
+      "observations": 300,
+      "median_ms": 241.43695,
+      "p95_ms": 298.99355499999996,
+      "peak_mib": 407.59375,
+      "median_load_s": 9.219316499998968,
+      "minimum_returned": 10,
+      "median_ms_by_repetition": [
+        251.20375,
+        254.25155,
+        208.98055
+      ]
+    },
+    "hybrid": {
+      "observations": 300,
+      "median_ms": 1529.44075,
+      "p95_ms": 2594.38743,
+      "peak_mib": 423.09765625,
+      "median_load_s": 10.857101900000998,
+      "minimum_returned": 10,
+      "median_ms_by_repetition": [
+        1577.1007,
+        1593.0689,
+        1450.8564000000001
+      ]
+    }
+  },
+  "overlap": {
+    "bm25_vs_medcpt": {
+      "mean_shared": 2.27,
+      "median_shared": 2.0,
+      "minimum_shared": 0,
+      "maximum_shared": 6,
+      "histogram": {
+        "0": 13,
+        "1": 21,
+        "2": 19,
+        "3": 27,
+        "4": 14,
+        "5": 5,
+        "6": 1
+      },
+      "same_first": 7,
+      "exact_order": 0
+    },
+    "bm25_vs_hybrid": {
+      "mean_shared": 4.88,
+      "median_shared": 5.0,
+      "minimum_shared": 1,
+      "maximum_shared": 8,
+      "histogram": {
+        "1": 3,
+        "2": 6,
+        "3": 11,
+        "4": 18,
+        "5": 24,
+        "6": 22,
+        "7": 12,
+        "8": 4
+      },
+      "same_first": 25,
+      "exact_order": 0
+    },
+    "medcpt_vs_hybrid": {
+      "mean_shared": 5.12,
+      "median_shared": 5.0,
+      "minimum_shared": 0,
+      "maximum_shared": 8,
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 3,
+        "3": 11,
+        "4": 17,
+        "5": 24,
+        "6": 21,
+        "7": 18,
+        "8": 4
+      },
+      "same_first": 37,
+      "exact_order": 0
+    }
+  }
+}

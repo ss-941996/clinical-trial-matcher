@@ -1,0 +1,20 @@
+{
+  "notes": 100,
+  "pair_count": 32988,
+  "unique_trials": 23031,
+  "pilot_note_count": 10,
+  "pilot_pair_count": 3355,
+  "existing_top10_pilot_grades": 195,
+  "minimum_returned": {
+    "bm25": 200,
+    "medcpt": 200,
+    "hybrid": 200
+  },
+  "maximum_returned": {
+    "bm25": 200,
+    "medcpt": 200,
+    "hybrid": 200
+  },
+  "top10_identical_to_saved_benchmark": true,
+  "recall200_status": "Requires relevance judgments at the deeper pool depth."
+}
